@@ -1,0 +1,1 @@
+Approved homepage visual target locked to user-provided reference image.
