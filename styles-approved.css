@@ -1,1 +1,16 @@
-@import url('styles-new.css');
+@import url('styles-new.css?v=20260915-icons1');
+
+/* Small visual identifier for every portfolio project card. */
+.project-card{position:relative;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.project-card:hover{transform:translateY(-3px);border-color:#2b668d;box-shadow:0 14px 32px rgba(0,0,0,.18)}
+.project-grid .project-card::before{content:'•';width:36px;height:36px;margin-bottom:14px;border:1px solid #28506c;border-radius:9px;display:grid;place-items:center;background:#0a2639;color:#7dccff;font-size:20px;font-weight:700;line-height:1;box-shadow:inset 0 0 18px rgba(7,153,249,.06)}
+.project-grid .project-card:nth-child(1)::before{content:'✦';color:#b47cff;border-color:#634086;background:#171b37}
+.project-grid .project-card:nth-child(2)::before{content:'↻';color:#52c7ff;border-color:#2b6384;background:#0b293c}
+.project-grid .project-card:nth-child(3)::before{content:'◇';color:#38e0ad;border-color:#26725c;background:#0b2c28}
+.project-grid .project-card:nth-child(4)::before{content:'⬡';color:#8f9dff;border-color:#4f5890;background:#171d3a}
+.project-grid .project-card:nth-child(5)::before{content:'▤';color:#64d8ff;border-color:#326b83;background:#0d2939}
+.project-grid .project-card:nth-child(6)::before{content:'⌘';color:#ff9f55;border-color:#8b5930;background:#302015}
+.project-grid .project-card:nth-child(7)::before{content:'⚙';color:#b978ff;border-color:#624083;background:#24162f;font-size:18px}
+.project-grid .project-card:nth-child(8)::before{content:'◎';color:#4ed7c3;border-color:#2c6e68;background:#102c2d}
+.project-grid .project-card:nth-child(9)::before{content:'▦';color:#ffd06a;border-color:#846d36;background:#302a16}
+.project-grid .project-card:nth-child(10)::before{content:'✣';color:#69b9ff;border-color:#37658b;background:#10263a}
