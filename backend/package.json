@@ -1,0 +1,8 @@
+{
+  "name": "dumm-cloud-contact-backend",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.890.0"
+  }
+}
