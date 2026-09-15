@@ -1,0 +1,35 @@
+aws_region   = "us-east-2"
+project_name = "portfolio-landing-zone"
+environment  = "foundation"
+
+vpc_cidr = "10.20.0.0/16"
+
+availability_zones = [
+  "us-east-2a",
+  "us-east-2b"
+]
+
+public_subnet_cidrs = [
+  "10.20.110.0/24",
+  "10.20.120.0/24"
+]
+
+private_subnet_cidrs = [
+  "10.20.10.0/24",
+  "10.20.20.0/24"
+]
+
+allowed_regions = [
+  "us-east-1",
+  "us-east-2",
+  "us-west-2"
+]
+
+# Keep false unless running from the AWS Organizations management account
+# and you have reviewed the OU/SCP impact.
+enable_organizations = false
+
+organizational_unit_name = "Workloads"
+
+# Keep false for real audit environments.
+force_destroy_log_bucket = false
