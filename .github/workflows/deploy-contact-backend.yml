@@ -1,0 +1,115 @@
+name: Deploy Contact Backend
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+env:
+  AWS_REGION: ${{ vars.AWS_REGION || 'us-east-1' }}
+  STACK_NAME: dumm-cloud-contact
+
+jobs:
+  deploy:
+    name: Deploy Lambda + API Gateway + SES contact service
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify required repository settings
+        env:
+          AWS_ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
+          CONTACT_SENDER_EMAIL: ${{ secrets.CONTACT_SENDER_EMAIL }}
+          CONTACT_DESTINATION_EMAIL: ${{ secrets.CONTACT_DESTINATION_EMAIL }}
+        run: |
+          test -n "$AWS_ROLE_ARN" || { echo "Missing repository variable AWS_ROLE_ARN"; exit 1; }
+          test -n "$CONTACT_SENDER_EMAIL" || { echo "Missing repository secret CONTACT_SENDER_EMAIL"; exit 1; }
+          test -n "$CONTACT_DESTINATION_EMAIL" || { echo "Missing repository secret CONTACT_DESTINATION_EMAIL"; exit 1; }
+
+      - name: Configure short-lived AWS credentials with OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+          role-session-name: github-contact-backend
+
+      - name: Set up AWS SAM
+        uses: aws-actions/setup-sam@v2
+
+      - name: Build contact backend
+        working-directory: backend
+        run: sam build --template-file template.yaml
+
+      - name: Deploy contact backend
+        working-directory: backend
+        env:
+          CONTACT_SENDER_EMAIL: ${{ secrets.CONTACT_SENDER_EMAIL }}
+          CONTACT_DESTINATION_EMAIL: ${{ secrets.CONTACT_DESTINATION_EMAIL }}
+        run: |
+          sam deploy \
+            --stack-name "$STACK_NAME" \
+            --region "$AWS_REGION" \
+            --resolve-s3 \
+            --capabilities CAPABILITY_IAM \
+            --no-confirm-changeset \
+            --no-fail-on-empty-changeset \
+            --parameter-overrides \
+              "SenderEmail=$CONTACT_SENDER_EMAIL" \
+              "DestinationEmail=$CONTACT_DESTINATION_EMAIL" \
+              "AllowedOrigins=https://dumm.cloud,https://www.dumm.cloud"
+
+      - name: Read deployed API URL
+        id: api
+        run: |
+          API_URL=$(aws cloudformation describe-stacks \
+            --stack-name "$STACK_NAME" \
+            --region "$AWS_REGION" \
+            --query "Stacks[0].Outputs[?OutputKey=='ContactApiUrl'].OutputValue" \
+            --output text)
+          test -n "$API_URL" && test "$API_URL" != "None" || { echo "ContactApiUrl output was not found"; exit 1; }
+          echo "url=$API_URL" >> "$GITHUB_OUTPUT"
+          echo "Contact API deployed successfully."
+
+      - name: Connect website to deployed contact API
+        env:
+          API_URL: ${{ steps.api.outputs.url }}
+        run: |
+          python - <<'PY'
+          import json, os
+          url = os.environ['API_URL']
+          with open('contact-config.js', 'w', encoding='utf-8') as f:
+              f.write('// Runtime contact endpoint configuration.\n')
+              f.write('// Public API endpoint only; no email address or credential is stored here.\n')
+              f.write('window.CONTACT_API_URL = ' + json.dumps(url) + ';\n')
+          PY
+
+          if git diff --quiet -- contact-config.js; then
+            echo "Website is already connected to this API endpoint."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add contact-config.js
+          git commit -m "Connect contact form to deployed AWS API"
+          git push || {
+            echo "::warning::Backend deployed, but GitHub could not push contact-config.js automatically."
+            echo "API endpoint: $API_URL"
+            exit 0
+          }
+
+      - name: Deployment summary
+        env:
+          API_URL: ${{ steps.api.outputs.url }}
+        run: |
+          {
+            echo "### Contact form backend deployed"
+            echo "- AWS stack: \`$STACK_NAME\`"
+            echo "- Region: \`$AWS_REGION\`"
+            echo "- Contact API: \`$API_URL\`"
+            echo "- The receiving email remains stored only in GitHub Secrets/AWS Lambda environment variables."
+          } >> "$GITHUB_STEP_SUMMARY"
