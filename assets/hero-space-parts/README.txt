@@ -1,0 +1,1 @@
+Temporary upload fragments created during hero image troubleshooting. Safe to remove after final image upload.
