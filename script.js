@@ -1,6 +1,14 @@
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
+// Route the completed Terraform landing-zone project to its dedicated dashboard.
+document.querySelectorAll('.project-card').forEach(card => {
+  const title = card.querySelector('h3')?.textContent || '';
+  if (title.includes('Terraform AWS Landing Zone')) {
+    card.setAttribute('href', 'projects/terraform-aws-landing-zone/dashboard.html');
+  }
+});
+
 // Open every non-anchor link in a separate tab/window while keeping
 // on-page navigation (Home, About, Skills, Projects, etc.) in the current tab.
 document.querySelectorAll('a[href]').forEach(link => {
