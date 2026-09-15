@@ -2,6 +2,10 @@
 
 A portfolio DevSecOps project that demonstrates a secure software delivery pipeline using GitHub Actions, Python tests, static security scanning, Terraform validation, immutable build artifacts, and optional AWS deployment with OpenID Connect (OIDC).
 
+**Live dashboard:** https://dumm.cloud/projects/secure-ci-cd-pipeline/dashboard.html
+
+The dashboard reads the latest public GitHub Actions workflow metadata and displays pipeline status, recent runs, success rate, average duration, commit information, stage status, and implemented security controls.
+
 ## What this project demonstrates
 
 - Automated CI on pull requests and pushes
@@ -13,6 +17,7 @@ A portfolio DevSecOps project that demonstrates a secure software delivery pipel
 - GitHub-to-AWS OIDC authentication instead of long-lived AWS access keys
 - Least-privilege deployment policy examples
 - Separation of build, security, infrastructure validation, and deployment stages
+- Live web dashboard for pipeline telemetry
 
 ## Pipeline flow
 
@@ -48,11 +53,26 @@ Manual Production Approval / workflow_dispatch
 
 - `app.py` — dependency-free sample Python service with health/version endpoints
 - `test_app.py` — unit tests
+- `dashboard.html` — live GitHub Actions status and DevSecOps dashboard
 - `terraform/main.tf` — secure encrypted S3 artifact bucket example
 - `terraform/variables.tf` — Terraform input variables
 - `docs/architecture.md` — design and security decisions
 - `docs/iam-policy-deploy.json` — example least-privilege deployment policy
 - Root workflow: `.github/workflows/secure-ci-cd-pipeline.yml`
+
+## Dashboard
+
+The dashboard is a static portfolio page hosted with the site. It calls GitHub's public Actions API in the browser to show:
+
+- Latest workflow conclusion and trigger
+- Success rate across recent completed runs
+- Average workflow duration
+- Latest commit SHA and title
+- Status of test/security scan, Terraform validation, packaging, and manual deployment stages
+- Five most recent workflow runs with links back to GitHub Actions
+- Security control summary for OIDC, Bandit, Terraform validation, gated deployment, and immutable artifacts
+
+If the GitHub API is temporarily rate-limited, the dashboard fails safely and provides a direct link to GitHub Actions.
 
 ## CI stages
 
