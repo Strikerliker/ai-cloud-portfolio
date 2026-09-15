@@ -1,56 +1,72 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
 const ses = new SESClient({});
-
-const allowedOrigin = process.env.ALLOWED_ORIGIN || 'https://dumm.cloud';
 const destinationEmail = process.env.DESTINATION_EMAIL;
 const senderEmail = process.env.SENDER_EMAIL;
+const allowedOrigins = new Set(
+  String(process.env.ALLOWED_ORIGINS || 'https://dumm.cloud,https://www.dumm.cloud')
+    .split(',')
+    .map(value => value.trim())
+    .filter(Boolean)
+);
 
-const response = (statusCode, body) => ({
+const requestOrigin = event => event?.headers?.origin || event?.headers?.Origin || '';
+const response = (statusCode, body, origin = '') => ({
   statusCode,
   headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': allowedOrigin,
+    'Content-Type': 'application/json; charset=utf-8',
+    'Access-Control-Allow-Origin': allowedOrigins.has(origin) ? origin : 'https://dumm.cloud',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST,OPTIONS',
+    'Cache-Control': 'no-store',
     'Vary': 'Origin'
   },
-  body: JSON.stringify(body)
+  body: statusCode === 204 ? '' : JSON.stringify(body)
 });
 
-const clean = (value, max = 5000) => String(value || '').replace(/[<>]/g, '').trim().slice(0, max);
+const clean = (value, max = 5000) => String(value || '')
+  .replace(/[<>]/g, '')
+  .replace(/[\u0000-\u001F\u007F]/g, ' ')
+  .trim()
+  .slice(0, max);
 
-export const handler = async (event) => {
-  if (event.requestContext?.http?.method === 'OPTIONS') return response(204, {});
+const cleanSubject = value => clean(value, 200).replace(/[\r\n]+/g, ' ');
+const validEmail = value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+export const handler = async event => {
+  const origin = requestOrigin(event);
+  const method = event?.requestContext?.http?.method || event?.httpMethod || '';
+
+  if (origin && !allowedOrigins.has(origin)) {
+    return response(403, { message: 'Origin not allowed.' }, origin);
+  }
+  if (method === 'OPTIONS') return response(204, {}, origin);
+  if (method && method !== 'POST') return response(405, { message: 'Method not allowed.' }, origin);
 
   try {
-    const origin = event.headers?.origin || event.headers?.Origin || '';
-    if (origin && origin !== allowedOrigin && origin !== 'https://www.dumm.cloud') {
-      return response(403, { message: 'Origin not allowed.' });
-    }
-
     if (!destinationEmail || !senderEmail) {
       console.error('Missing DESTINATION_EMAIL or SENDER_EMAIL environment variable.');
-      return response(500, { message: 'Contact service is not configured.' });
+      return response(500, { message: 'Contact service is not configured.' }, origin);
     }
 
-    const data = JSON.parse(event.body || '{}');
+    const rawBody = event?.body || '{}';
+    if (rawBody.length > 20000) return response(413, { message: 'Message is too large.' }, origin);
+    const data = JSON.parse(rawBody);
 
-    // Honeypot: bots often fill hidden fields.
-    if (data.website) return response(200, { message: 'Message received.' });
+    // Honeypot: bots commonly populate this hidden field.
+    if (data.website) return response(200, { message: 'Message received.' }, origin);
 
     const name = clean(data.name, 120);
     const email = clean(data.email, 254);
     const company = clean(data.company, 160);
-    const subject = clean(data.subject, 200);
+    const subject = cleanSubject(data.subject);
     const message = clean(data.message, 6000);
 
     if (!name || !email || !subject || !message) {
-      return response(400, { message: 'Please complete all required fields.' });
+      return response(400, { message: 'Please complete all required fields.' }, origin);
     }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return response(400, { message: 'Please enter a valid email address.' });
+    if (!validEmail(email)) {
+      return response(400, { message: 'Please enter a valid email address.' }, origin);
     }
 
     const textBody = [
@@ -75,9 +91,9 @@ export const handler = async (event) => {
       }
     }));
 
-    return response(200, { message: 'Message sent successfully.' });
+    return response(200, { message: 'Message sent successfully.' }, origin);
   } catch (error) {
     console.error('Contact form error:', error);
-    return response(500, { message: 'Unable to send your message right now.' });
+    return response(500, { message: 'Unable to send your message right now.' }, origin);
   }
 };
