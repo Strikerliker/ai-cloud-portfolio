@@ -16,6 +16,9 @@ document.querySelectorAll('.project-card').forEach(card => {
   if (title.includes('Secure AI API Deployment')) {
     card.setAttribute('href', 'projects/secure-ai-api-deployment/dashboard.html');
   }
+  if (title.includes('AI Manufacturing Support Agent')) {
+    card.setAttribute('href', 'projects/ai-manufacturing-support-agent/dashboard.html');
+  }
 });
 
 // Open every non-anchor link in a separate tab/window while keeping
