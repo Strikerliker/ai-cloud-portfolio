@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Secure contact form backend for dumm.cloud
+
+Parameters:
+  SenderEmail:
+    Type: String
+    NoEcho: true
+    Description: SES-verified address used as the From address.
+  DestinationEmail:
+    Type: String
+    NoEcho: true
+    Description: Address that receives contact form messages.
+  AllowedOrigins:
+    Type: String
+    Default: https://dumm.cloud,https://www.dumm.cloud
+
+Resources:
+  ContactFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: contact-lambda.handler
+      Runtime: nodejs22.x
+      Architectures:
+        - arm64
+      MemorySize: 128
+      Timeout: 10
+      Environment:
+        Variables:
+          SENDER_EMAIL: !Ref SenderEmail
+          DESTINATION_EMAIL: !Ref DestinationEmail
+          ALLOWED_ORIGINS: !Ref AllowedOrigins
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+              Resource: '*'
+      Events:
+        ContactPost:
+          Type: HttpApi
+          Properties:
+            Path: /contact
+            Method: POST
+        ContactOptions:
+          Type: HttpApi
+          Properties:
+            Path: /contact
+            Method: OPTIONS
+
+Outputs:
+  ContactApiUrl:
+    Description: HTTPS endpoint for the portfolio contact form.
+    Value: !Sub https://${ServerlessHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/contact
