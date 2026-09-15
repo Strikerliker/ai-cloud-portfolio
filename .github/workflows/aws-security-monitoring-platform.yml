@@ -1,0 +1,41 @@
+name: AWS Security Monitoring Platform
+
+on:
+  push:
+    paths:
+      - "projects/aws-security-monitoring-platform/**"
+      - ".github/workflows/aws-security-monitoring-platform.yml"
+  pull_request:
+    paths:
+      - "projects/aws-security-monitoring-platform/**"
+      - ".github/workflows/aws-security-monitoring-platform.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: Terraform Validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+
+      - name: Terraform Format Check
+        working-directory: projects/aws-security-monitoring-platform/terraform
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init
+        working-directory: projects/aws-security-monitoring-platform/terraform
+        run: terraform init -backend=false
+
+      - name: Terraform Validate
+        working-directory: projects/aws-security-monitoring-platform/terraform
+        run: terraform validate
