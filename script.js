@@ -1,27 +1,24 @@
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
-// Route completed projects with dedicated dashboards to those dashboards.
+// Keep every portfolio card connected to its current project page.
+const projectRoutes = {
+  'AWS Bedrock RAG Assistant': 'projects/project-visual.html?project=aws-bedrock-rag-assistant',
+  'Secure CI/CD Pipeline': 'projects/secure-ci-cd-pipeline/dashboard.html',
+  'AWS Security Monitoring Platform': 'projects/aws-security-monitoring-platform/dashboard.html',
+  'Terraform AWS Landing Zone': 'projects/terraform-aws-landing-zone/dashboard.html',
+  'AI Document Processing Pipeline': 'projects/ai-document-processing-pipeline/dashboard.html',
+  'Secure AI API Deployment': 'projects/secure-ai-api-deployment/dashboard.html',
+  'Hermes Agent Cloud Deployment': 'projects/project-visual.html?project=hermes-agent-cloud-deployment',
+  'OpenClaw Private AI Assistant': 'projects/openclaw-private-ai-assistant/dashboard.html',
+  'Manufacturing ERP/MRP SQL Reporting': 'projects/project-visual.html?project=manufacturing-erp-mrp-sql-reporting',
+  'AI Manufacturing Support Agent': 'projects/ai-manufacturing-support-agent/dashboard.html'
+};
+
 document.querySelectorAll('.project-card').forEach(card => {
-  const title = card.querySelector('h3')?.textContent || '';
-  if (title.includes('Terraform AWS Landing Zone')) {
-    card.setAttribute('href', 'projects/terraform-aws-landing-zone/dashboard.html');
-  }
-  if (title.includes('AWS Security Monitoring Platform')) {
-    card.setAttribute('href', 'projects/aws-security-monitoring-platform/dashboard.html');
-  }
-  if (title.includes('AI Document Processing Pipeline')) {
-    card.setAttribute('href', 'projects/ai-document-processing-pipeline/dashboard.html');
-  }
-  if (title.includes('Secure AI API Deployment')) {
-    card.setAttribute('href', 'projects/secure-ai-api-deployment/dashboard.html');
-  }
-  if (title.includes('AI Manufacturing Support Agent')) {
-    card.setAttribute('href', 'projects/ai-manufacturing-support-agent/dashboard.html');
-  }
-  if (title.includes('OpenClaw Private AI Assistant')) {
-    card.setAttribute('href', 'projects/openclaw-private-ai-assistant/dashboard.html');
-  }
+  const title = String(card.querySelector('h3')?.textContent || '').replace('↗', '').trim();
+  const route = projectRoutes[title];
+  if (route) card.setAttribute('href', route);
 });
 
 // Open every non-anchor link in a separate tab/window while keeping
