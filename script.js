@@ -10,6 +10,9 @@ document.querySelectorAll('.project-card').forEach(card => {
   if (title.includes('AWS Security Monitoring Platform')) {
     card.setAttribute('href', 'projects/aws-security-monitoring-platform/dashboard.html');
   }
+  if (title.includes('AI Document Processing Pipeline')) {
+    card.setAttribute('href', 'projects/ai-document-processing-pipeline/dashboard.html');
+  }
 });
 
 // Open every non-anchor link in a separate tab/window while keeping
