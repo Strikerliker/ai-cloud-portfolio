@@ -1,6 +1,16 @@
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
+// Open every non-anchor link in a separate tab/window while keeping
+// on-page navigation (Home, About, Skills, Projects, etc.) in the current tab.
+document.querySelectorAll('a[href]').forEach(link => {
+  const href = String(link.getAttribute('href') || '').trim();
+  if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+  }
+});
+
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav-links');
 if (toggle && nav) {
