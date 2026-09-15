@@ -35,9 +35,10 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-const CONTACT_API_URL = window.CONTACT_API_URL || '';
+const CONTACT_API_URL = String(window.CONTACT_API_URL || '').trim();
 const contactForm = document.querySelector('#contact-form');
 const formStatus = document.querySelector('#form-status');
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function setFormStatus(message, state = 'info') {
   if (!formStatus) return;
@@ -45,43 +46,80 @@ function setFormStatus(message, state = 'info') {
   formStatus.dataset.state = state;
 }
 
+function fieldValue(formData, name) {
+  return String(formData.get(name) || '').trim();
+}
+
 if (contactForm) {
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  const defaultButtonHtml = submitButton ? submitButton.innerHTML : 'Send Message';
+
   contactForm.addEventListener('submit', async event => {
     event.preventDefault();
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const formData = new FormData(contactForm);
-    const payload = {
-      name: String(formData.get('name') || '').trim(),
-      email: String(formData.get('email') || '').trim(),
-      subject: String(formData.get('subject') || '').trim(),
-      message: String(formData.get('message') || '').trim()
-    };
-    if (!payload.name || !payload.email || !payload.subject || !payload.message) {
+
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
       setFormStatus('Please complete all required fields.', 'error');
       return;
     }
-    if (!CONTACT_API_URL) {
-      setFormStatus('Secure contact delivery is being activated. Please try again shortly.', 'info');
+
+    const formData = new FormData(contactForm);
+    const payload = {
+      name: fieldValue(formData, 'name'),
+      email: fieldValue(formData, 'email'),
+      company: fieldValue(formData, 'company'),
+      subject: fieldValue(formData, 'subject'),
+      message: fieldValue(formData, 'message'),
+      website: fieldValue(formData, 'website')
+    };
+
+    if (!emailPattern.test(payload.email)) {
+      setFormStatus('Please enter a valid email address.', 'error');
+      contactForm.querySelector('[name="email"]')?.focus();
       return;
     }
-    submitButton.disabled = true;
-    submitButton.textContent = 'Sending…';
-    setFormStatus('Sending your message securely…');
+
+    if (!CONTACT_API_URL) {
+      setFormStatus('The secure AWS contact endpoint has not been connected yet.', 'error');
+      return;
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<span>Sending…</span>';
+    }
+    setFormStatus('Sending your message securely…', 'info');
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+
     try {
       const response = await fetch(CONTACT_API_URL, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+        mode: 'cors',
+        credentials: 'omit'
       });
+
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.message || 'Unable to send message.');
+
       contactForm.reset();
       setFormStatus('Message sent successfully. Thank you — I’ll be in touch.', 'success');
     } catch (error) {
-      setFormStatus(error.message || 'Unable to send your message right now.', 'error');
+      if (error?.name === 'AbortError') {
+        setFormStatus('The contact service timed out. Please try again.', 'error');
+      } else {
+        setFormStatus(error?.message || 'Unable to send your message right now. Please try again.', 'error');
+      }
     } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = 'Send Message';
+      clearTimeout(timeout);
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = defaultButtonHtml;
+      }
     }
   });
 }
