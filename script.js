@@ -1,11 +1,14 @@
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
-// Route the completed Terraform landing-zone project to its dedicated dashboard.
+// Route completed projects with dedicated dashboards to those dashboards.
 document.querySelectorAll('.project-card').forEach(card => {
   const title = card.querySelector('h3')?.textContent || '';
   if (title.includes('Terraform AWS Landing Zone')) {
     card.setAttribute('href', 'projects/terraform-aws-landing-zone/dashboard.html');
+  }
+  if (title.includes('AWS Security Monitoring Platform')) {
+    card.setAttribute('href', 'projects/aws-security-monitoring-platform/dashboard.html');
   }
 });
 
