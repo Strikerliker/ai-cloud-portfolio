@@ -15,6 +15,11 @@
 .project-grid .project-card:nth-child(9)::before{content:'▦';color:#ffd06a;border-color:#846d36;background:#302a16}
 .project-grid .project-card:nth-child(10)::before{content:'✣';color:#69b9ff;border-color:#37658b;background:#10263a}
 
+/* Technology / platform tags on every project card. */
+.project-card .project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:2px}
+.project-card .project-tags span{display:inline-flex;align-items:center;min-height:30px;padding:6px 11px;border:1px solid #2a5876;border-radius:999px;background:#082033;color:#c7e9ff;font-size:12px;font-weight:600;line-height:1;letter-spacing:.01em;white-space:nowrap;box-shadow:inset 0 0 12px rgba(17,139,219,.04)}
+.project-card:hover .project-tags span{border-color:#36759c;background:#0a263d}
+
 /* Contact form */
 .contact{align-items:start}
 .contact-copy{padding-top:8px}
@@ -33,4 +38,4 @@
 #form-status[data-state="error"]{color:#ff8e9d}
 #form-status[data-state="info"]{color:#9fc5e2}
 .hp-field{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
-@media(max-width:650px){#contact-form{padding:18px}#contact-form .form-row{grid-template-columns:1fr}.contact-trust{margin:22px 0 4px}}
+@media(max-width:650px){.project-card .project-tags{gap:6px;margin-top:15px}.project-card .project-tags span{font-size:11px;padding:5px 9px;min-height:28px}#contact-form{padding:18px}#contact-form .form-row{grid-template-columns:1fr}.contact-trust{margin:22px 0 4px}}
