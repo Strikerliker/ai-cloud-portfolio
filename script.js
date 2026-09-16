@@ -3,15 +3,15 @@ if (year) year.textContent = new Date().getFullYear();
 
 // Keep every portfolio card connected to its current project page.
 const projectRoutes = {
-  'AWS Bedrock RAG Assistant': 'projects/project-visual.html?project=aws-bedrock-rag-assistant',
+  'AWS Bedrock RAG Assistant': 'projects/aws-bedrock-rag-assistant.html',
   'Secure CI/CD Pipeline': 'projects/secure-ci-cd-pipeline/dashboard.html',
   'AWS Security Monitoring Platform': 'projects/aws-security-monitoring-platform/dashboard.html',
   'Terraform AWS Landing Zone': 'projects/terraform-aws-landing-zone/dashboard.html',
   'AI Document Processing Pipeline': 'projects/ai-document-processing-pipeline/dashboard.html',
   'Secure AI API Deployment': 'projects/secure-ai-api-deployment/dashboard.html',
-  'Hermes Agent Cloud Deployment': 'projects/project-visual.html?project=hermes-agent-cloud-deployment',
+  'Hermes Agent Cloud Deployment': 'projects/hermes-agent-cloud-deployment.html',
   'OpenClaw Private AI Assistant': 'projects/openclaw-private-ai-assistant/dashboard.html',
-  'Manufacturing ERP/MRP SQL Reporting': 'projects/project-visual.html?project=manufacturing-erp-mrp-sql-reporting',
+  'Manufacturing ERP/MRP SQL Reporting': 'projects/manufacturing-erp-mrp-sql-reporting.html',
   'AI Manufacturing Support Agent': 'projects/ai-manufacturing-support-agent/dashboard.html'
 };
 
