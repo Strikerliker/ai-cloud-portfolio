@@ -1,57 +1,77 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">Secure AI API Deployment AWS Architecture</title>
-  <desc id="desc">Reference architecture showing client requests entering Amazon API Gateway, a Lambda authorizer validating a token from AWS Secrets Manager, an inference Lambda invoking Amazon Bedrock, CloudWatch logging, and least-privilege IAM boundaries.</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#061a33"/><stop offset="1" stop-color="#03101f"/></linearGradient>
-    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0c3158"/><stop offset="1" stop-color="#09233f"/></linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".28"/></filter>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#57a8ff"/></marker>
-    <style>
-      .title{font:700 44px Arial,sans-serif;fill:#fff}.sub{font:24px Arial,sans-serif;fill:#b9d6f4}.section{font:700 24px Arial,sans-serif;fill:#fff}.svcTitle{font:700 19px Arial,sans-serif;fill:#fff}.svcText{font:15px Arial,sans-serif;fill:#c7d9ea}.small{font:14px Arial,sans-serif;fill:#9fc1e2}.awsLabel{font:700 18px Arial,sans-serif;fill:#ffb449}.iconText{font:700 20px Arial,sans-serif;fill:#fff}.arrow{stroke:#57a8ff;stroke-width:4;fill:none;marker-end:url(#arrow)}
-    </style>
-  </defs>
-  <rect width="1600" height="900" fill="url(#bg)"/>
-  <rect x="28" y="24" width="1544" height="106" rx="22" fill="#0a2a4d"/>
-  <text x="800" y="70" text-anchor="middle" class="title">Secure AI API Deployment</text>
-  <text x="800" y="105" text-anchor="middle" class="sub">AWS Bedrock DevSecOps Reference Architecture</text>
+<title id="title">Secure AI API Deployment - AWS Bedrock DevSecOps Architecture</title>
+<desc id="desc">AWS reference architecture for the Secure AI API Deployment project showing clients, API Gateway, Lambda authorizer, Secrets Manager, inference Lambda, Amazon Bedrock, IAM, CloudWatch, Terraform, and GitHub Actions validation.</desc>
+<defs>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#18324d" flood-opacity=".16"/></filter>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#184b7a"/></marker>
+  <style>
+    .h1{font:700 40px Arial,sans-serif;fill:#0b2145}.sub{font:18px Arial,sans-serif;fill:#536d88;letter-spacing:5px}.panelTitle{font:700 22px Arial,sans-serif;fill:#0d2b55}.panelSub{font:13px Arial,sans-serif;fill:#60758b}.svc{font:700 18px Arial,sans-serif;fill:#102b52}.txt{font:14px Arial,sans-serif;fill:#536b82}.small{font:13px Arial,sans-serif;fill:#687f96}.icon{font:700 20px Arial,sans-serif;fill:white}.arrow{stroke:#184b7a;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#6a78c8;stroke-width:2.5;fill:none;stroke-dasharray:7 6;marker-end:url(#arrow)}
+  </style>
+</defs>
+<rect width="1600" height="900" fill="#f7f9fc"/>
+<text x="800" y="55" text-anchor="middle" class="h1">Secure AI API Deployment - AWS Bedrock DevSecOps Architecture</text>
+<text x="800" y="88" text-anchor="middle" class="sub">SECURE | SERVERLESS | MONITORED | INFRASTRUCTURE AS CODE</text>
 
-  <rect x="55" y="255" width="210" height="320" rx="18" fill="#0a2440" stroke="#2a74b8" stroke-width="2"/>
-  <text x="160" y="300" text-anchor="middle" class="section">Client</text>
-  <circle cx="160" cy="380" r="52" fill="#1273de"/>
-  <text x="160" y="389" text-anchor="middle" class="iconText">HTTPS</text>
-  <text x="160" y="475" text-anchor="middle" class="svcTitle">API Consumer</text>
-  <text x="160" y="503" text-anchor="middle" class="svcText">GET /health</text>
-  <text x="160" y="528" text-anchor="middle" class="svcText">POST /v1/generate</text>
+<!-- USERS -->
+<g filter="url(#shadow)"><rect x="24" y="125" width="170" height="425" rx="14" fill="#fff" stroke="#b9cfe4"/></g>
+<text x="109" y="158" text-anchor="middle" class="panelTitle">Users / Clients</text>
+<circle cx="109" cy="226" r="42" fill="#1f5f9f"/><text x="109" y="234" text-anchor="middle" class="icon">USER</text>
+<text x="109" y="288" text-anchor="middle" class="svc">API Consumer</text>
+<rect x="60" y="330" width="98" height="72" rx="10" fill="#edf4fb" stroke="#9bbbd7"/><text x="109" y="359" text-anchor="middle" class="svc">Web App</text><text x="109" y="383" text-anchor="middle" class="small">HTTPS</text>
+<rect x="60" y="424" width="98" height="72" rx="10" fill="#edf4fb" stroke="#9bbbd7"/><text x="109" y="453" text-anchor="middle" class="svc">Mobile / CLI</text><text x="109" y="477" text-anchor="middle" class="small">REST client</text>
 
-  <rect x="315" y="160" width="1210" height="620" rx="24" fill="#071f38" stroke="#5aa8ef" stroke-width="3"/>
-  <text x="355" y="202" class="awsLabel">AWS CLOUD</text>
-  <text x="1480" y="202" text-anchor="end" class="small">Controlled ingress · Least privilege · Observable</text>
+<!-- EDGE / API -->
+<g filter="url(#shadow)"><rect x="210" y="125" width="330" height="425" rx="14" fill="#fff" stroke="#b9cfe4"/></g>
+<text x="235" y="158" class="panelTitle">API Boundary</text><text x="235" y="181" class="panelSub">CONTROLLED INGRESS &amp; ROUTING</text>
+<g transform="translate(262 230)"><rect width="120" height="120" rx="18" fill="#7b3fe4"/><text x="60" y="53" text-anchor="middle" class="icon">API</text><text x="60" y="82" text-anchor="middle" class="icon">GW</text></g>
+<text x="322" y="376" text-anchor="middle" class="svc">Amazon API Gateway</text><text x="322" y="399" text-anchor="middle" class="txt">GET /health</text><text x="322" y="421" text-anchor="middle" class="txt">POST /v1/generate</text><text x="322" y="443" text-anchor="middle" class="txt">Throttling · CORS · logs</text>
+<rect x="405" y="230" width="92" height="120" rx="14" fill="#113c6c"/><text x="451" y="280" text-anchor="middle" class="icon">TLS</text><text x="451" y="309" text-anchor="middle" class="icon">HTTPS</text>
+<text x="451" y="376" text-anchor="middle" class="svc">Protected route</text><text x="451" y="399" text-anchor="middle" class="txt">Bearer token</text>
 
-  <g filter="url(#shadow)"><rect x="365" y="320" width="190" height="190" rx="18" fill="#5a33d6"/><text x="460" y="372" text-anchor="middle" class="iconText">API</text><text x="460" y="417" text-anchor="middle" class="svcTitle">Amazon API Gateway</text><text x="460" y="448" text-anchor="middle" class="svcText">Routes · CORS · throttling</text><text x="460" y="474" text-anchor="middle" class="svcText">Access logging</text></g>
+<!-- AUTH -->
+<g filter="url(#shadow)"><rect x="558" y="125" width="320" height="425" rx="14" fill="#fff" stroke="#b9cfe4"/></g>
+<text x="583" y="158" class="panelTitle">Authentication &amp; Authorization</text><text x="583" y="181" class="panelSub">SECRET-BACKED ACCESS CONTROL</text>
+<g transform="translate(596 225)"><rect width="120" height="120" rx="18" fill="#f07b13"/><text x="60" y="72" text-anchor="middle" class="icon">λ AUTH</text></g>
+<text x="656" y="373" text-anchor="middle" class="svc">Lambda Authorizer</text><text x="656" y="396" text-anchor="middle" class="txt">Constant-time token check</text><text x="656" y="418" text-anchor="middle" class="txt">Separate IAM role</text>
+<g transform="translate(735 225)"><rect width="105" height="120" rx="18" fill="#dc3150"/><text x="52" y="57" text-anchor="middle" class="icon">SECRET</text><text x="52" y="84" text-anchor="middle" class="icon">KEY</text></g>
+<text x="787" y="373" text-anchor="middle" class="svc">Secrets Manager</text><text x="787" y="396" text-anchor="middle" class="txt">Bearer token value</text><text x="787" y="418" text-anchor="middle" class="txt">Not in source / state</text>
+<path class="arrow" d="M716 286H725"/>
 
-  <g filter="url(#shadow)"><rect x="620" y="275" width="205" height="205" rx="18" fill="#ef7800"/><text x="723" y="333" text-anchor="middle" class="iconText">λ AUTH</text><text x="723" y="376" text-anchor="middle" class="svcTitle">Lambda Authorizer</text><text x="723" y="407" text-anchor="middle" class="svcText">Bearer-token validation</text><text x="723" y="433" text-anchor="middle" class="svcText">Constant-time compare</text></g>
+<!-- APP -->
+<g filter="url(#shadow)"><rect x="896" y="125" width="250" height="425" rx="14" fill="#fff" stroke="#b9cfe4"/></g>
+<text x="921" y="158" class="panelTitle">Application Layer</text><text x="921" y="181" class="panelSub">SERVERLESS INFERENCE HANDLER</text>
+<g transform="translate(958 225)"><rect width="126" height="126" rx="18" fill="#f07b13"/><text x="63" y="73" text-anchor="middle" class="icon">λ AI</text></g>
+<text x="1021" y="381" text-anchor="middle" class="svc">Inference Lambda</text><text x="1021" y="404" text-anchor="middle" class="txt">JSON validation</text><text x="1021" y="426" text-anchor="middle" class="txt">Prompt length controls</text><text x="1021" y="448" text-anchor="middle" class="txt">Least-privilege model invoke</text>
 
-  <g filter="url(#shadow)"><rect x="620" y="545" width="205" height="150" rx="18" fill="#d9344a"/><text x="723" y="592" text-anchor="middle" class="iconText">SECRET</text><text x="723" y="634" text-anchor="middle" class="svcTitle">AWS Secrets Manager</text><text x="723" y="662" text-anchor="middle" class="svcText">API token value</text></g>
+<!-- AI -->
+<g filter="url(#shadow)"><rect x="1164" y="125" width="412" height="425" rx="14" fill="#fff" stroke="#b9cfe4"/></g>
+<text x="1189" y="158" class="panelTitle">AI Services</text><text x="1189" y="181" class="panelSub">GENERATIVE AI ON AWS</text>
+<g transform="translate(1220 225)"><rect width="135" height="126" rx="18" fill="#0a9c88"/><text x="67" y="58" text-anchor="middle" class="icon">AMAZON</text><text x="67" y="86" text-anchor="middle" class="icon">BEDROCK</text></g>
+<text x="1287" y="381" text-anchor="middle" class="svc">Amazon Bedrock</text><text x="1287" y="404" text-anchor="middle" class="txt">Foundation-model inference</text><text x="1287" y="426" text-anchor="middle" class="txt">Configured model only</text>
+<rect x="1390" y="228" width="140" height="118" rx="15" fill="#eef9f6" stroke="#77c9b8"/><text x="1460" y="270" text-anchor="middle" class="svc">Response</text><text x="1460" y="298" text-anchor="middle" class="txt">JSON output</text><text x="1460" y="322" text-anchor="middle" class="txt">to client</text>
+<path class="arrow" d="M1355 287H1380"/>
 
-  <g filter="url(#shadow)"><rect x="900" y="275" width="205" height="205" rx="18" fill="#ef7800"/><text x="1003" y="333" text-anchor="middle" class="iconText">λ AI</text><text x="1003" y="376" text-anchor="middle" class="svcTitle">Inference Lambda</text><text x="1003" y="407" text-anchor="middle" class="svcText">JSON validation</text><text x="1003" y="433" text-anchor="middle" class="svcText">Prompt-length checks</text></g>
+<!-- MAIN FLOW -->
+<path class="arrow" d="M194 287H252"/><path class="arrow" d="M540 287H586"/><path class="arrow" d="M878 287H948"/><path class="arrow" d="M1146 287H1210"/>
+<text x="222" y="270" text-anchor="middle" class="small">HTTPS</text><text x="563" y="270" text-anchor="middle" class="small">Authorize</text><text x="912" y="270" text-anchor="middle" class="small">Allowed</text><text x="1180" y="270" text-anchor="middle" class="small">Invoke</text>
 
-  <g filter="url(#shadow)"><rect x="1175" y="275" width="205" height="205" rx="18" fill="#0aa595"/><text x="1278" y="333" text-anchor="middle" class="iconText">AI</text><text x="1278" y="376" text-anchor="middle" class="svcTitle">Amazon Bedrock</text><text x="1278" y="407" text-anchor="middle" class="svcText">Foundation-model inference</text><text x="1278" y="433" text-anchor="middle" class="svcText">Scoped model permission</text></g>
+<!-- SUPPORTING CONTROLS -->
+<g filter="url(#shadow)"><rect x="210" y="580" width="936" height="205" rx="14" fill="#fff" stroke="#b9cfe4"/></g>
+<text x="235" y="614" class="panelTitle">Security, Observability &amp; Infrastructure</text><text x="235" y="637" class="panelSub">SUPPORTING CONTROLS FOR THE REQUEST PATH</text>
+<g transform="translate(260 665)"><rect width="160" height="78" rx="14" fill="#dc3150"/><text x="80" y="34" text-anchor="middle" class="icon">IAM</text><text x="80" y="58" text-anchor="middle" class="icon">ROLE</text></g><text x="340" y="767" text-anchor="middle" class="txt">Separate least-privilege roles</text>
+<g transform="translate(485 665)"><rect width="160" height="78" rx="14" fill="#d72b7b"/><text x="80" y="47" text-anchor="middle" class="icon">CloudWatch</text></g><text x="565" y="767" text-anchor="middle" class="txt">API &amp; Lambda logs</text>
+<g transform="translate(710 665)"><rect width="160" height="78" rx="14" fill="#3557cc"/><text x="80" y="47" text-anchor="middle" class="icon">Terraform</text></g><text x="790" y="767" text-anchor="middle" class="txt">Infrastructure as code</text>
+<g transform="translate(935 665)"><rect width="160" height="78" rx="14" fill="#25374a"/><text x="80" y="36" text-anchor="middle" class="icon">GitHub</text><text x="80" y="60" text-anchor="middle" class="icon">Actions</text></g><text x="1015" y="767" text-anchor="middle" class="txt">Tests · Bandit · TF validation</text>
+<path class="dash" d="M1021 550V650"/><path class="dash" d="M656 550V650"/><path class="dash" d="M787 550V650"/>
 
-  <path class="arrow" d="M265 415 H355"/>
-  <path class="arrow" d="M555 385 H610"/>
-  <path class="arrow" d="M825 377 H890"/>
-  <path class="arrow" d="M1105 377 H1165"/>
-  <path class="arrow" d="M723 480 V535"/>
-  <text x="585" y="362" text-anchor="middle" class="small">Protected route</text>
-  <text x="722" y="523" text-anchor="middle" class="small">Read secret</text>
-  <text x="860" y="356" text-anchor="middle" class="small">Authorized</text>
+<!-- STATUS / NOTES -->
+<g filter="url(#shadow)"><rect x="1164" y="580" width="412" height="205" rx="14" fill="#eefaf4" stroke="#a8d9bf"/></g>
+<text x="1189" y="614" class="panelTitle" fill="#165f3d">Security &amp; DevSecOps</text>
+<circle cx="1202" cy="660" r="10" fill="#1d9b5e"/><text x="1225" y="666" class="txt">Secret value excluded from source/state</text>
+<circle cx="1202" cy="694" r="10" fill="#1d9b5e"/><text x="1225" y="700" class="txt">Request validation before model call</text>
+<circle cx="1202" cy="728" r="10" fill="#1d9b5e"/><text x="1225" y="734" class="txt">Throttling and safe access logging</text>
+<circle cx="1202" cy="762" r="10" fill="#1d9b5e"/><text x="1225" y="768" class="txt">CI validates code, security, and Terraform</text>
 
-  <rect x="885" y="545" width="510" height="150" rx="18" fill="url(#panel)" stroke="#356a9e"/>
-  <text x="1140" y="580" text-anchor="middle" class="section">Security & Observability</text>
-  <g transform="translate(915 602)"><rect width="135" height="66" rx="12" fill="#d9344a"/><text x="68" y="28" text-anchor="middle" class="iconText">IAM</text><text x="68" y="51" text-anchor="middle" class="svcText">Least privilege</text></g>
-  <g transform="translate(1073 602)"><rect width="135" height="66" rx="12" fill="#cf2f7e"/><text x="68" y="28" text-anchor="middle" class="iconText">CW</text><text x="68" y="51" text-anchor="middle" class="svcText">CloudWatch</text></g>
-  <g transform="translate(1231 602)"><rect width="135" height="66" rx="12" fill="#244bd9"/><text x="68" y="28" text-anchor="middle" class="iconText">TF</text><text x="68" y="51" text-anchor="middle" class="svcText">Terraform</text></g>
-
-  <rect x="55" y="815" width="1470" height="55" rx="16" fill="#09233e" stroke="#204d77"/>
-  <text x="800" y="849" text-anchor="middle" class="svcText">Reference implementation: health check remains public, inference is authorized, secrets stay out of source/state, and telemetry avoids request bodies and bearer tokens.</text>
+<rect x="24" y="815" width="1552" height="58" rx="14" fill="#0b2d50"/>
+<text x="800" y="850" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#d9e8f6">Reference implementation: the repository implements API Gateway, Lambda authorizer, Secrets Manager, inference Lambda, Bedrock, IAM, CloudWatch, Terraform, tests, and GitHub Actions validation. It does not claim a live production deployment.</text>
 </svg>
