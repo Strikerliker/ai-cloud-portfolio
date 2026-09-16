@@ -56,9 +56,11 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 const CONTACT_API_URL = String(window.CONTACT_API_URL || '').trim();
+const TURNSTILE_SITE_KEY = String(window.TURNSTILE_SITE_KEY || '').trim();
 const contactForm = document.querySelector('#contact-form');
 const formStatus = document.querySelector('#form-status');
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let turnstileWidgetId = null;
 
 function setFormStatus(message, state = 'info') {
   if (!formStatus) return;
@@ -70,9 +72,55 @@ function fieldValue(formData, name) {
   return String(formData.get(name) || '').trim();
 }
 
+function resetTurnstile() {
+  if (window.turnstile && turnstileWidgetId !== null) {
+    try { window.turnstile.reset(turnstileWidgetId); } catch (_) {}
+  }
+}
+
+function renderTurnstile() {
+  if (!contactForm || !TURNSTILE_SITE_KEY || !window.turnstile || turnstileWidgetId !== null) return;
+
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  if (!submitButton) return;
+
+  let container = contactForm.querySelector('#turnstile-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'turnstile-container';
+    container.style.margin = '4px 0 14px';
+    submitButton.before(container);
+  }
+
+  turnstileWidgetId = window.turnstile.render(container, {
+    sitekey: TURNSTILE_SITE_KEY,
+    theme: 'dark',
+    size: 'flexible',
+    appearance: 'interaction-only'
+  });
+}
+
+function loadTurnstile() {
+  if (!contactForm || !TURNSTILE_SITE_KEY) return;
+  if (window.turnstile) {
+    renderTurnstile();
+    return;
+  }
+
+  const script = document.createElement('script');
+  script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+  script.async = true;
+  script.defer = true;
+  script.onload = renderTurnstile;
+  script.onerror = () => setFormStatus('Security verification could not load. Please refresh and try again.', 'error');
+  document.head.appendChild(script);
+}
+
 if (contactForm) {
   const submitButton = contactForm.querySelector('button[type="submit"]');
   const defaultButtonHtml = submitButton ? submitButton.innerHTML : 'Send Message';
+
+  loadTurnstile();
 
   contactForm.addEventListener('submit', async event => {
     event.preventDefault();
@@ -84,18 +132,25 @@ if (contactForm) {
     }
 
     const formData = new FormData(contactForm);
+    const turnstileToken = fieldValue(formData, 'cf-turnstile-response');
     const payload = {
       name: fieldValue(formData, 'name'),
       email: fieldValue(formData, 'email'),
       company: fieldValue(formData, 'company'),
       subject: fieldValue(formData, 'subject'),
       message: fieldValue(formData, 'message'),
-      website: fieldValue(formData, 'website')
+      website: fieldValue(formData, 'website'),
+      turnstileToken
     };
 
     if (!emailPattern.test(payload.email)) {
       setFormStatus('Please enter a valid email address.', 'error');
       contactForm.querySelector('[name="email"]')?.focus();
+      return;
+    }
+
+    if (!TURNSTILE_SITE_KEY || !turnstileToken) {
+      setFormStatus('Please complete the security verification before sending.', 'error');
       return;
     }
 
@@ -136,6 +191,7 @@ if (contactForm) {
       }
     } finally {
       clearTimeout(timeout);
+      resetTurnstile();
       if (submitButton) {
         submitButton.disabled = false;
         submitButton.innerHTML = defaultButtonHtml;
