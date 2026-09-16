@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">AI Document Processing Pipeline - AWS Serverless AI Architecture</title>
+<desc id="desc">AWS serverless document processing architecture showing document upload to Amazon S3, EventBridge routing, Step Functions orchestration, asynchronous Amazon Textract extraction, Lambda processing, Amazon Bedrock enrichment, S3 structured output, CloudWatch logging, IAM controls, Terraform, and GitHub Actions validation.</desc>
+<defs>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#16324e" flood-opacity=".16"/></filter>
+  <marker id="arrow" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0 0L11 5.5L0 11Z" fill="#1b5f94"/></marker>
+  <style>
+    .h1{font:700 42px Arial,sans-serif;fill:#0b2145}.sub{font:18px Arial,sans-serif;fill:#58708a;letter-spacing:4px}.section{font:700 23px Arial,sans-serif;fill:#0e2d56}.sectionSub{font:13px Arial,sans-serif;fill:#647e96;letter-spacing:.4px}.svc{font:700 19px Arial,sans-serif;fill:#102d56}.txt{font:15px Arial,sans-serif;fill:#526b84}.small{font:13px Arial,sans-serif;fill:#6d8398}.icon{font:700 20px Arial,sans-serif;fill:white}.support{font:700 17px Arial,sans-serif;fill:white}.arrow{stroke:#1b5f94;stroke-width:4;fill:none;marker-end:url(#arrow)}.dash{stroke:#7a84c6;stroke-width:2.5;fill:none;stroke-dasharray:8 7;marker-end:url(#arrow)}
+  </style>
+</defs>
+<rect width="1600" height="900" fill="#f6f9fc"/>
+<text x="800" y="55" text-anchor="middle" class="h1">AI Document Processing Pipeline - AWS Serverless AI Architecture</text>
+<text x="800" y="88" text-anchor="middle" class="sub">SERVERLESS | OCR | ORCHESTRATION | GENERATIVE AI | SECURE STORAGE</text>
+
+<!-- Source -->
+<g filter="url(#shadow)"><rect x="36" y="150" width="190" height="390" rx="16" fill="#fff" stroke="#b9cee2"/></g>
+<text x="131" y="187" text-anchor="middle" class="section">Document Source</text>
+<circle cx="131" cy="262" r="48" fill="#22639e"/><text x="131" y="270" text-anchor="middle" class="icon">UPLOAD</text>
+<text x="131" y="338" text-anchor="middle" class="svc">PDF / Image</text>
+<text x="131" y="368" text-anchor="middle" class="txt">User or application</text>
+<text x="131" y="395" text-anchor="middle" class="txt">uploads a document</text>
+<text x="131" y="452" text-anchor="middle" class="small">Event-driven start</text>
+
+<!-- Ingestion -->
+<g filter="url(#shadow)"><rect x="265" y="150" width="420" height="390" rx="16" fill="#eef7ff" stroke="#9fc7e7"/></g>
+<text x="475" y="187" text-anchor="middle" class="section">Ingestion &amp; Routing</text>
+<text x="475" y="211" text-anchor="middle" class="sectionSub">STORE · DETECT · START WORKFLOW</text>
+<rect x="310" y="246" width="130" height="122" rx="18" fill="#4f8f1f"/>
+<text x="375" y="300" text-anchor="middle" class="icon">S3</text><text x="375" y="328" text-anchor="middle" class="icon">INPUT</text>
+<text x="375" y="405" text-anchor="middle" class="svc">Amazon S3</text>
+<text x="375" y="432" text-anchor="middle" class="txt">Encrypted input bucket</text>
+<text x="375" y="457" text-anchor="middle" class="small">Versioning · Block Public Access</text>
+
+<rect x="505" y="246" width="130" height="122" rx="18" fill="#d82e73"/>
+<text x="570" y="300" text-anchor="middle" class="icon">EVENT</text><text x="570" y="328" text-anchor="middle" class="icon">BRIDGE</text>
+<text x="570" y="405" text-anchor="middle" class="svc">Amazon EventBridge</text>
+<text x="570" y="432" text-anchor="middle" class="txt">Object-created event</text>
+<text x="570" y="457" text-anchor="middle" class="small">Starts state machine</text>
+<path class="arrow" d="M440 307H495"/>
+
+<!-- Intelligence -->
+<g filter="url(#shadow)"><rect x="725" y="150" width="645" height="390" rx="16" fill="#f0fbf5" stroke="#a9d8bd"/></g>
+<text x="1047" y="187" text-anchor="middle" class="section">Document Intelligence</text>
+<text x="1047" y="211" text-anchor="middle" class="sectionSub">ORCHESTRATE · EXTRACT · ENRICH</text>
+
+<rect x="765" y="246" width="132" height="122" rx="18" fill="#d82e73"/>
+<text x="831" y="300" text-anchor="middle" class="icon">STEP</text><text x="831" y="328" text-anchor="middle" class="icon">FUNCTIONS</text>
+<text x="831" y="405" text-anchor="middle" class="svc">AWS Step Functions</text>
+<text x="831" y="432" text-anchor="middle" class="txt">Start · wait · poll</text>
+<text x="831" y="457" text-anchor="middle" class="small">Failure handling</text>
+
+<rect x="930" y="246" width="132" height="122" rx="18" fill="#079c8d"/>
+<text x="996" y="300" text-anchor="middle" class="icon">TEX</text><text x="996" y="328" text-anchor="middle" class="icon">TRACT</text>
+<text x="996" y="405" text-anchor="middle" class="svc">Amazon Textract</text>
+<text x="996" y="432" text-anchor="middle" class="txt">Async text extraction</text>
+<text x="996" y="457" text-anchor="middle" class="small">PDFs and images</text>
+
+<rect x="1095" y="246" width="132" height="122" rx="18" fill="#f07b13"/>
+<text x="1161" y="314" text-anchor="middle" class="icon">λ</text>
+<text x="1161" y="405" text-anchor="middle" class="svc">AWS Lambda</text>
+<text x="1161" y="432" text-anchor="middle" class="txt">Normalize extracted text</text>
+<text x="1161" y="457" text-anchor="middle" class="small">Validate model output</text>
+
+<rect x="1255" y="246" width="82" height="122" rx="18" fill="#079c8d"/>
+<text x="1296" y="300" text-anchor="middle" class="icon">AI</text><text x="1296" y="328" text-anchor="middle" class="icon">FM</text>
+<text x="1296" y="405" text-anchor="middle" class="svc">Bedrock</text>
+<text x="1296" y="432" text-anchor="middle" class="txt">Classify</text>
+<text x="1296" y="454" text-anchor="middle" class="small">Summarize · actions</text>
+
+<path class="arrow" d="M897 307H920"/><path class="arrow" d="M1062 307H1085"/><path class="arrow" d="M1227 307H1245"/>
+
+<!-- Output -->
+<g filter="url(#shadow)"><rect x="1410" y="150" width="154" height="390" rx="16" fill="#f7f2ff" stroke="#c6b7e4"/></g>
+<text x="1487" y="187" text-anchor="middle" class="section">Output</text>
+<rect x="1435" y="246" width="104" height="122" rx="18" fill="#4f8f1f"/>
+<text x="1487" y="300" text-anchor="middle" class="icon">S3</text><text x="1487" y="328" text-anchor="middle" class="icon">OUTPUT</text>
+<text x="1487" y="405" text-anchor="middle" class="svc">Amazon S3</text>
+<text x="1487" y="432" text-anchor="middle" class="txt">Structured JSON</text>
+<text x="1487" y="457" text-anchor="middle" class="small">processed/ prefix</text>
+
+<!-- Main flow -->
+<path class="arrow" d="M226 307H300"/>
+<path class="arrow" d="M685 307H755"/>
+<path class="arrow" d="M1337 307H1400"/>
+<text x="263" y="287" text-anchor="middle" class="small">Upload</text>
+<text x="720" y="287" text-anchor="middle" class="small">Start execution</text>
+<text x="1368" y="287" text-anchor="middle" class="small">Write result</text>
+
+<!-- Control plane -->
+<g filter="url(#shadow)"><rect x="125" y="595" width="1350" height="185" rx="18" fill="#fff" stroke="#b9cee2"/></g>
+<text x="165" y="632" class="section">Security, Observability &amp; Delivery</text>
+<text x="165" y="657" class="sectionSub">CONTROLS APPLIED ACROSS THE PIPELINE</text>
+
+<g transform="translate(185 687)"><rect width="220" height="64" rx="14" fill="#d9364d"/><text x="110" y="39" text-anchor="middle" class="support">IAM · Least Privilege</text></g>
+<g transform="translate(485 687)"><rect width="220" height="64" rx="14" fill="#d72b7b"/><text x="110" y="39" text-anchor="middle" class="support">Amazon CloudWatch</text></g>
+<g transform="translate(785 687)"><rect width="220" height="64" rx="14" fill="#3557cc"/><text x="110" y="39" text-anchor="middle" class="support">Terraform</text></g>
+<g transform="translate(1085 687)"><rect width="220" height="64" rx="14" fill="#25374a"/><text x="110" y="39" text-anchor="middle" class="support">GitHub Actions</text></g>
+<text x="295" y="770" text-anchor="middle" class="txt">Separate service roles</text>
+<text x="595" y="770" text-anchor="middle" class="txt">Workflow + Lambda logs</text>
+<text x="895" y="770" text-anchor="middle" class="txt">Infrastructure as code</text>
+<text x="1195" y="770" text-anchor="middle" class="txt">Tests · Bandit · TF validation</text>
+
+<path class="dash" d="M831 540V675"/><path class="dash" d="M1161 540V675"/>
+
+<rect x="125" y="815" width="1350" height="48" rx="12" fill="#0b2d50"/>
+<text x="800" y="845" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#d9e8f6">Implemented reference architecture: S3 → EventBridge → Step Functions → Textract → Lambda + Bedrock → S3, with CloudWatch, IAM, Terraform, tests, and CI validation.</text>
+</svg>
