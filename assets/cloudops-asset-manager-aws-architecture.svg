@@ -1,88 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920" role="img" aria-labelledby="title desc">
-<title id="title">CloudOps Asset Manager - Serverless AWS CRUD Architecture</title>
-<desc id="desc">AWS architecture showing users and browser dashboard, API Gateway, Lambda CRUD handlers, DynamoDB, IAM, CloudWatch, AWS SAM, and optional S3 and CloudFront frontend hosting.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1484" height="1060" viewBox="0 0 1484 1060" role="img" aria-labelledby="title desc">
+<title id="title">CloudOps Asset Manager – Serverless AWS CRUD Architecture</title>
+<desc id="desc">Serverless AWS CRUD architecture with users, CloudFront, S3, API Gateway, Lambda, DynamoDB, CloudWatch, IAM, GitHub and GitHub Actions.</desc>
 <defs>
-  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#17324d" flood-opacity=".16"/></filter>
-  <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#315b88"/></marker>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#294c73"/></marker>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#233d5b" flood-opacity=".12"/></filter>
   <style>
-    .title{font:700 42px Arial,sans-serif;fill:#0b2145}.subtitle{font:20px Arial,sans-serif;fill:#536d86;letter-spacing:2px}.panel{fill:#fff;stroke:#b9cfe3;stroke-width:2}.pt{font:700 24px Arial,sans-serif;fill:#102d56}.ps{font:14px Arial,sans-serif;fill:#6b8198}.svc{font:700 20px Arial,sans-serif;fill:#102d56}.txt{font:16px Arial,sans-serif;fill:#536d86}.small{font:14px Arial,sans-serif;fill:#6b8399}.icon{font:700 20px Arial,sans-serif;fill:#fff}.arrow{stroke:#315b88;stroke-width:4;fill:none;marker-end:url(#arrow)}.support{font:700 17px Arial,sans-serif;fill:#fff}.foot{font:14px Arial,sans-serif;fill:#dce9f5}
+    text{font-family:Arial,Helvetica,sans-serif;fill:#0b2145}.title{font-size:38px;font-weight:800}.sub{font-size:27px;fill:#4b6381}.head{font-size:24px;font-weight:800}.svc{font-size:19px;font-weight:800}.body{font-size:16px;fill:#49627e}.small{font-size:14px;fill:#49627e}.panel{stroke-width:2}.arrow{stroke:#294c73;stroke-width:3;fill:none;marker-end:url(#arrow)}.thin{stroke:#294c73;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
   </style>
 </defs>
-<rect width="1600" height="920" fill="#f6f9fc"/>
-<text x="800" y="58" text-anchor="middle" class="title">CloudOps Asset Manager – Serverless AWS CRUD Architecture</text>
-<text x="800" y="92" text-anchor="middle" class="subtitle">SECURE | SERVERLESS | CRUD | ASSET INVENTORY | OBSERVABLE</text>
-
-<g filter="url(#shadow)"><rect class="panel" x="40" y="140" width="215" height="455" rx="18"/></g>
-<text x="148" y="180" text-anchor="middle" class="pt">Users</text>
-<circle cx="148" cy="258" r="48" fill="#2866a6"/><text x="148" y="266" text-anchor="middle" class="icon">USER</text>
-<text x="148" y="338" text-anchor="middle" class="svc">Users / Admins</text>
-<text x="148" y="372" text-anchor="middle" class="txt">Web browser</text>
-<text x="148" y="402" text-anchor="middle" class="txt">Create, view, update</text>
-<text x="148" y="430" text-anchor="middle" class="txt">and delete assets</text>
-
-<g filter="url(#shadow)"><rect class="panel" x="295" y="140" width="270" height="455" rx="18" fill="#f2fbf2"/></g>
-<text x="430" y="180" text-anchor="middle" class="pt">Frontend</text>
-<rect x="365" y="220" width="130" height="110" rx="18" fill="#3557cc"/>
-<text x="430" y="266" text-anchor="middle" class="icon">WEB</text><text x="430" y="296" text-anchor="middle" class="icon">DASHBOARD</text>
-<text x="430" y="368" text-anchor="middle" class="svc">Browser UI</text>
-<text x="430" y="400" text-anchor="middle" class="txt">HTML / CSS / JS</text>
-<text x="430" y="428" text-anchor="middle" class="small">Calls REST API over HTTPS</text>
-<rect x="335" y="476" width="190" height="78" rx="12" fill="#eaf4ff" stroke="#8cb9df"/>
-<text x="430" y="505" text-anchor="middle" class="svc" font-size="17">Optional Hosting</text>
-<text x="430" y="532" text-anchor="middle" class="small">Amazon S3 + CloudFront</text>
-
-<g filter="url(#shadow)"><rect class="panel" x="605" y="140" width="370" height="455" rx="18" fill="#fbf4ff"/></g>
-<text x="790" y="180" text-anchor="middle" class="pt">API &amp; Compute</text>
-<rect x="650" y="220" width="120" height="110" rx="18" fill="#d72873"/>
-<text x="710" y="266" text-anchor="middle" class="icon">API</text><text x="710" y="296" text-anchor="middle" class="icon">GATEWAY</text>
-<text x="710" y="368" text-anchor="middle" class="svc">Amazon API Gateway</text>
-<text x="710" y="398" text-anchor="middle" class="txt">REST endpoints</text>
-<rect x="810" y="220" width="120" height="110" rx="18" fill="#f07b13"/>
-<text x="870" y="278" text-anchor="middle" class="icon">λ CRUD</text>
-<text x="870" y="368" text-anchor="middle" class="svc">AWS Lambda</text>
-<text x="870" y="398" text-anchor="middle" class="txt">Validation &amp; logic</text>
-<path class="arrow" d="M770 275H800"/>
-<rect x="655" y="455" width="265" height="108" rx="14" fill="#f9f7ff" stroke="#c7b2e8"/>
-<text x="682" y="486" class="txt" font-weight="700">Create</text><text x="755" y="486" class="small">POST /assets</text>
-<text x="682" y="510" class="txt" font-weight="700">Read</text><text x="755" y="510" class="small">GET /assets</text>
-<text x="682" y="534" class="txt" font-weight="700">Update</text><text x="755" y="534" class="small">PUT /assets/{assetId}</text>
-<text x="682" y="558" class="txt" font-weight="700">Delete</text><text x="755" y="558" class="small">DELETE /assets/{assetId}</text>
-
-<g filter="url(#shadow)"><rect class="panel" x="1015" y="140" width="245" height="455" rx="18" fill="#fff9ed"/></g>
-<text x="1138" y="180" text-anchor="middle" class="pt">Data</text>
-<rect x="1078" y="220" width="120" height="110" rx="18" fill="#3557cc"/>
-<text x="1138" y="266" text-anchor="middle" class="icon">DYNAMO</text><text x="1138" y="296" text-anchor="middle" class="icon">DB</text>
-<text x="1138" y="368" text-anchor="middle" class="svc">Amazon DynamoDB</text>
-<text x="1138" y="400" text-anchor="middle" class="txt">Asset inventory</text>
-<text x="1138" y="428" text-anchor="middle" class="small">Primary persistence layer</text>
-
-<g filter="url(#shadow)"><rect class="panel" x="1300" y="140" width="260" height="455" rx="18" fill="#effbfb"/></g>
-<text x="1430" y="180" text-anchor="middle" class="pt">Security &amp; Ops</text>
-<rect x="1348" y="220" width="105" height="100" rx="16" fill="#dc3150"/>
-<text x="1400" y="279" text-anchor="middle" class="icon">IAM</text>
-<text x="1400" y="355" text-anchor="middle" class="svc">AWS IAM</text>
-<text x="1400" y="382" text-anchor="middle" class="small">Least privilege</text>
-<rect x="1410" y="430" width="105" height="100" rx="16" fill="#d72b7b"/>
-<text x="1462" y="489" text-anchor="middle" class="icon">CW</text>
-<text x="1462" y="565" text-anchor="middle" class="svc">CloudWatch</text>
-
-<path class="arrow" d="M255 278H285"/>
-<path class="arrow" d="M565 278H595"/>
-<path class="arrow" d="M975 278H1005"/>
-<path class="arrow" d="M1260 278H1290"/>
-<text x="270" y="258" text-anchor="middle" class="small">HTTPS</text>
-<text x="580" y="258" text-anchor="middle" class="small">API call</text>
-<text x="990" y="258" text-anchor="middle" class="small">CRUD</text>
-<text x="1275" y="258" text-anchor="middle" class="small">logs / policy</text>
-
-<g filter="url(#shadow)"><rect x="160" y="650" width="1280" height="170" rx="18" fill="#fff" stroke="#b9cfe3" stroke-width="2"/></g>
-<text x="200" y="687" class="pt">Infrastructure &amp; Delivery</text>
-<g transform="translate(220 716)"><rect width="230" height="66" rx="14" fill="#25374a"/><text x="115" y="40" text-anchor="middle" class="support">GitHub Repository</text></g>
-<g transform="translate(530 716)"><rect width="230" height="66" rx="14" fill="#3557cc"/><text x="115" y="40" text-anchor="middle" class="support">AWS SAM</text></g>
-<g transform="translate(840 716)"><rect width="230" height="66" rx="14" fill="#f07b13"/><text x="115" y="40" text-anchor="middle" class="support">Deploy to AWS</text></g>
-<g transform="translate(1150 716)"><rect width="230" height="66" rx="14" fill="#0a9c88"/><text x="115" y="40" text-anchor="middle" class="support">CloudWatch</text></g>
-<path class="arrow" d="M450 749H520"/><path class="arrow" d="M760 749H830"/><path class="arrow" d="M1070 749H1140"/>
-
-<rect x="160" y="848" width="1280" height="42" rx="12" fill="#0b2d50"/>
-<text x="800" y="875" text-anchor="middle" class="foot">Implemented core path: Browser → API Gateway → Lambda → DynamoDB, with IAM and CloudWatch. S3/CloudFront frontend hosting is shown as an optional production extension.</text>
+<rect width="1484" height="1060" fill="#fff"/>
+<text x="742" y="48" text-anchor="middle" class="title">CloudOps Asset Manager – Serverless AWS CRUD Architecture</text>
+<text x="742" y="91" text-anchor="middle" class="sub">Secure | Scalable | Serverless | Asset Tracking</text>
+<g filter="url(#shadow)"><rect x="18" y="132" width="228" height="526" rx="14" fill="#f5faff" stroke="#76b7eb" class="panel"/></g>
+<rect x="18" y="132" width="228" height="58" rx="14" fill="#e9f5ff"/><text x="132" y="170" text-anchor="middle" class="head">Users</text>
+<circle cx="132" cy="267" r="47" fill="#2b64a8"/><circle cx="84" cy="276" r="26" fill="#234f83"/><circle cx="180" cy="276" r="26" fill="#234f83"/>
+<text x="132" y="342" text-anchor="middle" class="svc">Users / Admins</text><text x="132" y="374" text-anchor="middle" class="body">Access the application</text><text x="132" y="398" text-anchor="middle" class="body">using a web browser</text>
+<rect x="76" y="442" width="112" height="72" rx="6" fill="none" stroke="#183f70" stroke-width="6"/><path d="M65 522H199L188 536H76Z" fill="#183f70"/>
+<text x="132" y="566" text-anchor="middle" class="svc">Web Browser</text><text x="132" y="596" text-anchor="middle" class="body">View, manage, and</text><text x="132" y="620" text-anchor="middle" class="body">track assets</text>
+<g filter="url(#shadow)"><rect x="260" y="132" width="252" height="526" rx="14" fill="#f7fff6" stroke="#89da91" class="panel"/></g>
+<rect x="260" y="132" width="252" height="58" rx="14" fill="#effced"/><text x="386" y="170" text-anchor="middle" class="head" fill="#14723b">Frontend</text>
+<image href="https://raw.githubusercontent.com/icacho-dev/aws-architecture-icons/main/Architecture-Service-Icons_02072025/Arch_Networking-Content-Delivery/48/Arch_Amazon-CloudFront_48.svg" x="337" y="212" width="98" height="98"/>
+<text x="386" y="339" text-anchor="middle" class="svc">Amazon CloudFront</text><text x="386" y="368" text-anchor="middle" class="body">Global content delivery</text><text x="386" y="392" text-anchor="middle" class="body">(CDN)</text>
+<path class="thin" d="M386 410V448"/>
+<image href="https://raw.githubusercontent.com/icacho-dev/aws-architecture-icons/main/Architecture-Service-Icons_02072025/Arch_Storage/48/Arch_Amazon-Simple-Storage-Service_48.svg" x="337" y="463" width="98" height="98"/>
+<text x="386" y="591" text-anchor="middle" class="svc">Amazon S3</text><text x="386" y="619" text-anchor="middle" class="body">Static web UI</text><text x="386" y="642" text-anchor="middle" class="body">(frontend hosting)</text>
+<g filter="url(#shadow)"><rect x="526" y="132" width="336" height="526" rx="14" fill="#fcf7ff" stroke="#c98cf0" class="panel"/></g>
+<rect x="526" y="132" width="336" height="58" rx="14" fill="#f8ecff"/><text x="694" y="170" text-anchor="middle" class="head" fill="#632399">API &amp; Compute</text>
+<image href="https://raw.githubusercontent.com/icacho-dev/aws-architecture-icons/main/Architecture-Service-Icons_02072025/Arch_Networking-Content-Delivery/48/Arch_Amazon-API-Gateway_48.svg" x="565" y="212" width="100" height="100"/>
+<image href="https://raw.githubusercontent.com/icacho-dev/aws-architecture-icons/main/Architecture-Service-Icons_02072025/Arch_Compute/48/Arch_AWS-Lambda_48.svg" x="720" y="212" width="100" height="100"/>
+<path class="thin" d="M668 262H710"/>
+<text x="615" y="338" text-anchor="middle" class="svc">Amazon</text><text x="615" y="361" text-anchor="middle" class="svc">API Gateway</text><text x="615" y="389" text-anchor="middle" class="body">REST API</text><text x="615" y="411" text-anchor="middle" class="body">(HTTPS)</text>
+<text x="770" y="338" text-anchor="middle" class="svc">AWS Lambda</text><text x="770" y="368" text-anchor="middle" class="body">CRUD handlers</text><text x="770" y="391" text-anchor="middle" class="body">&amp; business logic</text>
+<rect x="555" y="449" width="278" height="173" rx="10" fill="#fbf9ff" stroke="#d9c4ec"/>
+<text x="583" y="487" class="svc" font-size="16">Create</text><text x="672" y="487" class="body">–  Add new asset</text><line x1="574" y1="504" x2="814" y2="504" stroke="#e2d7ec"/>
+<text x="583" y="531" class="svc" font-size="16">Read</text><text x="672" y="531" class="body">–  Retrieve asset(s)</text><line x1="574" y1="548" x2="814" y2="548" stroke="#e2d7ec"/>
+<text x="583" y="575" class="svc" font-size="16">Update</text><text x="672" y="575" class="body">–  Modify asset details</text><line x1="574" y1="592" x2="814" y2="592" stroke="#e2d7ec"/>
+<text x="583" y="617" class="svc" font-size="16">Delete</text><text x="672" y="617" class="body">–  Remove asset</text>
+<g filter="url(#shadow)"><rect x="876" y="132" width="244" height="526" rx="14" fill="#fffaf0" stroke="#e5b944" class="panel"/></g>
+<rect x="876" y="132" width="244" height="58" rx="14" fill="#fff6df"/><text x="998" y="170" text-anchor="middle" class="head" fill="#7b5400">Data &amp; Storage</text>
+<image href="https://raw.githubusercontent.com/icacho-dev/aws-architecture-icons/main/Architecture-Service-Icons_02072025/Arch_Database/48/Arch_Amazon-DynamoDB_48.svg" x="949" y="212" width="98" height="98"/>
+<text x="998" y="339" text-anchor="middle" class="svc">Amazon DynamoDB</text><text x="998" y="369" text-anchor="middle" class="body">Asset inventory</text><text x="998" y="392" text-anchor="middle" class="body">(Primary database)</text>
+<image href="https://raw.githubusercontent.com/icacho-dev/aws-architecture-icons/main/Architecture-Service-Icons_02072025/Arch_Storage/48/Arch_Amazon-Simple-Storage-Service_48.svg" x="949" y="462" width="98" height="98"/>
+<text x="998" y="589" text-anchor="middle" class="svc">Amazon S3</text><text x="998" y="618" text-anchor="middle" class="body">Attachments / images</text><text x="998" y="641" text-anchor="middle" class="body">/ exports</text>
+<g filter="url(#shadow)"><rect x="1134" y="132" width="332" height="526" rx="14" fill="#f5ffff" stroke="#66d7d3" class="panel"/></g>
+<rect x="1134" y="132" width="332" height="58" rx="14" fill="#ebffff"/><text x="1300" y="170" text-anchor="middle" class="head" fill="#0d6270">Security / Observability</text>
+<image href="https://raw.githubusercontent.com/icacho-dev/aws-architecture-icons/main/Architecture-Service-Icons_02072025/Arch_Management-Governance/48/Arch_Amazon-CloudWatch_48.svg" x="1251" y="212" width="98" height="98"/>
+<text x="1300" y="339" text-anchor="middle" class="svc">Amazon CloudWatch</text><text x="1300" y="369" text-anchor="middle" class="body">Logs &amp; metrics</text><text x="1300" y="392" text-anchor="middle" class="body">(Monitoring and alerting)</text>
+<rect x="1251" y="459" width="98" height="98" rx="8" fill="#dd344c"/><text x="1300" y="516" text-anchor="middle" fill="#fff" font-size="24" font-weight="800">IAM</text>
+<text x="1300" y="589" text-anchor="middle" class="svc">AWS IAM</text><text x="1300" y="618" text-anchor="middle" class="body">Access control</text><text x="1300" y="641" text-anchor="middle" class="body">(Least privilege)</text>
+<path class="arrow" d="M246 274H252"/><path class="arrow" d="M512 274H518"/><path class="arrow" d="M862 274H868"/><path class="arrow" d="M1120 274H1128"/>
+<g filter="url(#shadow)"><rect x="20" y="692" width="430" height="232" rx="14" fill="#f8fbff" stroke="#cad8e9" class="panel"/></g>
+<rect x="20" y="692" width="430" height="52" rx="14" fill="#f2f6fb"/><text x="235" y="726" text-anchor="middle" class="head" font-size="20">Development &amp; Deployment (Optional)</text>
+<circle cx="108" cy="807" r="45" fill="#111"/><text x="108" y="816" text-anchor="middle" fill="#fff" font-size="23" font-weight="800">GH</text><text x="108" y="875" text-anchor="middle" class="svc">GitHub</text><text x="108" y="901" text-anchor="middle" class="small">Source code</text>
+<path class="arrow" d="M164 810H218"/><circle cx="282" cy="807" r="45" fill="#2586ed"/><text x="282" y="816" text-anchor="middle" fill="#fff" font-size="20" font-weight="800">CI/CD</text><text x="282" y="875" text-anchor="middle" class="svc">GitHub Actions</text><text x="282" y="901" text-anchor="middle" class="small">Build &amp; deploy</text>
+<path d="M450 829H865M638 829V681M865 829V681" stroke="#294c73" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/><text x="638" y="778" text-anchor="middle" class="small">Deploy frontend</text><text x="638" y="800" text-anchor="middle" class="small">(to S3/CloudFront)</text><text x="865" y="778" text-anchor="middle" class="small">Deploy API &amp; Lambda</text><text x="865" y="800" text-anchor="middle" class="small">(to API Gateway / Lambda)</text><text x="658" y="857" text-anchor="middle" class="small">Deploy to AWS</text>
+<g filter="url(#shadow)"><rect x="1097" y="719" width="357" height="205" rx="14" fill="#fbfdff" stroke="#cad8e9" class="panel"/></g>
+<text x="1275" y="806" text-anchor="middle" font-size="58" font-weight="700" fill="#27384b">aws</text><path d="M1208 822Q1275 858 1341 822" stroke="#ff9900" stroke-width="7" fill="none" stroke-linecap="round"/><text x="1275" y="872" text-anchor="middle" class="svc">Built on Amazon Web Services</text><text x="1275" y="902" text-anchor="middle" class="body">Reliable | Secure | Scalable</text>
+<rect x="20" y="950" width="1434" height="88" rx="12" fill="#f7faff" stroke="#cad8e9"/><rect x="48" y="971" width="42" height="48" rx="6" fill="#5b8fdc"/><text x="69" y="1002" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">≡</text><text x="112" y="982" class="svc">Architecture Overview</text><text x="112" y="1010" class="body">Implements a serverless asset management workflow with a static frontend, API Gateway, Lambda-based CRUD operations, DynamoDB persistence,</text><text x="112" y="1033" class="body">optional S3 asset storage, and CloudWatch monitoring.</text>
 </svg>
