@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Manufacturing ERP/MRP SQL Reporting AWS Reference Architecture</title>
+  <desc id="desc">Conceptual AWS architecture showing manufacturing users, ERP and SQL Server source data, secure connectivity, AWS Glue, Amazon RDS for SQL Server, Amazon S3, Amazon QuickSight, AWS Lambda, IAM, KMS, and CloudWatch.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#061a33"/><stop offset="1" stop-color="#03101f"/></linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0c3158"/><stop offset="1" stop-color="#09233f"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".28"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#57a8ff"/></marker>
+    <style>
+      .title{font:700 44px Arial,sans-serif;fill:#fff}.sub{font:24px Arial,sans-serif;fill:#b9d6f4}.section{font:700 25px Arial,sans-serif;fill:#fff}.svcTitle{font:700 19px Arial,sans-serif;fill:#fff}.svcText{font:15px Arial,sans-serif;fill:#c7d9ea}.small{font:14px Arial,sans-serif;fill:#9fc1e2}.awsLabel{font:700 18px Arial,sans-serif;fill:#ffb449}.iconText{font:700 20px Arial,sans-serif;fill:#fff}.arrow{stroke:#57a8ff;stroke-width:4;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="28" y="24" width="1544" height="106" rx="22" fill="#0a2a4d"/>
+  <text x="800" y="70" text-anchor="middle" class="title">Manufacturing ERP/MRP SQL Reporting System</text>
+  <text x="800" y="105" text-anchor="middle" class="sub">AWS reference architecture for reporting, analytics, and operational visibility</text>
+
+  <rect x="45" y="170" width="230" height="570" rx="18" fill="#0a2440" stroke="#2a74b8" stroke-width="2"/>
+  <text x="160" y="205" text-anchor="middle" class="section">Manufacturing Users</text>
+  <g transform="translate(75 245)"><circle cx="34" cy="34" r="28" fill="#1273de"/><text x="34" y="41" text-anchor="middle" class="iconText">PM</text><text x="78" y="31" class="svcTitle">Production</text><text x="78" y="54" class="svcText">Managers</text></g>
+  <g transform="translate(75 345)"><circle cx="34" cy="34" r="28" fill="#1273de"/><text x="34" y="41" text-anchor="middle" class="iconText">SC</text><text x="78" y="31" class="svcTitle">Supply Chain</text><text x="78" y="54" class="svcText">Teams</text></g>
+  <g transform="translate(75 445)"><circle cx="34" cy="34" r="28" fill="#1273de"/><text x="34" y="41" text-anchor="middle" class="iconText">OP</text><text x="78" y="31" class="svcTitle">Operations</text><text x="78" y="54" class="svcText">Leadership</text></g>
+  <g transform="translate(75 545)"><circle cx="34" cy="34" r="28" fill="#1273de"/><text x="34" y="41" text-anchor="middle" class="iconText">FN</text><text x="78" y="31" class="svcTitle">Finance</text><text x="78" y="54" class="svcText">Analysts</text></g>
+  <text x="160" y="690" text-anchor="middle" class="small">Operational decisions from</text><text x="160" y="712" text-anchor="middle" class="small">a governed reporting layer</text>
+
+  <rect x="310" y="215" width="220" height="430" rx="18" fill="#0a2440" stroke="#2a74b8" stroke-width="2"/>
+  <text x="420" y="252" text-anchor="middle" class="section">ERP/MRP Source</text>
+  <rect x="350" y="300" width="140" height="115" rx="14" fill="#173a61" stroke="#6ba9df"/>
+  <text x="420" y="345" text-anchor="middle" class="iconText">SQL</text><text x="420" y="380" text-anchor="middle" class="svcTitle">SQL Server</text><text x="420" y="403" text-anchor="middle" class="svcText">ERP / MRP data</text>
+  <text x="420" y="463" text-anchor="middle" class="svcText">Inventory · BOMs</text><text x="420" y="488" text-anchor="middle" class="svcText">Work orders · Purchasing</text><text x="420" y="513" text-anchor="middle" class="svcText">Suppliers · Sales orders</text>
+  <rect x="348" y="552" width="144" height="58" rx="12" fill="#6336d5"/><text x="420" y="587" text-anchor="middle" class="iconText">VPN</text>
+  <text x="420" y="634" text-anchor="middle" class="small">Site-to-Site VPN / secure link</text>
+
+  <rect x="570" y="155" width="790" height="610" rx="24" fill="#071f38" stroke="#5aa8ef" stroke-width="3"/>
+  <text x="610" y="195" class="awsLabel">AWS CLOUD</text><text x="1320" y="195" text-anchor="end" class="small">Secure · Scalable · Observable</text>
+  <rect x="600" y="215" width="730" height="510" rx="18" fill="url(#panel)" stroke="#635cff" stroke-width="2"/>
+  <text x="625" y="248" class="section">Amazon VPC / governed AWS environment</text>
+
+  <g filter="url(#shadow)"><rect x="635" y="350" width="145" height="150" rx="16" fill="#5a33d6"/><text x="708" y="398" text-anchor="middle" class="iconText">GLUE</text><text x="708" y="438" text-anchor="middle" class="svcTitle">AWS Glue</text><text x="708" y="466" text-anchor="middle" class="svcText">ETL / data</text><text x="708" y="487" text-anchor="middle" class="svcText">transformation</text></g>
+  <g filter="url(#shadow)"><rect x="835" y="350" width="145" height="150" rx="16" fill="#244bd9"/><text x="908" y="398" text-anchor="middle" class="iconText">RDS</text><text x="908" y="438" text-anchor="middle" class="svcTitle">Amazon RDS</text><text x="908" y="466" text-anchor="middle" class="svcText">for SQL Server</text><text x="908" y="487" text-anchor="middle" class="svcText">reporting DB</text></g>
+  <g filter="url(#shadow)"><rect x="1035" y="350" width="145" height="150" rx="16" fill="#4f8f16"/><text x="1108" y="398" text-anchor="middle" class="iconText">S3</text><text x="1108" y="438" text-anchor="middle" class="svcTitle">Amazon S3</text><text x="1108" y="466" text-anchor="middle" class="svcText">exports / backups</text><text x="1108" y="487" text-anchor="middle" class="svcText">report extracts</text></g>
+  <g filter="url(#shadow)"><rect x="1215" y="350" width="90" height="150" rx="16" fill="#6b39d8"/><text x="1260" y="398" text-anchor="middle" class="iconText">QS</text><text x="1260" y="438" text-anchor="middle" class="svcTitle">QuickSight</text><text x="1260" y="466" text-anchor="middle" class="svcText">dashboards</text></g>
+
+  <g><rect x="835" y="275" width="145" height="58" rx="12" fill="#ef7800"/><text x="908" y="311" text-anchor="middle" class="iconText">λ  AWS Lambda</text></g>
+  <text x="1000" y="300" class="small">Scheduled report refresh / automation</text>
+
+  <path class="arrow" d="M530 430 H625"/><path class="arrow" d="M780 425 H825"/><path class="arrow" d="M980 425 H1025"/><path class="arrow" d="M1180 425 H1205"/>
+  <path class="arrow" d="M908 333 V343"/><path class="arrow" d="M980 304 H1108 V343"/>
+
+  <rect x="630" y="565" width="675" height="120" rx="16" fill="#0a2b4d" stroke="#356a9e"/>
+  <g transform="translate(655 588)"><rect width="130" height="72" rx="12" fill="#d9344a"/><text x="65" y="31" text-anchor="middle" class="iconText">IAM</text><text x="65" y="55" text-anchor="middle" class="svcText">Access control</text></g>
+  <g transform="translate(865 588)"><rect width="130" height="72" rx="12" fill="#d9344a"/><text x="65" y="31" text-anchor="middle" class="iconText">KMS</text><text x="65" y="55" text-anchor="middle" class="svcText">Encryption</text></g>
+  <g transform="translate(1075 588)"><rect width="160" height="72" rx="12" fill="#cf2f7e"/><text x="80" y="31" text-anchor="middle" class="iconText">CloudWatch</text><text x="80" y="55" text-anchor="middle" class="svcText">Logs / alarms</text></g>
+
+  <rect x="1395" y="210" width="165" height="500" rx="18" fill="#0a2440" stroke="#2a74b8" stroke-width="2"/>
+  <text x="1478" y="248" text-anchor="middle" class="section">Business Outputs</text>
+  <rect x="1420" y="290" width="115" height="140" rx="14" fill="#11345a"/><text x="1478" y="335" text-anchor="middle" class="iconText">DASH</text><text x="1478" y="372" text-anchor="middle" class="svcTitle">Operational</text><text x="1478" y="395" text-anchor="middle" class="svcTitle">Dashboards</text>
+  <rect x="1420" y="475" width="115" height="140" rx="14" fill="#11345a"/><text x="1478" y="520" text-anchor="middle" class="iconText">KPI</text><text x="1478" y="557" text-anchor="middle" class="svcTitle">Executive</text><text x="1478" y="580" text-anchor="middle" class="svcTitle">Reports</text>
+  <path class="arrow" d="M1305 425 H1385"/>
+
+  <rect x="45" y="790" width="1515" height="76" rx="18" fill="#09233e" stroke="#204d77"/>
+  <text x="90" y="822" class="svcTitle">Reference architecture:</text><text x="275" y="822" class="svcText">illustrates how this SQL reporting project could be extended into AWS.</text>
+  <text x="90" y="848" class="small">The repository itself remains a SQL Server portfolio implementation and does not claim a live AWS deployment.</text>
+</svg>
