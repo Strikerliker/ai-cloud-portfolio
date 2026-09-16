@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Hermes Agent Cloud Deployment AWS Reference Architecture</title>
+  <desc id="desc">Reference architecture showing users reaching Hermes through Route 53 and an Application Load Balancer, with ECS on Fargate in private subnets, Amazon Bedrock, DynamoDB, S3, Secrets Manager, CloudWatch, IAM, and an external GitHub Actions CI/CD path.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8fbff"/><stop offset="1" stop-color="#eef5fb"/></linearGradient>
+    <linearGradient id="cloud" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5f9ff"/><stop offset="1" stop-color="#e9f4ff"/></linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1b5e9e"/></marker>
+    <style>
+      .t1{font:700 50px Arial,sans-serif;fill:#0b2550}.t2{font:700 32px Arial,sans-serif;fill:#425a7b}.hdr{font:700 21px Arial,sans-serif;fill:#102e58}.svc{font:700 18px Arial,sans-serif;fill:#102e58}.body{font:15px Arial,sans-serif;fill:#415979}.small{font:13px Arial,sans-serif;fill:#5d7390}.white{fill:#fff}.arrow{stroke:#1b5e9e;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke-dasharray:8 7}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="64" text-anchor="middle" class="t1">Hermes Agent Cloud Deployment</text>
+  <text x="800" y="105" text-anchor="middle" class="t2">AWS Reference Architecture</text>
+
+  <rect x="28" y="250" width="170" height="330" rx="18" fill="#f7fbff" stroke="#82b3df" stroke-width="2"/>
+  <text x="113" y="286" text-anchor="middle" class="hdr">Users / Clients</text>
+  <circle cx="113" cy="350" r="38" fill="#2f79b9"/><text x="113" y="358" text-anchor="middle" class="white" style="font:700 18px Arial">USER</text>
+  <rect x="58" y="420" width="110" height="70" rx="10" fill="#dceeff" stroke="#82b3df"/><text x="113" y="451" text-anchor="middle" class="svc">Web / CLI</text><text x="113" y="473" text-anchor="middle" class="small">HTTPS requests</text>
+
+  <rect x="225" y="210" width="220" height="410" rx="18" fill="#f7fbff" stroke="#6aa5dc" stroke-width="2" stroke-dasharray="8 7"/>
+  <text x="335" y="247" text-anchor="middle" class="hdr">DNS &amp; Entry</text>
+  <rect x="268" y="285" width="134" height="92" rx="14" fill="#7b3fd4"/><text x="335" y="323" text-anchor="middle" class="white" style="font:700 22px Arial">Route 53</text><text x="335" y="350" text-anchor="middle" class="white" style="font:14px Arial">DNS / domain</text>
+  <rect x="260" y="438" width="150" height="105" rx="52" fill="#8d49df"/><text x="335" y="477" text-anchor="middle" class="white" style="font:700 20px Arial">ALB</text><text x="335" y="505" text-anchor="middle" class="white" style="font:14px Arial">Application</text><text x="335" y="525" text-anchor="middle" class="white" style="font:14px Arial">Load Balancer</text>
+  <path class="arrow" d="M198 415 H248"/><path class="arrow" d="M335 377 V426"/>
+
+  <rect x="475" y="150" width="900" height="625" rx="22" fill="url(#cloud)" stroke="#2e76b7" stroke-width="3"/>
+  <rect x="475" y="150" width="900" height="62" rx="22" fill="#174776"/>
+  <text x="515" y="190" class="white" style="font:700 24px Arial">AWS Cloud</text><text x="1330" y="190" text-anchor="end" class="white" style="font:15px Arial">Secure · Isolated · Observable</text>
+
+  <rect x="500" y="230" width="850" height="510" rx="18" fill="#edf6ff" stroke="#8ab8e6" stroke-width="2"/>
+  <text x="530" y="262" class="hdr">Amazon VPC</text>
+
+  <rect x="520" y="285" width="190" height="350" rx="16" fill="#e8f6e8" stroke="#7cc38a"/>
+  <text x="615" y="317" text-anchor="middle" class="hdr">Public Subnets</text>
+  <rect x="548" y="365" width="134" height="92" rx="12" fill="#cde8df" stroke="#7cc38a"/>
+  <text x="615" y="398" text-anchor="middle" class="svc">ALB nodes</text><text x="615" y="424" text-anchor="middle" class="small">Multi-AZ entry</text>
+  <rect x="548" y="485" width="134" height="92" rx="12" fill="#cde8df" stroke="#7cc38a"/>
+  <text x="615" y="518" text-anchor="middle" class="svc">ALB nodes</text><text x="615" y="544" text-anchor="middle" class="small">Multi-AZ entry</text>
+
+  <rect x="730" y="285" width="590" height="350" rx="16" fill="#e7f2ff" stroke="#7aaee2"/>
+  <text x="1025" y="317" text-anchor="middle" class="hdr">Private Subnets · Application Layer</text>
+  <rect x="760" y="350" width="530" height="240" rx="16" fill="#fff4e9" stroke="#f18b2b" stroke-width="2"/>
+  <text x="1025" y="383" text-anchor="middle" class="hdr">Amazon ECS on AWS Fargate</text>
+  <rect x="795" y="420" width="185" height="128" rx="14" fill="#fff8f2" stroke="#f0a15e"/>
+  <text x="888" y="458" text-anchor="middle" class="svc">Hermes Agent</text><text x="888" y="484" text-anchor="middle" class="body">Containerized agent</text><text x="888" y="508" text-anchor="middle" class="body">runtime / API</text>
+  <rect x="1018" y="420" width="225" height="128" rx="14" fill="#fff8f2" stroke="#f0a15e"/>
+  <text x="1130" y="458" text-anchor="middle" class="svc">Tool Gateway / Workers</text><text x="1130" y="484" text-anchor="middle" class="body">Allow-listed actions</text><text x="1130" y="508" text-anchor="middle" class="body">Background tasks</text>
+  <path class="arrow" d="M445 490 H715"/><path class="arrow" d="M710 490 H748"/>
+
+  <g>
+    <rect x="525" y="665" width="118" height="58" rx="12" fill="#0aa394"/><text x="584" y="690" text-anchor="middle" class="white" style="font:700 15px Arial">Bedrock</text><text x="584" y="710" text-anchor="middle" class="white" style="font:12px Arial">LLM inference</text>
+    <rect x="660" y="665" width="118" height="58" rx="12" fill="#3158d9"/><text x="719" y="690" text-anchor="middle" class="white" style="font:700 15px Arial">DynamoDB</text><text x="719" y="710" text-anchor="middle" class="white" style="font:12px Arial">Memory</text>
+    <rect x="795" y="665" width="118" height="58" rx="12" fill="#4f8f16"/><text x="854" y="690" text-anchor="middle" class="white" style="font:700 15px Arial">Amazon S3</text><text x="854" y="710" text-anchor="middle" class="white" style="font:12px Arial">Artifacts / KB</text>
+    <rect x="930" y="665" width="128" height="58" rx="12" fill="#d94656"/><text x="994" y="690" text-anchor="middle" class="white" style="font:700 14px Arial">Secrets Mgr</text><text x="994" y="710" text-anchor="middle" class="white" style="font:12px Arial">Credentials</text>
+    <rect x="1075" y="665" width="128" height="58" rx="12" fill="#d52c7a"/><text x="1139" y="690" text-anchor="middle" class="white" style="font:700 14px Arial">CloudWatch</text><text x="1139" y="710" text-anchor="middle" class="white" style="font:12px Arial">Logs / metrics</text>
+    <rect x="1220" y="665" width="105" height="58" rx="12" fill="#d63d4d"/><text x="1272" y="690" text-anchor="middle" class="white" style="font:700 15px Arial">IAM</text><text x="1272" y="710" text-anchor="middle" class="white" style="font:12px Arial">Task role</text>
+  </g>
+  <path class="arrow" d="M865 590 V646 H584 V655"/><path class="arrow" d="M905 590 V632 H719 V655"/><path class="arrow" d="M950 590 V620 H854 V655"/><path class="arrow" d="M1010 590 V610 H994 V655"/><path class="arrow" d="M1100 590 V625 H1139 V655"/><path class="arrow" d="M1190 590 V638 H1272 V655"/>
+
+  <rect x="1400" y="190" width="170" height="360" rx="18" fill="#f7fbff" stroke="#6aa5dc" stroke-width="2"/>
+  <text x="1485" y="228" text-anchor="middle" class="hdr">CI/CD</text>
+  <circle cx="1485" cy="292" r="40" fill="#202735"/><text x="1485" y="299" text-anchor="middle" class="white" style="font:700 16px Arial">GitHub</text>
+  <text x="1485" y="357" text-anchor="middle" class="svc">GitHub Actions</text><text x="1485" y="383" text-anchor="middle" class="body">Build · Test</text><text x="1485" y="407" text-anchor="middle" class="body">Deploy container</text>
+  <rect x="1430" y="445" width="110" height="62" rx="12" fill="#ef7800"/><text x="1485" y="470" text-anchor="middle" class="white" style="font:700 15px Arial">Amazon ECR</text><text x="1485" y="492" text-anchor="middle" class="white" style="font:12px Arial">Container image</text>
+  <path class="arrow" d="M1485 332 V430"/><path class="arrow" d="M1430 477 H1310 V442 H1290"/>
+
+  <rect x="180" y="805" width="1240" height="60" rx="16" fill="#e7f4ff" stroke="#85bde9"/>
+  <text x="800" y="843" text-anchor="middle" class="hdr">Reference deployment pattern: Dockerized agent, controlled tools, persistent memory, optional Bedrock integration, least-privilege AWS access.</text>
+</svg>
