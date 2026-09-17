@@ -1,8 +1,8 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
 const ses = new SESClient({});
-const destinationEmail = process.env.DESTINATION_EMAIL;
-const senderEmail = process.env.SENDER_EMAIL;
+const destinationEmail = String(process.env.DESTINATION_EMAIL || '').trim();
+const senderEmail = String(process.env.SENDER_EMAIL || '').trim();
 const allowedOrigins = new Set(
   String(process.env.ALLOWED_ORIGINS || 'https://dumm.cloud,https://www.dumm.cloud')
     .split(',')
@@ -84,7 +84,6 @@ export const handler = async event => {
     await ses.send(new SendEmailCommand({
       Source: senderEmail,
       Destination: { ToAddresses: [destinationEmail] },
-      ReplyToAddresses: [email],
       Message: {
         Subject: { Data: `[dumm.cloud] ${subject}`, Charset: 'UTF-8' },
         Body: { Text: { Data: textBody, Charset: 'UTF-8' } }
@@ -94,6 +93,11 @@ export const handler = async event => {
     return response(200, { message: 'Message sent successfully.' }, origin);
   } catch (error) {
     console.error('Contact form error:', error);
+
+    if (error?.name === 'MessageRejected' || error?.Code === 'MessageRejected') {
+      return response(502, { message: 'Email delivery is temporarily unavailable while the mail service configuration is being finalized.' }, origin);
+    }
+
     return response(500, { message: 'Unable to send your message right now.' }, origin);
   }
 };
