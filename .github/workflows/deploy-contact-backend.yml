@@ -37,6 +37,34 @@ jobs:
           test -n "$CONTACT_SENDER_EMAIL" || { echo "Missing repository secret CONTACT_SENDER_EMAIL"; exit 1; }
           test -n "$CONTACT_DESTINATION_EMAIL" || { echo "Missing repository secret CONTACT_DESTINATION_EMAIL"; exit 1; }
 
+      - name: Inspect GitHub OIDC claims
+        shell: bash
+        run: |
+          python - <<'PY'
+          import base64
+          import json
+          import os
+          import urllib.parse
+          import urllib.request
+
+          request_url = os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"]
+          separator = "&" if "?" in request_url else "?"
+          request_url += separator + urllib.parse.urlencode({"audience": "sts.amazonaws.com"})
+          request = urllib.request.Request(
+              request_url,
+              headers={"Authorization": "Bearer " + os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"]},
+          )
+          with urllib.request.urlopen(request) as response:
+              token = json.load(response)["value"]
+
+          payload = token.split(".")[1]
+          payload += "=" * (-len(payload) % 4)
+          claims = json.loads(base64.urlsafe_b64decode(payload.encode()).decode())
+
+          for key in ("iss", "aud", "sub", "repository", "ref", "workflow"):
+              print(f"OIDC {key}: {claims.get(key)}")
+          PY
+
       - name: Configure short-lived AWS credentials with OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
