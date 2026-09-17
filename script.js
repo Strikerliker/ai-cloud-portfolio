@@ -1,7 +1,6 @@
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
-// Keep every portfolio card connected to its current project page.
 const projectRoutes = {
   'AWS Bedrock RAG Assistant': 'projects/aws-bedrock-rag-assistant.html',
   'Secure CI/CD Pipeline': 'projects/secure-ci-cd-pipeline/dashboard.html',
@@ -21,8 +20,6 @@ document.querySelectorAll('.project-card').forEach(card => {
   if (route) card.setAttribute('href', route);
 });
 
-// Open every non-anchor link in a separate tab/window while keeping
-// on-page navigation (Home, About, Skills, Projects, etc.) in the current tab.
 document.querySelectorAll('a[href]').forEach(link => {
   const href = String(link.getAttribute('href') || '').trim();
   if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
@@ -61,6 +58,7 @@ const contactForm = document.querySelector('#contact-form');
 const formStatus = document.querySelector('#form-status');
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let turnstileWidgetId = null;
+let turnstileLoadFailed = false;
 
 function setFormStatus(message, state = 'info') {
   if (!formStatus) return;
@@ -100,8 +98,8 @@ function renderTurnstile() {
       appearance: 'interaction-only'
     });
   } catch (_) {
-    // Security verification is optional for delivery; the Lambda backend
-    // remains responsible for server-side validation and anti-abuse controls.
+    turnstileLoadFailed = true;
+    setFormStatus('Security verification could not load. Please refresh and try again.', 'error');
   }
 }
 
@@ -117,8 +115,10 @@ function loadTurnstile() {
   script.async = true;
   script.defer = true;
   script.onload = renderTurnstile;
-  // Do not block the contact form if the optional verification widget is unavailable.
-  script.onerror = () => {};
+  script.onerror = () => {
+    turnstileLoadFailed = true;
+    setFormStatus('Security verification could not load. Please refresh and try again.', 'error');
+  };
   document.head.appendChild(script);
 }
 
@@ -134,6 +134,11 @@ if (contactForm) {
     if (!contactForm.checkValidity()) {
       contactForm.reportValidity();
       setFormStatus('Please complete all required fields.', 'error');
+      return;
+    }
+
+    if (turnstileLoadFailed) {
+      setFormStatus('Security verification is unavailable. Please refresh and try again.', 'error');
       return;
     }
 
@@ -154,6 +159,11 @@ if (contactForm) {
       return;
     }
 
+    if (TURNSTILE_SITE_KEY && !payload.turnstileToken) {
+      setFormStatus('Please complete the security verification before sending.', 'error');
+      return;
+    }
+
     if (!CONTACT_API_URL) {
       setFormStatus('The secure AWS contact endpoint has not been connected yet.', 'error');
       return;
@@ -169,25 +179,29 @@ if (contactForm) {
     const timeout = setTimeout(() => controller.abort(), 12000);
 
     try {
-      // Use a simple no-CORS POST so the form works from both dumm.cloud and
-      // www.dumm.cloud even if the Lambda Function URL only allows one origin.
-      // The body is still JSON and is parsed by the Lambda handler normally.
-      await fetch(CONTACT_API_URL, {
+      const response = await fetch(CONTACT_API_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
         signal: controller.signal,
-        mode: 'no-cors',
+        mode: 'cors',
         credentials: 'omit'
       });
 
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(result.message || `Contact service returned ${response.status}.`);
+      }
+
       contactForm.reset();
-      setFormStatus('Message submitted successfully. Thank you — I’ll be in touch.', 'success');
+      setFormStatus(result.message || 'Message sent successfully. Thank you — I’ll be in touch.', 'success');
     } catch (error) {
       if (error?.name === 'AbortError') {
         setFormStatus('The contact service timed out. Please try again.', 'error');
+      } else if (error instanceof TypeError) {
+        setFormStatus('The contact service could not be reached. The AWS endpoint or CORS configuration needs attention.', 'error');
       } else {
-        setFormStatus('Unable to send your message right now. Please try again.', 'error');
+        setFormStatus(error?.message || 'Unable to send your message right now. Please try again.', 'error');
       }
     } finally {
       clearTimeout(timeout);
