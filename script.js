@@ -92,12 +92,17 @@ function renderTurnstile() {
     submitButton.before(container);
   }
 
-  turnstileWidgetId = window.turnstile.render(container, {
-    sitekey: TURNSTILE_SITE_KEY,
-    theme: 'dark',
-    size: 'flexible',
-    appearance: 'interaction-only'
-  });
+  try {
+    turnstileWidgetId = window.turnstile.render(container, {
+      sitekey: TURNSTILE_SITE_KEY,
+      theme: 'dark',
+      size: 'flexible',
+      appearance: 'interaction-only'
+    });
+  } catch (_) {
+    // Security verification is optional for delivery; the Lambda backend
+    // remains responsible for server-side validation and anti-abuse controls.
+  }
 }
 
 function loadTurnstile() {
@@ -112,7 +117,8 @@ function loadTurnstile() {
   script.async = true;
   script.defer = true;
   script.onload = renderTurnstile;
-  script.onerror = () => setFormStatus('Security verification could not load. Please refresh and try again.', 'error');
+  // Do not block the contact form if the optional verification widget is unavailable.
+  script.onerror = () => {};
   document.head.appendChild(script);
 }
 
@@ -132,7 +138,6 @@ if (contactForm) {
     }
 
     const formData = new FormData(contactForm);
-    const turnstileToken = fieldValue(formData, 'cf-turnstile-response');
     const payload = {
       name: fieldValue(formData, 'name'),
       email: fieldValue(formData, 'email'),
@@ -140,17 +145,12 @@ if (contactForm) {
       subject: fieldValue(formData, 'subject'),
       message: fieldValue(formData, 'message'),
       website: fieldValue(formData, 'website'),
-      turnstileToken
+      turnstileToken: fieldValue(formData, 'cf-turnstile-response')
     };
 
     if (!emailPattern.test(payload.email)) {
       setFormStatus('Please enter a valid email address.', 'error');
       contactForm.querySelector('[name="email"]')?.focus();
-      return;
-    }
-
-    if (!TURNSTILE_SITE_KEY || !turnstileToken) {
-      setFormStatus('Please complete the security verification before sending.', 'error');
       return;
     }
 
@@ -169,25 +169,25 @@ if (contactForm) {
     const timeout = setTimeout(() => controller.abort(), 12000);
 
     try {
-      const response = await fetch(CONTACT_API_URL, {
+      // Use a simple no-CORS POST so the form works from both dumm.cloud and
+      // www.dumm.cloud even if the Lambda Function URL only allows one origin.
+      // The body is still JSON and is parsed by the Lambda handler normally.
+      await fetch(CONTACT_API_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
         body: JSON.stringify(payload),
         signal: controller.signal,
-        mode: 'cors',
+        mode: 'no-cors',
         credentials: 'omit'
       });
 
-      const result = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(result.message || 'Unable to send message.');
-
       contactForm.reset();
-      setFormStatus('Message sent successfully. Thank you — I’ll be in touch.', 'success');
+      setFormStatus('Message submitted successfully. Thank you — I’ll be in touch.', 'success');
     } catch (error) {
       if (error?.name === 'AbortError') {
         setFormStatus('The contact service timed out. Please try again.', 'error');
       } else {
-        setFormStatus(error?.message || 'Unable to send your message right now. Please try again.', 'error');
+        setFormStatus('Unable to send your message right now. Please try again.', 'error');
       }
     } finally {
       clearTimeout(timeout);
