@@ -2,6 +2,12 @@ name: Deploy Contact Backend
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+      - '.github/workflows/deploy-contact-backend.yml'
 
 permissions:
   contents: write
@@ -10,6 +16,7 @@ permissions:
 env:
   AWS_REGION: ${{ vars.AWS_REGION || 'us-east-1' }}
   STACK_NAME: dumm-cloud-contact
+  TURNSTILE_SITE_KEY: 0x4AAAAAAE4Dtepok5rdpb-s
 
 jobs:
   deploy:
@@ -77,14 +84,18 @@ jobs:
       - name: Connect website to deployed contact API
         env:
           API_URL: ${{ steps.api.outputs.url }}
+          TURNSTILE_SITE_KEY: ${{ env.TURNSTILE_SITE_KEY }}
         run: |
           python - <<'PY'
           import json, os
           url = os.environ['API_URL']
+          site_key = os.environ['TURNSTILE_SITE_KEY']
           with open('contact-config.js', 'w', encoding='utf-8') as f:
               f.write('// Runtime contact endpoint configuration.\n')
               f.write('// Public API endpoint only; no email address or credential is stored here.\n')
               f.write('window.CONTACT_API_URL = ' + json.dumps(url) + ';\n')
+              f.write('\n// Cloudflare Turnstile site key is public by design.\n')
+              f.write('window.TURNSTILE_SITE_KEY = ' + json.dumps(site_key) + ';\n')
           PY
 
           if git diff --quiet -- contact-config.js; then
