@@ -97,6 +97,34 @@ jobs:
               "DestinationEmail=$CONTACT_DESTINATION_EMAIL" \
               "AllowedOrigins=https://dumm.cloud,https://www.dumm.cloud"
 
+      - name: Show CloudFormation failure details
+        if: failure()
+        shell: bash
+        run: |
+          set +e
+          echo "AWS region: $AWS_REGION"
+          echo "--- SAM managed stack status ---"
+          aws cloudformation describe-stacks \
+            --stack-name aws-sam-cli-managed-default \
+            --region "$AWS_REGION" \
+            --query 'Stacks[0].[StackName,StackStatus,StackStatusReason]' \
+            --output table
+
+          echo "--- SAM managed stack recent failed events ---"
+          aws cloudformation describe-stack-events \
+            --stack-name aws-sam-cli-managed-default \
+            --region "$AWS_REGION" \
+            --query 'StackEvents[?contains(ResourceStatus, `FAILED`)].[Timestamp,LogicalResourceId,ResourceType,ResourceStatus,ResourceStatusReason]' \
+            --output table
+
+          echo "--- Contact stack recent failed events ---"
+          aws cloudformation describe-stack-events \
+            --stack-name "$STACK_NAME" \
+            --region "$AWS_REGION" \
+            --query 'StackEvents[?contains(ResourceStatus, `FAILED`)].[Timestamp,LogicalResourceId,ResourceType,ResourceStatus,ResourceStatusReason]' \
+            --output table
+          exit 0
+
       - name: Read deployed API URL
         id: api
         run: |
