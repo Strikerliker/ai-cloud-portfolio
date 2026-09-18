@@ -1,1 +1,118 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#031426"/><stop offset="1" stop-color="#06101c"/></linearGradient><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#59bfff"/></marker><style>.t{font-family:Arial,sans-serif;fill:#eef8ff}.muted{font-family:Arial,sans-serif;fill:#9fc9e8}.box{fill:#071d31;stroke:#48b8ff;stroke-width:2}.aws{fill:#102b43;stroke:#ff9900;stroke-width:2}.line{stroke:#59bfff;stroke-width:4;fill:none;marker-end:url(#arrow)}.label{font-size:25px;font-weight:700}.sub{font-size:17px}.title{font-size:58px;font-weight:800;letter-spacing:2px}.cyan{fill:#55c8ff}.orange{fill:#ff9900}</style></defs><rect width="1600" height="900" fill="url(#bg)"/><text x="800" y="72" text-anchor="middle" class="t title">AI OUTPUT <tspan class="cyan">FIREWALL</tspan></text><text x="800" y="112" text-anchor="middle" class="muted" font-size="25">Verify • Validate • Trust — AWS Serverless Reference Architecture</text><rect x="55" y="325" rx="20" width="190" height="150" class="box"/><text x="150" y="375" text-anchor="middle" class="t label">USER</text><text x="150" y="410" text-anchor="middle" class="muted sub">Web / App</text><text x="150" y="438" text-anchor="middle" class="muted sub">Question or answer</text><path d="M245 400 H330" class="line"/><rect x="335" y="325" rx="20" width="220" height="150" class="aws"/><text x="445" y="370" text-anchor="middle" class="orange label">API GATEWAY</text><text x="445" y="408" text-anchor="middle" class="t sub">HTTPS /evaluate</text><text x="445" y="438" text-anchor="middle" class="muted sub">Public API boundary</text><path d="M555 400 H640" class="line"/><rect x="645" y="305" rx="20" width="235" height="190" class="aws"/><text x="762" y="355" text-anchor="middle" class="orange label">AWS LAMBDA</text><text x="762" y="392" text-anchor="middle" class="t sub">Workflow orchestration</text><text x="762" y="423" text-anchor="middle" class="muted sub">Generate • Retrieve</text><text x="762" y="451" text-anchor="middle" class="muted sub">Verify • Score • Audit</text><path d="M880 400 H965" class="line"/><rect x="970" y="305" rx="20" width="245" height="190" class="aws"/><text x="1092" y="355" text-anchor="middle" class="orange label">AMAZON BEDROCK</text><text x="1092" y="392" text-anchor="middle" class="t sub">Candidate generation</text><text x="1092" y="423" text-anchor="middle" class="muted sub">+ grounded retrieval</text><text x="1092" y="451" text-anchor="middle" class="muted sub">Source provenance</text><path d="M1215 400 H1290" class="line"/><rect x="1295" y="285" rx="20" width="250" height="230" class="box"/><text x="1420" y="335" text-anchor="middle" class="t label">VERIFICATION</text><text x="1420" y="372" text-anchor="middle" class="muted sub">Claim extraction</text><text x="1420" y="402" text-anchor="middle" class="muted sub">Evidence support score</text><text x="1420" y="432" text-anchor="middle" class="muted sub">Policy enforcement</text><text x="1420" y="477" text-anchor="middle" font-family="Arial" font-size="23" font-weight="700"><tspan fill="#39e6a2">PASS</tspan><tspan fill="#eef8ff"> / </tspan><tspan fill="#ffc542">WARN</tspan><tspan fill="#eef8ff"> / </tspan><tspan fill="#ff5b5b">REJECT</tspan></text><rect x="630" y="145" rx="18" width="265" height="110" class="aws"/><text x="762" y="188" text-anchor="middle" class="orange label">TRUSTED S3</text><text x="762" y="220" text-anchor="middle" class="muted sub">Curated source documents</text><path d="M762 255 V300" class="line"/><rect x="960" y="145" rx="18" width="265" height="110" class="aws"/><text x="1092" y="188" text-anchor="middle" class="orange label">KNOWLEDGE BASE</text><text x="1092" y="220" text-anchor="middle" class="muted sub">Retrieval + provenance</text><path d="M1092 255 V300" class="line"/><rect x="630" y="590" rx="18" width="265" height="115" class="aws"/><text x="762" y="635" text-anchor="middle" class="orange label">DYNAMODB</text><text x="762" y="670" text-anchor="middle" class="muted sub">Audit trail & decisions</text><path d="M762 495 V585" class="line"/><rect x="960" y="590" rx="18" width="265" height="115" class="aws"/><text x="1092" y="635" text-anchor="middle" class="orange label">CLOUDWATCH</text><text x="1092" y="670" text-anchor="middle" class="muted sub">Logs • metrics • alarms</text><path d="M850 495 Q900 555 1092 585" class="line"/><path d="M1420 515 V635 Q1420 770 1220 770 H260 Q150 770 150 480" class="line"/><text x="800" y="815" text-anchor="middle" class="cyan" font-family="Arial" font-size="25" font-weight="700">RELIABLE, EVIDENCE-GROUNDED RESPONSE + CONFIDENCE + SOURCES</text><text x="800" y="858" text-anchor="middle" class="muted" font-family="Arial" font-size="19">DUMM.CLOUD • AI & AWS CLOUD SOLUTIONS • SDVOSB</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">AI Output Firewall – AWS Architecture</title>
+<desc id="desc">AWS architecture showing API Gateway, Lambda, Bedrock, S3, Knowledge Base, OpenSearch, DynamoDB, CloudWatch, verification policy decisions, and a verified response with citations.</desc>
+<defs>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="7" flood-color="#17324d" flood-opacity=".12"/></filter>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#4b6480"/></marker>
+  <style>
+    .t{font-family:Arial,Helvetica,sans-serif;fill:#142b47}.muted{font-family:Arial,Helvetica,sans-serif;fill:#56708b}.h{font-weight:700}.box{fill:#fff;stroke:#cbd9e8;stroke-width:1.4}.soft{fill:#f6f9fc;stroke:#d4e0ec;stroke-width:1.3}.line{stroke:#4b6480;stroke-width:2.3;fill:none;marker-end:url(#arrow)}.dash{stroke:#4474a7;stroke-width:2;fill:none;stroke-dasharray:7 6;marker-end:url(#arrow)}.num{fill:#1373d1}.numtxt{font-family:Arial,Helvetica,sans-serif;fill:white;font-size:16px;font-weight:700;text-anchor:middle}.small{font-size:13px}.tiny{font-size:11px}.svcname{font-size:15px;font-weight:700}.section{font-size:16px;font-weight:700}.cap{font-size:12px;letter-spacing:2.5px;fill:#70839a}
+  </style>
+</defs>
+
+<rect width="1600" height="900" fill="#ffffff"/>
+<text x="800" y="52" text-anchor="middle" class="t h" font-size="38">AI Output Firewall – AWS Architecture</text>
+<text x="800" y="82" text-anchor="middle" class="muted" font-size="19">Safer, more reliable AI responses through verification, policy enforcement, and continuous improvement.</text>
+<text x="28" y="35" class="cap">VALIDATE</text><text x="28" y="53" class="cap">GROUND</text><text x="28" y="71" class="cap">PROTECT</text>
+<text x="1515" y="35" text-anchor="end" class="cap">TRUST</text><text x="1515" y="53" text-anchor="end" class="cap">GROUNDED AI</text><text x="1515" y="71" text-anchor="end" class="cap">IN PRACTICE</text>
+
+<!-- user -->
+<circle cx="42" cy="130" r="17" class="num"/><text x="42" y="136" class="numtxt">1</text>
+<text x="68" y="128" class="t h" font-size="16">User / Application</text><text x="68" y="148" class="muted small">Sends a request (chat, app, API)</text>
+<rect x="28" y="174" width="166" height="250" rx="12" class="soft" filter="url(#shadow)"/>
+<circle cx="111" cy="236" r="18" fill="#546b83"/><path d="M78 302c3-44 63-44 66 0Z" fill="#546b83"/>
+<text x="111" y="334" text-anchor="middle" class="t h" font-size="15">User / Application</text>
+<text x="111" y="356" text-anchor="middle" class="muted small">Web, Mobile, or</text><text x="111" y="373" text-anchor="middle" class="muted small">Internal Service</text>
+
+<!-- api gateway -->
+<circle cx="260" cy="130" r="17" class="num"/><text x="260" y="136" class="numtxt">2</text>
+<text x="286" y="128" class="t h" font-size="16">Amazon API Gateway</text><text x="286" y="148" class="muted small">Receives and routes the request</text>
+<rect x="250" y="174" width="175" height="250" rx="12" class="soft" filter="url(#shadow)"/>
+<rect x="297" y="232" width="82" height="82" rx="10" fill="#8C4FFF"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M328 286h4v-3h-4zm7 0h4v-3h-4zm-7-29h4v-3h-4zm7 0h4v-3h-4zm-8-13-13 8v36l13 7zm2 11h3v3h-3v25h3v3h-3v13c0 2-2 3-3 2l-16-8c-1 0-1-1-1-2v-40c0-1 1-2 1-2l16-8c2-1 3 0 3 2zm33-3-13-8v51l13-7zm3-1v40c0 1 0 2-1 2l-16 8c-2 1-3 0-3-2v-13h-3v-3h3v-25h-3v-3h3v-12c0-2 2-3 3-2l16 8c1 0 1 1 1 2zm-21 13-3-1-5 14 3 1zm7 8c1 1 1 2 0 3l-5 4-2-2 4-4-4-4 2-2zm-17 7-5-4c-1-1-1-2 0-3l5-5 2 2-4 4 4 4z" fill="#fff"/>
+<text x="338" y="340" text-anchor="middle" class="t svcname">Amazon</text><text x="338" y="358" text-anchor="middle" class="t svcname">API Gateway</text>
+
+<!-- lambda -->
+<circle cx="500" cy="130" r="17" class="num"/><text x="500" y="136" class="numtxt">3</text>
+<text x="526" y="128" class="t h" font-size="16">AWS Lambda – AI Output Firewall</text><text x="526" y="148" class="muted small">Orchestrates generation, verification, policy enforcement, and logging</text>
+<rect x="485" y="174" width="280" height="300" rx="12" fill="#fff9f1" stroke="#ff9900" stroke-width="1.6" filter="url(#shadow)"/>
+<rect x="583" y="198" width="84" height="84" rx="10" fill="#ED7100"/>
+<path d="M610 264l-16 0 18-38 8 17-10 21zm4-42c0-1-1-1-2-1h-9v-12h19l25 55h8v12h-16l-25-54z" fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"/>
+<text x="625" y="310" text-anchor="middle" class="t h" font-size="16">AWS Lambda</text><text x="625" y="330" text-anchor="middle" class="t h" font-size="16">AI Output Firewall</text>
+<text x="510" y="365" class="t small">• Orchestrates the workflow</text><text x="510" y="390" class="t small">• Enforces guardrails &amp; policies</text><text x="510" y="415" class="t small">• Coordinates retrieval and verification</text><text x="510" y="440" class="t small">• Handles pass / warn / reject logic</text><text x="510" y="465" class="t small">• Logs and emits metrics</text>
+
+<!-- bedrock -->
+<circle cx="815" cy="132" r="17" class="num"/><text x="815" y="138" class="numtxt">4</text>
+<text x="843" y="130" class="t h" font-size="16">LLM generation</text><text x="843" y="149" class="muted small">request / response</text>
+<rect x="985" y="145" width="320" height="145" rx="12" class="soft" filter="url(#shadow)"/>
+<circle cx="1008" cy="166" r="17" class="num"/><text x="1008" y="172" class="numtxt">3</text>
+<text x="1036" y="164" class="t h" font-size="16">Amazon Bedrock</text><text x="1036" y="184" class="muted small">Generates a response using the LLM</text>
+<rect x="1025" y="201" width="70" height="70" rx="9" fill="#08A69B"/>
+<path d="M1044 220l17-10 17 10v30l-17 10-17-10zM1052 220v30m18-30v30m-26-15h34" stroke="#fff" stroke-width="2.6" fill="none"/>
+<text x="1115" y="225" class="t svcname">Amazon Bedrock</text><text x="1115" y="245" class="muted small">FM for generation</text>
+
+<!-- retrieval lane -->
+<circle cx="815" cy="328" r="17" class="num"/><text x="815" y="334" class="numtxt">5</text>
+<text x="843" y="326" class="t h" font-size="16">Retrieve &amp; verify</text><text x="843" y="345" class="muted small">grounding data</text>
+<rect x="970" y="312" width="385" height="180" rx="12" class="soft" filter="url(#shadow)"/>
+<circle cx="993" cy="334" r="17" class="num"/><text x="993" y="340" class="numtxt">3</text>
+<text x="1020" y="332" class="t h" font-size="16">Retrieval &amp; Verification (Authoritative Sources)</text>
+<text x="1020" y="351" class="muted small">Searches trusted data to ground and verify responses</text>
+<rect x="1006" y="376" width="58" height="58" rx="8" fill="#7AA116"/><ellipse cx="1035" cy="390" rx="15" ry="6" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M1020 390v24c0 7 30 7 30 0v-24" fill="none" stroke="#fff" stroke-width="2.5"/>
+<text x="1035" y="454" text-anchor="middle" class="t h small">Amazon S3</text><text x="1035" y="470" text-anchor="middle" class="muted tiny">Trusted docs</text>
+<rect x="1119" y="376" width="58" height="58" rx="8" fill="#8C4FFF"/><path d="M1132 397l16-10 16 10v20l-16 10-16-10zM1140 395v24m16-24v24" stroke="#fff" stroke-width="2.3" fill="none"/>
+<text x="1148" y="454" text-anchor="middle" class="t h small">Bedrock KB</text><text x="1148" y="470" text-anchor="middle" class="muted tiny">RAG retrieval</text>
+<rect x="1232" y="376" width="58" height="58" rx="8" fill="#8C4FFF"/><circle cx="1258" cy="402" r="11" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M1267 411l11 11M1249 402h18M1258 393v18" stroke="#fff" stroke-width="2.5"/>
+<text x="1261" y="454" text-anchor="middle" class="t h small">OpenSearch</text><text x="1261" y="470" text-anchor="middle" class="muted tiny">Retrieval index</text>
+
+<!-- verification -->
+<rect x="585" y="510" width="410" height="160" rx="12" class="soft" filter="url(#shadow)"/>
+<circle cx="610" cy="534" r="17" class="num"/><text x="610" y="540" class="numtxt">6</text>
+<text x="638" y="532" class="t h" font-size="16">Verification &amp; Policy Engine</text><text x="638" y="551" class="muted small">Evaluates the response against sources and policies</text>
+<path d="M625 587h35v45h-35zM631 596h23M631 605h23M631 614h16" stroke="#31506d" stroke-width="2" fill="none"/><path d="M655 615l13 7v12c0 9-13 15-13 15s-13-6-13-15v-12z" fill="#2f80ed" stroke="#31506d"/>
+<rect x="710" y="580" width="82" height="28" rx="6" fill="#d9f5e8"/><circle cx="729" cy="594" r="9" fill="#1aa56f"/><path d="M725 594l3 3 6-7" stroke="#fff" stroke-width="2.2" fill="none"/><text x="747" y="599" class="t h small">PASS</text>
+<rect x="710" y="613" width="82" height="28" rx="6" fill="#fff0bd"/><path d="M729 618l10 18h-20z" fill="#e69b00"/><text x="747" y="632" class="t h small">WARN</text>
+<rect x="710" y="646" width="82" height="28" rx="6" fill="#ffdede"/><circle cx="729" cy="660" r="9" fill="#e23737"/><path d="M725 656l8 8m0-8l-8 8" stroke="#fff" stroke-width="2"/><text x="747" y="665" class="t h small">REJECT</text>
+<text x="810" y="599" class="muted tiny">Accurate and compliant</text><text x="810" y="632" class="muted tiny">Uncertain or incomplete</text><text x="810" y="665" class="muted tiny">Inaccurate or policy violation</text>
+
+<!-- audit + monitoring -->
+<rect x="520" y="702" width="300" height="105" rx="12" class="soft" filter="url(#shadow)"/>
+<circle cx="544" cy="726" r="17" class="num"/><text x="544" y="732" class="numtxt">7</text>
+<text x="572" y="724" class="t h" font-size="16">Amazon DynamoDB</text><text x="572" y="743" class="muted small">Stores requests, responses, verdicts, metadata</text>
+<rect x="555" y="756" width="48" height="48" rx="7" fill="#3868E8"/><path d="M568 769h20v24h-20zM568 775h20M568 781h20M568 787h20" stroke="#fff" stroke-width="2" fill="none"/><text x="616" y="778" class="t h small">Audit trail</text>
+
+<rect x="835" y="702" width="300" height="105" rx="12" class="soft" filter="url(#shadow)"/>
+<circle cx="859" cy="726" r="17" class="num"/><text x="859" y="732" class="numtxt">8</text>
+<text x="887" y="724" class="t h" font-size="16">Amazon CloudWatch</text><text x="887" y="743" class="muted small">Metrics, logs, and alarms for observability</text>
+<rect x="870" y="756" width="48" height="48" rx="7" fill="#D82B78"/><path d="M880 782c0-8 7-14 15-14 7 0 12 4 14 10 6 0 10 4 10 9 0 6-5 10-11 10h-18c-6 0-10-4-10-9 0-2 0-4 1-6z" fill="none" stroke="#fff" stroke-width="2"/><circle cx="906" cy="791" r="7" fill="none" stroke="#fff" stroke-width="2"/><path d="M911 796l7 7" stroke="#fff" stroke-width="2"/><text x="932" y="778" class="t h small">Metrics &amp; monitoring</text>
+
+<!-- final response -->
+<circle cx="1388" cy="132" r="17" class="num"/><text x="1388" y="138" class="numtxt">9</text>
+<text x="1416" y="130" class="t h" font-size="16">Verified Response + Citations</text><text x="1416" y="149" class="muted small">Returns safe, grounded response to the user</text>
+<rect x="1372" y="174" width="180" height="250" rx="12" class="soft" filter="url(#shadow)"/>
+<path d="M1423 230h48l24 24v82h-72zM1471 230v25h24" stroke="#31506d" stroke-width="3" fill="none"/>
+<path d="M1438 273h40M1438 287h40M1438 301h30" stroke="#31506d" stroke-width="2"/>
+<circle cx="1491" cy="318" r="19" fill="#0fa98e"/><path d="M1481 318l7 7 14-17" stroke="#fff" stroke-width="3" fill="none"/>
+<text x="1462" y="360" text-anchor="middle" class="t h" font-size="15">Verified Response</text><text x="1462" y="379" text-anchor="middle" class="t h" font-size="15">+ Citations</text><text x="1462" y="401" text-anchor="middle" class="muted small">Answer with sources</text>
+
+<!-- arrows -->
+<path d="M194 298H250" class="line"/><text x="208" y="286" class="muted tiny">Request</text>
+<path d="M425 298H485" class="line"/><text x="438" y="286" class="muted tiny">Invoke</text>
+<path d="M765 238H985" class="line"/>
+<path d="M985 268H765" class="line"/><text x="870" y="287" class="muted tiny">Generated response</text>
+<path d="M765 354H970" class="line"/>
+<path d="M765 410H800V510" class="line"/>
+<path d="M790 670V702" class="line"/><path d="M875 670V702" class="line"/>
+<path d="M995 590H1350V300H1372" class="line"/>
+<path d="M1372 388V790H95V424" class="line"/>
+<text x="125" y="776" class="t h small">Verified response + citations</text><text x="125" y="794" class="muted tiny">(returned to user)</text>
+
+<!-- feedback -->
+<rect x="600" y="825" width="420" height="58" rx="11" fill="#fbfdff" stroke="#7ea4c9" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M627 856a16 16 0 1 1 4 11M621 856l7-6 6 7" fill="none" stroke="#1373d1" stroke-width="3"/>
+<text x="660" y="849" class="t h small">Continuous Improvement Loop</text><text x="660" y="868" class="muted tiny">Use evaluation datasets and audit logs to refine policies, prompts, and retrieval sources.</text>
+<path d="M1020 854H1080V492" class="dash"/>
+<text x="1120" y="590" class="muted tiny">Feedback from audit trail</text><text x="1120" y="605" class="muted tiny">and evaluation datasets</text>
+
+<text x="28" y="874" class="t h" font-size="22">aws</text><path d="M27 882c30 9 53 5 72-3" stroke="#ff9900" stroke-width="3" fill="none"/>
+<text x="110" y="878" class="cap">BUILD • SECURE • AUDIT • IMPROVE</text>
+</svg>
