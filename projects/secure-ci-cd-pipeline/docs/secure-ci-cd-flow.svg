@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Secure CI/CD Pipeline Flow Chart</title>
+<desc id="desc">Flow chart for the implemented secure CI/CD pipeline showing developer push or pull request, GitHub Actions tests and Bandit scan, Terraform validation, immutable ZIP packaging, GitHub artifact retention, manual deployment approval, OIDC role assumption, and deployment to an encrypted private versioned Amazon S3 bucket.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071727"/><stop offset="1" stop-color="#04101c"/></linearGradient>
+  <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#00111f" flood-opacity=".22"/></filter>
+  <marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#3c78b5"/></marker>
+  <style>
+    .t{font-family:Arial,Helvetica,sans-serif;fill:#102d4a}.w{font-family:Arial,Helvetica,sans-serif;fill:#f7fbff}.m{font-family:Arial,Helvetica,sans-serif;fill:#57758f}.h{font-weight:700}
+    .card{fill:#fff;stroke:#c6d8e8;stroke-width:1.5}.soft{fill:#f6f9fc;stroke:#cfdeea;stroke-width:1.2}
+    .line{stroke:#3c78b5;stroke-width:3;fill:none;marker-end:url(#arr)}.dash{stroke:#6e8da9;stroke-width:2.2;fill:none;stroke-dasharray:7 6;marker-end:url(#arr)}
+    .tiny{font-size:12px}.small{font-size:14px}.cap{font-size:13px;letter-spacing:2px;fill:#88acd0}
+  </style>
+</defs>
+<rect width="1600" height="900" rx="26" fill="url(#bg)"/>
+<text x="800" y="58" text-anchor="middle" class="w h" font-size="38">Secure CI/CD Pipeline – Flow Chart</text>
+<text x="800" y="90" text-anchor="middle" class="w" font-size="18">GitHub Actions • Bandit • Terraform Validation • Immutable Artifacts • AWS OIDC</text>
+
+<rect x="35" y="125" width="1530" height="690" rx="24" fill="#f8fbfe" stroke="#274d6a" stroke-width="2"/>
+
+<!-- Stage headers -->
+<g font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="17" text-anchor="middle">
+  <rect x="60" y="148" width="205" height="54" rx="12" fill="#dceeff"/><text x="162" y="181" fill="#174d80">1. SOURCE</text>
+  <rect x="280" y="148" width="400" height="54" rx="12" fill="#e8e3ff"/><text x="480" y="181" fill="#4c3aa4">2. VALIDATE</text>
+  <rect x="695" y="148" width="215" height="54" rx="12" fill="#e4f7ee"/><text x="802" y="181" fill="#12734f">3. PACKAGE</text>
+  <rect x="925" y="148" width="300" height="54" rx="12" fill="#fff1d9"/><text x="1075" y="181" fill="#985b00">4. APPROVE &amp; AUTH</text>
+  <rect x="1240" y="148" width="295" height="54" rx="12" fill="#e6f2ff"/><text x="1387" y="181" fill="#175e9f">5. DEPLOY</text>
+</g>
+
+<!-- Source -->
+<g transform="translate(60 230)">
+  <rect width="205" height="330" rx="16" class="card" filter="url(#sh)"/>
+  <circle cx="102" cy="72" r="32" fill="#1d5f9d"/>
+  <circle cx="102" cy="61" r="11" fill="#fff"/><path d="M76 104c3-29 49-29 52 0Z" fill="#fff"/>
+  <text x="102" y="140" text-anchor="middle" class="t h" font-size="18">Developer</text>
+  <text x="102" y="164" text-anchor="middle" class="t h" font-size="17">Push / Pull Request</text>
+  <text x="102" y="205" text-anchor="middle" class="m small">Change to main</text>
+  <text x="102" y="226" text-anchor="middle" class="m small">or open a PR</text>
+  <rect x="32" y="264" width="141" height="42" rx="8" fill="#eef5fb"/>
+  <text x="102" y="290" text-anchor="middle" class="t h" font-size="14">GitHub Repository</text>
+</g>
+
+<!-- Validation parallel jobs -->
+<g transform="translate(300 230)">
+  <rect width="360" height="330" rx="16" class="card" filter="url(#sh)"/>
+  <text x="180" y="36" text-anchor="middle" class="t h" font-size="19">GitHub Actions CI</text>
+  <text x="180" y="58" text-anchor="middle" class="m small">Parallel validation jobs</text>
+  <rect x="24" y="88" width="145" height="188" rx="13" class="soft"/>
+  <circle cx="96" cy="126" r="28" fill="#2f80ed"/><text x="96" y="135" text-anchor="middle" class="w h" font-size="22">PY</text>
+  <text x="96" y="169" text-anchor="middle" class="t h small">Test &amp; Scan</text>
+  <text x="96" y="194" text-anchor="middle" class="m tiny">Python syntax</text>
+  <text x="96" y="214" text-anchor="middle" class="m tiny">Unit tests</text>
+  <text x="96" y="234" text-anchor="middle" class="m tiny">Bandit SAST</text>
+
+  <rect x="191" y="88" width="145" height="188" rx="13" class="soft"/>
+  <rect x="233" y="101" width="62" height="62" rx="9" fill="#6544c6"/>
+  <path d="M244 116l20-10 20 10-20 11zm0 13 20-10 20 10-20 11zm0 13 20-10 20 10-20 11" fill="none" stroke="#fff" stroke-width="2"/>
+  <text x="264" y="187" text-anchor="middle" class="t h small">Terraform Validate</text>
+  <text x="264" y="212" text-anchor="middle" class="m tiny">fmt -check</text>
+  <text x="264" y="232" text-anchor="middle" class="m tiny">init -backend=false</text>
+  <text x="264" y="252" text-anchor="middle" class="m tiny">terraform validate</text>
+
+  <rect x="102" y="291" width="156" height="26" rx="13" fill="#dff5e9"/>
+  <text x="180" y="309" text-anchor="middle" class="t h tiny">Both jobs must succeed</text>
+</g>
+
+<!-- package -->
+<g transform="translate(715 230)">
+  <rect width="175" height="330" rx="16" class="card" filter="url(#sh)"/>
+  <rect x="54" y="48" width="68" height="68" rx="10" fill="#ed7100"/>
+  <path d="M70 70h36v29H70zM76 62h24M78 82h20" stroke="#fff" stroke-width="3" fill="none"/>
+  <text x="87" y="149" text-anchor="middle" class="t h" font-size="17">Package Artifact</text>
+  <text x="87" y="178" text-anchor="middle" class="m small">ZIP app.py</text>
+  <text x="87" y="200" text-anchor="middle" class="m small">with commit SHA</text>
+  <rect x="22" y="232" width="131" height="64" rx="9" fill="#eef5fb"/>
+  <text x="87" y="257" text-anchor="middle" class="t h tiny">GitHub Artifact</text>
+  <text x="87" y="278" text-anchor="middle" class="m tiny">14-day retention</text>
+</g>
+
+<!-- approval/auth -->
+<g transform="translate(945 230)">
+  <rect width="260" height="330" rx="16" class="card" filter="url(#sh)"/>
+  <text x="130" y="38" text-anchor="middle" class="t h" font-size="18">Manual Deployment Gate</text>
+  <rect x="25" y="65" width="210" height="72" rx="11" fill="#fff6df" stroke="#f0c15d"/>
+  <text x="130" y="91" text-anchor="middle" class="t h small">workflow_dispatch</text>
+  <text x="130" y="113" text-anchor="middle" class="m tiny">production environment</text>
+  <text x="130" y="130" text-anchor="middle" class="m tiny">AWS_ROLE_ARN + DEPLOY_BUCKET required</text>
+
+  <circle cx="70" cy="194" r="33" fill="#2f80ed"/>
+  <path d="M50 194h40M70 174v40M58 182l24 24M82 182l-24 24" stroke="#fff" stroke-width="2.4"/>
+  <text x="70" y="242" text-anchor="middle" class="t h tiny">GitHub OIDC</text>
+
+  <rect x="145" y="161" width="66" height="66" rx="10" fill="#dd344c"/>
+  <path d="M159 200h38v16h-38zM166 200v-10c0-14 24-14 24 0v10" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="178" y="242" text-anchor="middle" class="t h tiny">AWS IAM Role</text>
+  <path d="M103 194H145" class="line"/>
+  <text x="130" y="286" text-anchor="middle" class="m tiny">Short-lived credentials</text>
+  <text x="130" y="305" text-anchor="middle" class="m tiny">No long-lived AWS keys</text>
+</g>
+
+<!-- S3 deploy -->
+<g transform="translate(1260 230)">
+  <rect width="255" height="330" rx="16" class="card" filter="url(#sh)"/>
+  <rect x="92" y="48" width="72" height="72" rx="10" fill="#7aa116"/>
+  <ellipse cx="128" cy="68" rx="21" ry="7" fill="none" stroke="#fff" stroke-width="3"/><path d="M107 68v33c0 10 42 10 42 0V68" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="128" y="154" text-anchor="middle" class="t h" font-size="18">Amazon S3</text>
+  <text x="128" y="179" text-anchor="middle" class="m small">Deployment Bucket</text>
+  <rect x="28" y="207" width="199" height="88" rx="10" fill="#eef7ec"/>
+  <text x="47" y="231" class="t h tiny">✓ AES256 encryption</text>
+  <text x="47" y="250" class="t h tiny">✓ Public access blocked</text>
+  <text x="47" y="269" class="t h tiny">✓ Versioning enabled</text>
+  <text x="47" y="288" class="t h tiny">✓ SHA-traceable ZIP</text>
+</g>
+
+<!-- arrows -->
+<path d="M265 395H300" class="line"/>
+<path d="M660 395H715" class="line"/>
+<path d="M890 395H945" class="line"/>
+<path d="M1205 395H1260" class="line"/>
+
+<!-- fail branch -->
+<path d="M480 560V635" class="line"/>
+<rect x="374" y="640" width="212" height="74" rx="12" fill="#fff0f2" stroke="#ec6b7c"/>
+<circle cx="409" cy="677" r="19" fill="#df3348"/><path d="M401 669l16 16m0-16l-16 16" stroke="#fff" stroke-width="3"/>
+<text x="443" y="671" class="t h small">Validation fails</text><text x="443" y="692" class="m tiny">Build and deploy stop</text>
+
+<!-- dashboard side flow -->
+<path d="M180 560V744H840" class="dash"/>
+<rect x="850" y="720" width="420" height="62" rx="12" fill="#f1f7fc" stroke="#b9d0e2"/>
+<text x="1060" y="744" text-anchor="middle" class="t h small">Portfolio Dashboard reads public GitHub Actions API</text>
+<text x="1060" y="765" text-anchor="middle" class="m tiny">Live run status • success rate • recent jobs • commit SHA</text>
+
+<text x="800" y="846" text-anchor="middle" class="w h" font-size="16">AUTOMATE • VALIDATE • PACKAGE • APPROVE • ASSUME ROLE • DEPLOY</text>
+<text x="800" y="872" text-anchor="middle" class="cap">IMPLEMENTED REFERENCE FLOW</text>
+</svg>
