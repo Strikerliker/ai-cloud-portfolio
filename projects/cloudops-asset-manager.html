@@ -79,12 +79,7 @@ h1{font-size:clamp(38px,5vw,62px);margin:12px 0 18px}
 <div class="crud"><div><b>CREATE</b>POST /assets</div><div><b>READ</b>GET /assets</div><div><b>UPDATE</b>PUT /assets/{assetId}</div><div><b>DELETE</b>DELETE /assets/{assetId}</div></div>
 </section>
 
-<section class="diagram">
-<h2>AWS Architecture Diagram</h2>
-<p>This separate drawing focuses on the AWS services that implement the application.</p>
-<div class="awsrow"><div class="awsbox"><div class="awsicon">WEB</div><b>Web Dashboard</b><span>Browser interface</span></div><div class="arrow">›</div><div class="awsbox"><div class="awsicon">API</div><b>Amazon API Gateway</b><span>HTTPS REST endpoints</span></div><div class="arrow">›</div><div class="awsbox"><div class="awsicon">λ</div><b>AWS Lambda</b><span>CRUD validation and logic</span></div><div class="arrow">›</div><div class="awsbox"><div class="awsicon">DB</div><b>Amazon DynamoDB</b><span>Asset inventory records</span></div></div>
-<div class="support"><div class="awsbox"><div class="awsicon">IAM</div><b>AWS IAM</b><span>Least-privilege permissions</span></div><div class="awsbox"><div class="awsicon">CW</div><b>Amazon CloudWatch</b><span>Logs and monitoring</span></div></div>
-</section>
+
 
 <section class="arch-visual" aria-labelledby="cloudops-polished-arch">
 <div class="eyebrow" style="text-align:center">POLISHED AWS ARCHITECTURE DRAWING</div>
