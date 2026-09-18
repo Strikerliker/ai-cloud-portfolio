@@ -6,6 +6,18 @@ A portfolio DevSecOps project that demonstrates a secure software delivery pipel
 
 The dashboard reads the latest public GitHub Actions workflow metadata and displays pipeline status, recent runs, success rate, average duration, commit information, stage status, and implemented security controls.
 
+## Visual architecture
+
+### CI/CD flow chart
+
+![Secure CI/CD pipeline flow chart](docs/secure-ci-cd-flow.svg)
+
+### AWS architecture diagram
+
+![Secure CI/CD AWS architecture](docs/secure-ci-cd-aws-architecture.svg)
+
+These diagrams reflect the current implementation: automated Python tests, Bandit scanning, Terraform validation, immutable ZIP artifacts, manual production deployment, GitHub OIDC authentication, a least-privilege AWS IAM role, and deployment to a private encrypted versioned S3 bucket.
+
 ## What this project demonstrates
 
 - Automated CI on pull requests and pushes
