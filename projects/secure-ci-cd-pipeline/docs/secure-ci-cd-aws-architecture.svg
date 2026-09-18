@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Secure CI/CD Pipeline AWS Architecture</title>
+<desc id="desc">AWS architecture diagram for the implemented secure CI/CD pipeline showing GitHub repository and Actions, parallel tests and Bandit scanning, Terraform validation, immutable ZIP artifact, manual production approval, GitHub OIDC federation to an AWS IAM role, and deployment to a private encrypted versioned S3 bucket managed by Terraform.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071727"/><stop offset="1" stop-color="#04101c"/></linearGradient>
+  <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#00111f" flood-opacity=".22"/></filter>
+  <marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#3c78b5"/></marker>
+  <style>
+    .t{font-family:Arial,Helvetica,sans-serif;fill:#102d4a}.w{font-family:Arial,Helvetica,sans-serif;fill:#f7fbff}.m{font-family:Arial,Helvetica,sans-serif;fill:#57758f}.h{font-weight:700}
+    .zone{fill:#f8fbfe;stroke:#c2d6e8;stroke-width:1.6}.svc{fill:#fff;stroke:#c6d8e8;stroke-width:1.4}
+    .line{stroke:#3c78b5;stroke-width:3;fill:none;marker-end:url(#arr)}.dash{stroke:#6e8da9;stroke-width:2.2;fill:none;stroke-dasharray:7 6;marker-end:url(#arr)}
+    .small{font-size:14px}.tiny{font-size:12px}.cap{font-size:13px;letter-spacing:2px;fill:#88acd0}
+  </style>
+</defs>
+<rect width="1600" height="900" rx="26" fill="url(#bg)"/>
+<text x="800" y="58" text-anchor="middle" class="w h" font-size="38">Secure CI/CD Pipeline – AWS Architecture</text>
+<text x="800" y="90" text-anchor="middle" class="w" font-size="18">Short-lived AWS credentials • Least privilege • Encrypted private artifacts • Manual production gate</text>
+
+<!-- GitHub zone -->
+<rect x="45" y="135" width="720" height="550" rx="22" class="zone"/>
+<text x="75" y="172" class="t h" font-size="21">GitHub / CI Boundary</text>
+<text x="75" y="195" class="m small">Source, validation, artifact packaging, and manual production approval</text>
+
+<g transform="translate(80 230)">
+  <rect width="180" height="190" rx="15" class="svc" filter="url(#sh)"/>
+  <circle cx="90" cy="65" r="37" fill="#151515"/>
+  <path d="M72 74c-4-17 5-29 18-29 15 0 24 12 19 29-3 12-10 17-19 17-8 0-15-5-18-17z" fill="#fff"/>
+  <text x="90" y="128" text-anchor="middle" class="t h" font-size="17">GitHub Repository</text>
+  <text x="90" y="153" text-anchor="middle" class="m tiny">push • pull_request</text>
+</g>
+
+<g transform="translate(315 230)">
+  <rect width="210" height="190" rx="15" class="svc" filter="url(#sh)"/>
+  <rect x="67" y="28" width="76" height="76" rx="10" fill="#2f80ed"/>
+  <circle cx="89" cy="51" r="9" fill="none" stroke="#fff" stroke-width="3"/><circle cx="121" cy="80" r="9" fill="none" stroke="#fff" stroke-width="3"/><path d="M98 56l15 16M89 60v23h23" stroke="#fff" stroke-width="3" fill="none"/>
+  <text x="105" y="130" text-anchor="middle" class="t h" font-size="17">GitHub Actions</text>
+  <text x="105" y="154" text-anchor="middle" class="m tiny">CI orchestration</text>
+</g>
+
+<path d="M260 325H315" class="line"/>
+
+<g transform="translate(560 218)">
+  <rect width="170" height="215" rx="15" class="svc" filter="url(#sh)"/>
+  <text x="85" y="30" text-anchor="middle" class="t h" font-size="16">Validation Jobs</text>
+  <rect x="24" y="52" width="122" height="55" rx="9" fill="#eaf3ff"/>
+  <text x="85" y="75" text-anchor="middle" class="t h tiny">Python + Unit Tests</text>
+  <text x="85" y="94" text-anchor="middle" class="m tiny">Bandit SAST</text>
+  <rect x="24" y="119" width="122" height="66" rx="9" fill="#efeaff"/>
+  <text x="85" y="144" text-anchor="middle" class="t h tiny">Terraform fmt/init</text>
+  <text x="85" y="165" text-anchor="middle" class="t h tiny">Terraform validate</text>
+</g>
+<path d="M525 325H560" class="line"/>
+
+<g transform="translate(315 470)">
+  <rect width="210" height="165" rx="15" class="svc"/>
+  <rect x="68" y="23" width="74" height="64" rx="9" fill="#ed7100"/>
+  <path d="M84 43h42v27H84zM92 35h26" stroke="#fff" stroke-width="3" fill="none"/>
+  <text x="105" y="116" text-anchor="middle" class="t h" font-size="16">Immutable ZIP Artifact</text>
+  <text x="105" y="139" text-anchor="middle" class="m tiny">secure-ci-cd-demo-&lt;SHA&gt;.zip</text>
+</g>
+<path d="M645 433V488H525" class="line"/>
+
+<g transform="translate(560 470)">
+  <rect width="170" height="165" rx="15" class="svc"/>
+  <rect x="25" y="22" width="120" height="52" rx="9" fill="#fff3d9" stroke="#edc15d"/>
+  <text x="85" y="44" text-anchor="middle" class="t h tiny">Manual Gate</text>
+  <text x="85" y="62" text-anchor="middle" class="m tiny">workflow_dispatch</text>
+  <rect x="25" y="90" width="120" height="52" rx="9" fill="#eef5fb"/>
+  <text x="85" y="112" text-anchor="middle" class="t h tiny">production</text>
+  <text x="85" y="130" text-anchor="middle" class="m tiny">environment approval</text>
+</g>
+<path d="M525 552H560" class="line"/>
+
+<!-- AWS zone -->
+<rect x="805" y="135" width="750" height="550" rx="22" fill="#f8fbfe" stroke="#7cb184" stroke-width="2"/>
+<text x="835" y="172" class="t h" font-size="21">AWS Account Boundary</text>
+<text x="835" y="195" class="m small">Federated identity and protected artifact storage</text>
+
+<g transform="translate(845 230)">
+  <rect width="200" height="190" rx="15" class="svc" filter="url(#sh)"/>
+  <rect x="62" y="28" width="76" height="76" rx="10" fill="#2f80ed"/>
+  <path d="M78 47h44v38H78zM87 57h26M87 67h26" stroke="#fff" stroke-width="3" fill="none"/>
+  <text x="100" y="130" text-anchor="middle" class="t h" font-size="17">GitHub OIDC Token</text>
+  <text x="100" y="154" text-anchor="middle" class="m tiny">id-token: write</text>
+</g>
+
+<g transform="translate(1095 230)">
+  <rect width="205" height="190" rx="15" class="svc" filter="url(#sh)"/>
+  <rect x="65" y="28" width="76" height="76" rx="10" fill="#dd344c"/>
+  <path d="M80 73h46v17H80zM88 73V60c0-17 30-17 30 0v13" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="102" y="130" text-anchor="middle" class="t h" font-size="17">AWS IAM Role</text>
+  <text x="102" y="154" text-anchor="middle" class="m tiny">AssumeRoleWithWebIdentity</text>
+</g>
+<path d="M1045 325H1095" class="line"/>
+<text x="1070" y="306" text-anchor="middle" class="m tiny">OIDC federation</text>
+
+<g transform="translate(1340 230)">
+  <rect width="180" height="300" rx="15" class="svc" filter="url(#sh)"/>
+  <rect x="54" y="28" width="72" height="72" rx="10" fill="#7aa116"/>
+  <ellipse cx="90" cy="48" rx="20" ry="7" fill="none" stroke="#fff" stroke-width="3"/><path d="M70 48v33c0 10 40 10 40 0V48" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="90" y="132" text-anchor="middle" class="t h" font-size="17">Amazon S3</text>
+  <text x="90" y="155" text-anchor="middle" class="m tiny">Deployment bucket</text>
+  <rect x="24" y="179" width="132" height="92" rx="9" fill="#eef7ec"/>
+  <text x="36" y="202" class="t h tiny">✓ AES256</text>
+  <text x="36" y="221" class="t h tiny">✓ Versioning</text>
+  <text x="36" y="240" class="t h tiny">✓ Public access blocked</text>
+  <text x="36" y="259" class="t h tiny">✓ SHA artifact path</text>
+</g>
+<path d="M1300 325H1340" class="line"/>
+<text x="1320" y="306" text-anchor="middle" class="m tiny">aws s3 cp</text>
+
+<!-- Terraform config relation -->
+<g transform="translate(930 480)">
+  <rect width="330" height="135" rx="14" class="svc"/>
+  <rect x="25" y="24" width="68" height="68" rx="10" fill="#6544c6"/>
+  <path d="M39 39l20 10v22L39 61zM61 50l20 10v22L61 72zM61 26l20 10v21L61 47z" fill="none" stroke="#fff" stroke-width="2.5"/>
+  <text x="112" y="51" class="t h" font-size="16">Terraform Configuration</text>
+  <text x="112" y="75" class="m tiny">Defines S3 encryption, versioning,</text>
+  <text x="112" y="94" class="m tiny">public-access block and region.</text>
+</g>
+<path d="M1260 548H1430V530" class="dash"/>
+
+<!-- cross-boundary flow -->
+<path d="M730 552H845V325" class="line"/>
+<text x="790" y="535" text-anchor="middle" class="m tiny">manual deploy job</text>
+
+<!-- dashboard/API -->
+<rect x="110" y="722" width="1380" height="100" rx="16" fill="#09233a" stroke="#315d7e"/>
+<text x="155" y="754" class="w h" font-size="17">Security &amp; Operational Controls</text>
+<text x="155" y="783" class="w small">No long-lived AWS keys</text>
+<text x="365" y="783" class="w small">Short-lived OIDC session</text>
+<text x="620" y="783" class="w small">Least-privilege IAM</text>
+<text x="830" y="783" class="w small">Manual production gate</text>
+<text x="1090" y="783" class="w small">Immutable SHA artifact</text>
+<text x="1315" y="783" class="w small">Private encrypted S3</text>
+
+<text x="800" y="858" text-anchor="middle" class="cap">CURRENT IMPLEMENTATION • OPTIONAL FUTURE SERVICES ARE NOT SHOWN AS DEPLOYED</text>
+</svg>
