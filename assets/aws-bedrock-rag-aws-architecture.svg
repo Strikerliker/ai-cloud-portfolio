@@ -11,10 +11,9 @@
 <rect width="1600" height="920" rx="22" fill="url(#bg)"/>
 <rect x="24" y="24" width="1552" height="872" rx="22" fill="none" stroke="#173d58" stroke-width="2"/>
 <text x="800" y="66" text-anchor="middle" class="t h" font-size="39">AWS Bedrock RAG Assistant – AWS Architecture</text>
-<text x="800" y="98" text-anchor="middle" class="m" font-size="18">Production-ready RAG reference architecture using AWS services</text>
 
 <!-- Optional frontend lane -->
-<text x="90" y="152" class="cap">OPTIONAL PRODUCTION ENTRY LAYER</text>
+<text x="90" y="132" class="cap">OPTIONAL PRODUCTION ENTRY LAYER</text>
 <g transform="translate(70 180)">
  <rect width="170" height="170" rx="15" class="panel" filter="url(#shadow)"/>
  <circle cx="85" cy="58" r="28" fill="#315b7d"/><path d="M52 108c4-39 62-39 66 0Z" fill="#315b7d"/>
