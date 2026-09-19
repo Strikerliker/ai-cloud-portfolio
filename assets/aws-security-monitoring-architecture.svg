@@ -1,99 +1,164 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-<title id="title">AWS Security Monitoring Platform Architecture</title>
-<desc id="desc">AWS security monitoring reference architecture showing workloads feeding CloudTrail and GuardDuty, encrypted S3 audit storage, Athena threat hunting, Security Hub aggregation, EventBridge routing, encrypted SNS alerts, and security operations response, with KMS, Terraform, and GitHub Actions supporting controls.</desc>
+<title id="title">AWS Security Monitoring Platform – AWS Architecture</title>
+<desc id="desc">Reference AWS security monitoring architecture showing AWS accounts and workloads feeding CloudTrail and GuardDuty, centralized S3 logging and Athena investigation, Security Hub aggregation, EventBridge and SNS alert routing, and security operations response with IAM, KMS, Terraform, GitHub Actions, and an incident runbook.</desc>
 <defs>
-  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#17324d" flood-opacity=".16"/></filter>
-  <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#1c5b91"/></marker>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07182a"/><stop offset="1" stop-color="#03111e"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b263f"/><stop offset="1" stop-color="#081c30"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#000" flood-opacity=".26"/></filter>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#72bfff"/></marker>
   <style>
-    .title{font:700 42px Arial,sans-serif;fill:#0b2145}.subtitle{font:18px Arial,sans-serif;fill:#58708a;letter-spacing:4px}.panelTitle{font:700 23px Arial,sans-serif;fill:#0e2d56}.panelSub{font:13px Arial,sans-serif;fill:#668099;letter-spacing:.4px}.svc{font:700 20px Arial,sans-serif;fill:#102d56}.txt{font:16px Arial,sans-serif;fill:#536d86}.small{font:14px Arial,sans-serif;fill:#6b8399}.icon{font:700 20px Arial,sans-serif;fill:#fff}.arrow{stroke:#1c5b91;stroke-width:4;fill:none;marker-end:url(#arrow)}.dash{stroke:#6d7fc7;stroke-width:2.5;fill:none;stroke-dasharray:8 7;marker-end:url(#arrow)}.supportTitle{font:700 18px Arial,sans-serif;fill:#fff}.supportText{font:15px Arial,sans-serif;fill:#536d86}
+    .t{font-family:Arial,Helvetica,sans-serif;fill:#f5fbff}.m{font-family:Arial,Helvetica,sans-serif;fill:#a9c5db}.h{font-weight:700}
+    .panel{fill:url(#panel);stroke:#2b5c82;stroke-width:1.6}.line{stroke:#72bfff;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#6e99bd;stroke-width:2.2;fill:none;stroke-dasharray:7 6;marker-end:url(#arrow)}
+    .small{font-size:14px}.tiny{font-size:12px}.cap{font-size:13px;letter-spacing:2px;fill:#78c4ff}
   </style>
 </defs>
-<rect width="1600" height="900" fill="#f6f9fc"/>
-<text x="800" y="55" text-anchor="middle" class="title">AWS Security Monitoring Platform</text>
-<text x="800" y="88" text-anchor="middle" class="subtitle">AUDIT | DETECT | AGGREGATE | ROUTE | INVESTIGATE | RESPOND</text>
 
-<!-- SOURCE -->
-<g filter="url(#shadow)"><rect x="40" y="150" width="190" height="470" rx="16" fill="#fff" stroke="#b7cee3"/></g>
-<text x="135" y="188" text-anchor="middle" class="panelTitle">AWS Environment</text>
-<circle cx="135" cy="278" r="52" fill="#1f5f9f"/><text x="135" y="286" text-anchor="middle" class="icon">AWS</text>
-<text x="135" y="366" text-anchor="middle" class="svc">Accounts &amp;</text>
-<text x="135" y="392" text-anchor="middle" class="svc">Workloads</text>
-<text x="135" y="440" text-anchor="middle" class="txt">API activity</text>
-<text x="135" y="468" text-anchor="middle" class="txt">Identity events</text>
-<text x="135" y="496" text-anchor="middle" class="txt">Workload signals</text>
-<text x="135" y="550" text-anchor="middle" class="small">Security telemetry source</text>
+<rect width="1600" height="900" rx="24" fill="url(#bg)"/>
+<text x="800" y="58" text-anchor="middle" class="t h" font-size="40">AWS Security Monitoring Platform – AWS Architecture</text>
+<text x="800" y="90" text-anchor="middle" class="m" font-size="18">Centralized audit logging • threat detection • finding aggregation • alert routing • security operations</text>
 
-<!-- AUDIT -->
-<g filter="url(#shadow)"><rect x="275" y="150" width="350" height="470" rx="16" fill="#fff" stroke="#b7cee3"/></g>
-<text x="450" y="188" text-anchor="middle" class="panelTitle">Audit &amp; Investigation</text>
-<text x="450" y="213" text-anchor="middle" class="panelSub">CENTRALIZED ACTIVITY LOGGING</text>
-<rect x="320" y="255" width="125" height="120" rx="18" fill="#4b7fd7"/><text x="382" y="307" text-anchor="middle" class="icon">CLOUD</text><text x="382" y="336" text-anchor="middle" class="icon">TRAIL</text>
-<text x="382" y="415" text-anchor="middle" class="svc">AWS CloudTrail</text>
-<text x="382" y="446" text-anchor="middle" class="txt">Multi-Region events</text>
-<text x="382" y="472" text-anchor="middle" class="small">Log-file validation</text>
-<rect x="470" y="255" width="120" height="120" rx="18" fill="#55951a"/><text x="530" y="322" text-anchor="middle" class="icon">S3</text>
-<text x="530" y="415" text-anchor="middle" class="svc">Amazon S3</text>
-<text x="530" y="446" text-anchor="middle" class="txt">Encrypted log archive</text>
-<text x="530" y="472" text-anchor="middle" class="small">Versioned · private</text>
-<path class="arrow" d="M445 315H460"/>
-<rect x="375" y="515" width="150" height="68" rx="14" fill="#7a43d8"/><text x="450" y="555" text-anchor="middle" class="icon">ATHENA</text>
-<text x="450" y="603" text-anchor="middle" class="small">Threat-hunting SQL queries</text>
-<path class="arrow" d="M530 375V500H490"/>
+<!-- 1 environment -->
+<g transform="translate(35 145)">
+  <rect width="235" height="500" rx="18" class="panel" filter="url(#shadow)"/>
+  <circle cx="38" cy="38" r="20" fill="#2f80ed"/><text x="38" y="45" text-anchor="middle" class="t h" font-size="19">1</text>
+  <text x="72" y="44" class="t h" font-size="19">AWS Environment</text>
+  <text x="72" y="66" class="m small">Accounts &amp; workloads</text>
+  <circle cx="118" cy="150" r="48" fill="#1c5d97"/>
+  <path d="M78 151c5-31 49-40 68-13 25-7 43 26 24 43H88c-23 0-29-27-10-30z" fill="none" stroke="#fff" stroke-width="3.5"/>
+  <path d="M95 174l23-13 23 13-23 13zM95 174v25l23 13 23-13v-25M118 187v25" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="118" y="234" text-anchor="middle" class="t h" font-size="16">AWS Accounts</text>
+  <text x="118" y="262" text-anchor="middle" class="m small">Workloads &amp; apps</text>
+  <text x="118" y="286" text-anchor="middle" class="m small">AWS services</text>
+  <text x="118" y="310" text-anchor="middle" class="m small">API activity</text>
+  <text x="118" y="334" text-anchor="middle" class="m small">Identity events</text>
+  <text x="118" y="358" text-anchor="middle" class="m small">Security telemetry</text>
+  <rect x="25" y="410" width="185" height="58" rx="10" fill="#0a3554"/>
+  <text x="118" y="435" text-anchor="middle" class="m tiny">Generates logs, findings,</text>
+  <text x="118" y="454" text-anchor="middle" class="m tiny">and security events</text>
+</g>
 
-<!-- DETECTION -->
-<g filter="url(#shadow)"><rect x="665" y="150" width="325" height="470" rx="16" fill="#fff" stroke="#b7cee3"/></g>
-<text x="828" y="188" text-anchor="middle" class="panelTitle">Detection &amp; Posture</text>
-<text x="828" y="213" text-anchor="middle" class="panelSub">PRIORITIZED SECURITY FINDINGS</text>
-<rect x="710" y="255" width="120" height="120" rx="18" fill="#e44b3f"/><text x="770" y="310" text-anchor="middle" class="icon">GUARD</text><text x="770" y="339" text-anchor="middle" class="icon">DUTY</text>
-<text x="770" y="415" text-anchor="middle" class="svc">Amazon GuardDuty</text>
-<text x="770" y="446" text-anchor="middle" class="txt">Threat detection</text>
-<text x="770" y="472" text-anchor="middle" class="small">Actionable severity</text>
-<rect x="850" y="255" width="105" height="120" rx="18" fill="#d83569"/><text x="902" y="310" text-anchor="middle" class="icon">SECURITY</text><text x="902" y="339" text-anchor="middle" class="icon">HUB</text>
-<text x="902" y="415" text-anchor="middle" class="svc">Security Hub</text>
-<text x="902" y="446" text-anchor="middle" class="txt">Finding aggregation</text>
-<text x="902" y="472" text-anchor="middle" class="small">HIGH / CRITICAL</text>
-<path class="arrow" d="M830 315H840"/>
+<!-- 2 audit -->
+<g transform="translate(310 145)">
+  <rect width="315" height="500" rx="18" class="panel" filter="url(#shadow)"/>
+  <circle cx="38" cy="38" r="20" fill="#1bb96b"/><text x="38" y="45" text-anchor="middle" class="t h" font-size="19">2</text>
+  <text x="72" y="44" class="t h" font-size="19">Audit &amp; Investigation</text>
+  <text x="72" y="66" class="m small">Collect • store • query</text>
 
-<!-- ROUTING -->
-<g filter="url(#shadow)"><rect x="1030" y="150" width="260" height="470" rx="16" fill="#fff" stroke="#b7cee3"/></g>
-<text x="1160" y="188" text-anchor="middle" class="panelTitle">Alert Routing</text>
-<text x="1160" y="213" text-anchor="middle" class="panelSub">FILTER · ENCRYPT · NOTIFY</text>
-<rect x="1097" y="255" width="126" height="120" rx="18" fill="#e94a8b"/><text x="1160" y="309" text-anchor="middle" class="icon">EVENT</text><text x="1160" y="338" text-anchor="middle" class="icon">BRIDGE</text>
-<text x="1160" y="415" text-anchor="middle" class="svc">Amazon EventBridge</text>
-<text x="1160" y="446" text-anchor="middle" class="txt">Finding filters</text>
-<text x="1160" y="472" text-anchor="middle" class="small">Severity-based routing</text>
-<rect x="1097" y="510" width="126" height="72" rx="14" fill="#c9348a"/><text x="1160" y="553" text-anchor="middle" class="icon">SNS</text>
-<text x="1160" y="605" text-anchor="middle" class="small">Encrypted alert topic</text>
-<path class="arrow" d="M1160 375V495"/>
+  <rect x="35" y="110" width="82" height="82" rx="11" fill="#D82B78"/>
+  <path d="M49 159c0-16 20-24 31-13 7-17 31-10 33 7 12 3 12 22-2 22H59c-13 0-17-16-10-21z" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="76" y="220" text-anchor="middle" class="t h" font-size="16">AWS CloudTrail</text>
+  <text x="76" y="242" text-anchor="middle" class="m tiny">API &amp; account activity</text>
 
-<!-- RESPONSE -->
-<g filter="url(#shadow)"><rect x="1330" y="150" width="230" height="470" rx="16" fill="#fff" stroke="#b7cee3"/></g>
-<text x="1445" y="188" text-anchor="middle" class="panelTitle">Security Operations</text>
-<circle cx="1445" cy="300" r="58" fill="#148f69"/><text x="1445" y="308" text-anchor="middle" class="icon">SOC</text>
-<text x="1445" y="400" text-anchor="middle" class="svc">Triage &amp; Response</text>
-<text x="1445" y="438" text-anchor="middle" class="txt">Investigate</text>
-<text x="1445" y="466" text-anchor="middle" class="txt">Contain</text>
-<text x="1445" y="494" text-anchor="middle" class="txt">Recover</text>
-<text x="1445" y="548" text-anchor="middle" class="small">Runbook-driven workflow</text>
+  <rect x="195" y="110" width="82" height="82" rx="11" fill="#7AA116"/>
+  <ellipse cx="236" cy="132" rx="23" ry="8" fill="none" stroke="#fff" stroke-width="3"/><path d="M213 132v38c0 10 46 10 46 0v-38" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="236" y="220" text-anchor="middle" class="t h" font-size="16">Amazon S3</text>
+  <text x="236" y="242" text-anchor="middle" class="m tiny">Centralized log archive</text>
 
-<!-- FLOWS -->
-<path class="arrow" d="M230 300H310"/>
-<path class="arrow" d="M230 355H700"/>
-<path class="arrow" d="M990 315H1087"/>
-<path class="arrow" d="M1223 546H1320"/>
-<text x="265" y="282" text-anchor="middle" class="small">API events</text>
-<text x="520" y="338" text-anchor="middle" class="small">Security signals</text>
-<text x="1038" y="296" text-anchor="middle" class="small">Findings</text>
-<text x="1270" y="528" text-anchor="middle" class="small">Alert</text>
+  <path d="M117 151H195" class="line"/>
 
-<!-- SUPPORTING CONTROLS -->
-<g filter="url(#shadow)"><rect x="120" y="675" width="1360" height="145" rx="18" fill="#fff" stroke="#b7cee3"/></g>
-<text x="160" y="710" class="panelTitle">Security, Encryption &amp; DevSecOps Controls</text>
-<g transform="translate(225 735)"><rect width="220" height="60" rx="14" fill="#dc3150"/><text x="110" y="37" text-anchor="middle" class="supportTitle">AWS KMS Encryption</text></g>
-<g transform="translate(525 735)"><rect width="220" height="60" rx="14" fill="#3557cc"/><text x="110" y="37" text-anchor="middle" class="supportTitle">Terraform IaC</text></g>
-<g transform="translate(825 735)"><rect width="220" height="60" rx="14" fill="#25374a"/><text x="110" y="37" text-anchor="middle" class="supportTitle">GitHub Actions</text></g>
-<g transform="translate(1125 735)"><rect width="220" height="60" rx="14" fill="#148f69"/><text x="110" y="37" text-anchor="middle" class="supportTitle">Incident Runbook</text></g>
+  <rect x="118" y="330" width="82" height="82" rx="11" fill="#8C4FFF"/>
+  <circle cx="159" cy="367" r="18" fill="none" stroke="#fff" stroke-width="3"/><path d="M171 379l15 15M147 367h24M159 355v24" stroke="#fff" stroke-width="3"/>
+  <text x="159" y="440" text-anchor="middle" class="t h" font-size="16">Amazon Athena</text>
+  <text x="159" y="462" text-anchor="middle" class="m tiny">Threat-hunting SQL</text>
+  <path d="M236 242V288H159V330" class="dash"/>
+</g>
 
-<rect x="120" y="840" width="1360" height="38" rx="11" fill="#0b2d50"/>
-<text x="800" y="865" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#d9e8f6">Reference implementation: Terraform and CI validation are implemented; this portfolio page does not claim a currently deployed production stack.</text>
+<!-- 3 detect -->
+<g transform="translate(665 145)">
+  <rect width="300" height="500" rx="18" class="panel" filter="url(#shadow)"/>
+  <circle cx="38" cy="38" r="20" fill="#ff7a2f"/><text x="38" y="45" text-anchor="middle" class="t h" font-size="19">3</text>
+  <text x="72" y="44" class="t h" font-size="19">Detection &amp; Posture</text>
+  <text x="72" y="66" class="m small">Detect threats • aggregate findings</text>
+
+  <rect x="35" y="120" width="92" height="92" rx="12" fill="#ED4C3E"/>
+  <path d="M81 137l31 12v25c0 27-31 41-31 41s-31-14-31-41v-25z" fill="none" stroke="#fff" stroke-width="3.5"/>
+  <path d="M65 177l12 12 22-28" stroke="#fff" stroke-width="3.5" fill="none"/>
+  <text x="81" y="244" text-anchor="middle" class="t h" font-size="17">Amazon GuardDuty</text>
+  <text x="81" y="267" text-anchor="middle" class="m tiny">Threat detection</text>
+  <text x="81" y="285" text-anchor="middle" class="m tiny">continuous monitoring</text>
+
+  <rect x="175" y="120" width="92" height="92" rx="12" fill="#D82B78"/>
+  <circle cx="221" cy="166" r="13" fill="none" stroke="#fff" stroke-width="3"/><path d="M221 139v14M221 179v14M194 166h14M234 166h14M202 147l10 10M230 175l10 10M240 147l-10 10M212 175l-10 10" stroke="#fff" stroke-width="3"/>
+  <text x="221" y="244" text-anchor="middle" class="t h" font-size="17">AWS Security Hub</text>
+  <text x="221" y="267" text-anchor="middle" class="m tiny">Aggregate findings</text>
+  <text x="221" y="285" text-anchor="middle" class="m tiny">security posture</text>
+
+  <path d="M127 166H175" class="line"/>
+</g>
+
+<!-- 4 route -->
+<g transform="translate(1005 145)">
+  <rect width="255" height="500" rx="18" class="panel" filter="url(#shadow)"/>
+  <circle cx="38" cy="38" r="20" fill="#8C4FFF"/><text x="38" y="45" text-anchor="middle" class="t h" font-size="19">4</text>
+  <text x="72" y="44" class="t h" font-size="19">Alert Routing</text>
+  <text x="72" y="66" class="m small">Filter • enrich • notify</text>
+
+  <rect x="82" y="105" width="92" height="92" rx="12" fill="#D82B78"/>
+  <circle cx="106" cy="133" r="6" fill="#fff"/><circle cx="147" cy="133" r="6" fill="#fff"/><circle cx="127" cy="164" r="6" fill="#fff"/><path d="M111 136l12 20M142 136l-11 20M113 166h8M133 166h8" stroke="#fff" stroke-width="3"/>
+  <text x="128" y="229" text-anchor="middle" class="t h" font-size="17">Amazon EventBridge</text>
+  <text x="128" y="252" text-anchor="middle" class="m tiny">Security event routing</text>
+
+  <rect x="82" y="330" width="92" height="92" rx="12" fill="#D82B78"/>
+  <circle cx="128" cy="376" r="24" fill="none" stroke="#fff" stroke-width="3"/><path d="M111 376h34M128 359v34" stroke="#fff" stroke-width="3"/>
+  <text x="128" y="454" text-anchor="middle" class="t h" font-size="17">Amazon SNS</text>
+  <text x="128" y="477" text-anchor="middle" class="m tiny">Encrypted alerts</text>
+  <path d="M128 197V330" class="line"/>
+</g>
+
+<!-- 5 soc -->
+<g transform="translate(1300 145)">
+  <rect width="265" height="500" rx="18" class="panel" filter="url(#shadow)"/>
+  <circle cx="38" cy="38" r="20" fill="#11b7c4"/><text x="38" y="45" text-anchor="middle" class="t h" font-size="19">5</text>
+  <text x="72" y="44" class="t h" font-size="19">Security Operations</text>
+  <text x="72" y="66" class="m small">Investigate • respond</text>
+  <circle cx="132" cy="155" r="23" fill="none" stroke="#9dd8ff" stroke-width="4"/><path d="M92 214c4-47 76-47 80 0M79 184c2-29 43-29 46 0M161 184c2-29 43-29 46 0" fill="none" stroke="#9dd8ff" stroke-width="4"/>
+  <path d="M185 178l28 10v25c0 24-28 36-28 36s-28-12-28-36v-25z" fill="none" stroke="#21d0b2" stroke-width="4"/>
+  <path d="M173 211l9 9 18-22" stroke="#21d0b2" stroke-width="4" fill="none"/>
+  <text x="132" y="280" text-anchor="middle" class="t h" font-size="18">SOC / Analysts</text>
+  <text x="56" y="325" class="m small">• Investigate findings</text>
+  <text x="56" y="354" class="m small">• Triage and respond</text>
+  <text x="56" y="383" class="m small">• Incident management</text>
+  <text x="56" y="412" class="m small">• Continuous improvement</text>
+  <rect x="36" y="445" width="193" height="38" rx="9" fill="#0a3554"/>
+  <text x="132" y="469" text-anchor="middle" class="m tiny">Turn security insights into action</text>
+</g>
+
+<!-- cross-column arrows -->
+<path d="M270 350H310" class="line"/><text x="288" y="332" class="m tiny">activity</text>
+<path d="M270 380H665" class="line"/><text x="468" y="362" class="m tiny">security telemetry</text>
+<path d="M625 350H665" class="line"/>
+<path d="M965 350H1005" class="line"/><text x="985" y="332" class="m tiny">findings</text>
+<path d="M1260 380H1300" class="line"/><text x="1280" y="362" class="m tiny">alerts</text>
+
+<!-- controls bar -->
+<rect x="35" y="690" width="1530" height="150" rx="18" fill="#09243b" stroke="#2b5c82" stroke-width="1.5"/>
+<text x="70" y="724" class="t h" font-size="20">Security, Encryption &amp; DevSecOps Controls</text>
+
+<g transform="translate(75 748)">
+  <rect width="255" height="65" rx="11" fill="#0d304b"/>
+  <rect x="14" y="10" width="45" height="45" rx="8" fill="#DD344C"/><path d="M25 38h23V48H25zM29 38V30c0-10 15-10 15 0v8" stroke="#fff" stroke-width="2.5" fill="none"/>
+  <text x="72" y="29" class="t h" font-size="15">AWS IAM</text><text x="72" y="48" class="m tiny">Access control &amp; least privilege</text>
+</g>
+<g transform="translate(350 748)">
+  <rect width="255" height="65" rx="11" fill="#0d304b"/>
+  <rect x="14" y="10" width="45" height="45" rx="8" fill="#DD344C"/><text x="36" y="38" text-anchor="middle" class="t h" font-size="13">KMS</text>
+  <text x="72" y="29" class="t h" font-size="15">AWS KMS</text><text x="72" y="48" class="m tiny">Encryption controls</text>
+</g>
+<g transform="translate(625 748)">
+  <rect width="255" height="65" rx="11" fill="#0d304b"/>
+  <rect x="14" y="10" width="45" height="45" rx="8" fill="#6544C6"/><text x="36" y="38" text-anchor="middle" class="t h" font-size="16">TF</text>
+  <text x="72" y="29" class="t h" font-size="15">Terraform</text><text x="72" y="48" class="m tiny">Infrastructure as code</text>
+</g>
+<g transform="translate(900 748)">
+  <rect width="255" height="65" rx="11" fill="#0d304b"/>
+  <circle cx="36" cy="32" r="22" fill="#151515"/><text x="36" y="38" text-anchor="middle" class="t h" font-size="13">GH</text>
+  <text x="72" y="29" class="t h" font-size="15">GitHub Actions</text><text x="72" y="48" class="m tiny">CI/CD validation &amp; automation</text>
+</g>
+<g transform="translate(1175 748)">
+  <rect width="320" height="65" rx="11" fill="#0d304b"/>
+  <rect x="14" y="10" width="45" height="45" rx="8" fill="#31A24C"/><path d="M26 21h20v25H26zM30 27h12M30 33h12M30 39h8" stroke="#fff" stroke-width="2.3" fill="none"/>
+  <text x="72" y="29" class="t h" font-size="15">Incident Runbook</text><text x="72" y="48" class="m tiny">Documented response procedures</text>
+</g>
+
+<text x="800" y="875" text-anchor="middle" class="cap">AUDIT • DETECT • INVESTIGATE • ROUTE • RESPOND</text>
 </svg>
