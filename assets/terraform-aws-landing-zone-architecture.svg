@@ -1,72 +1,119 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-<title id="title">Terraform AWS Landing Zone Architecture</title>
-<desc id="desc">AWS landing zone reference architecture showing AWS Organizations and SCP guardrails, a landing zone account, multi-AZ VPC networking, CloudTrail audit logging to encrypted S3, GuardDuty, Security Hub, EBS encryption, IAM controls, Terraform, and GitHub Actions validation.</desc>
+<title id="title">Terraform AWS Landing Zone – AWS Architecture</title>
+<desc id="desc">Detailed AWS architecture for a Terraform-managed multi-account landing zone with GitHub delivery, remote Terraform state, a management account, AWS Organizations and Control Tower governance, security and audit accounts, shared networking, shared services, workload accounts, and centralized telemetry.</desc>
 <defs>
-  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#17324d" flood-opacity=".16"/></filter>
-  <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#1d5f94"/></marker>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07182a"/><stop offset="1" stop-color="#03111e"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0c2a46"/><stop offset="1" stop-color="#071b30"/></linearGradient>
+  <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#000" flood-opacity=".26"/></filter>
+  <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#6ec1ff"/></marker>
   <style>
-    .h1{font:700 42px Arial,sans-serif;fill:#0b2145}.sub{font:18px Arial,sans-serif;fill:#5c7288;letter-spacing:4px}.panelTitle{font:700 23px Arial,sans-serif;fill:#0e2d56}.panelSub{font:13px Arial,sans-serif;fill:#668099;letter-spacing:.5px}.svc{font:700 19px Arial,sans-serif;fill:#102d56}.txt{font:15px Arial,sans-serif;fill:#536d86}.small{font:13px Arial,sans-serif;fill:#6b8399}.icon{font:700 18px Arial,sans-serif;fill:#fff}.arrow{stroke:#1d5f94;stroke-width:4;fill:none;marker-end:url(#arrow)}.dash{stroke:#6a78c8;stroke-width:2.5;fill:none;stroke-dasharray:8 7;marker-end:url(#arrow)}
+    .t{font-family:Arial,Helvetica,sans-serif;fill:#f5fbff}.m{font-family:Arial,Helvetica,sans-serif;fill:#a7c5dd}.h{font-weight:700}
+    .panel{fill:url(#panel);stroke:#2682c2;stroke-width:1.6}.zone{fill:#0a2036;stroke:#6ec1ff;stroke-width:2}.gov{fill:#172042;stroke:#9b6cff;stroke-width:2}
+    .sec{fill:#2a1725;stroke:#ff4d73;stroke-width:2}.net{fill:#102438;stroke:#28a8ff;stroke-width:2}.shared{fill:#0d2b24;stroke:#2ed08a;stroke-width:2}.work{fill:#2b2114;stroke:#ff9d35;stroke-width:2}
+    .line{stroke:#6ec1ff;stroke-width:3;fill:none;marker-end:url(#arr)}.dash{stroke:#8f72ff;stroke-width:2.2;fill:none;stroke-dasharray:7 6;marker-end:url(#arr)}
+    .tiny{font-size:11px}.small{font-size:13px}.cap{font-size:12px;letter-spacing:2px;fill:#78c4ff}
   </style>
 </defs>
-<rect width="1600" height="900" fill="#f6f9fc"/>
-<text x="800" y="55" text-anchor="middle" class="h1">Terraform AWS Landing Zone - Secure Cloud Foundation</text>
-<text x="800" y="88" text-anchor="middle" class="sub">GOVERNANCE | NETWORKING | AUDIT | SECURITY | INFRASTRUCTURE AS CODE</text>
 
-<!-- GOVERNANCE -->
-<g filter="url(#shadow)"><rect x="40" y="135" width="280" height="300" rx="16" fill="#fff" stroke="#b7cee3"/></g>
-<text x="180" y="172" text-anchor="middle" class="panelTitle">Governance</text>
-<text x="180" y="197" text-anchor="middle" class="panelSub">OPTIONAL ORGANIZATION CONTROLS</text>
-<rect x="92" y="235" width="176" height="88" rx="16" fill="#7b3fe4"/><text x="180" y="272" text-anchor="middle" class="icon">AWS ORGANIZATIONS</text><text x="180" y="299" text-anchor="middle" class="icon">OU + SCP</text>
-<text x="180" y="354" text-anchor="middle" class="svc">Approved-Regions Guardrail</text>
-<text x="180" y="381" text-anchor="middle" class="txt">Workload OU and SCP</text>
-<text x="180" y="406" text-anchor="middle" class="small">Disabled by default · opt-in only</text>
+<rect width="1600" height="900" rx="22" fill="url(#bg)"/>
+<text x="800" y="54" text-anchor="middle" class="t h" font-size="40">Terraform AWS Landing Zone – AWS Architecture</text>
+<text x="800" y="86" text-anchor="middle" class="m" font-size="18">Reference architecture for a secure multi-account AWS landing zone managed with Terraform</text>
 
-<!-- LANDING ZONE ACCOUNT -->
-<g filter="url(#shadow)"><rect x="360" y="125" width="1200" height="585" rx="22" fill="#fff" stroke="#88b8dd" stroke-width="2"/></g>
-<text x="400" y="165" class="panelTitle">Landing Zone Account</text>
-<text x="400" y="191" class="panelSub">SECURE ACCOUNT BASELINE BEFORE APPLICATION WORKLOADS</text>
+<!-- Terraform Delivery -->
+<g transform="translate(20 120)">
+  <rect width="220" height="455" rx="18" class="panel" filter="url(#sh)"/>
+  <text x="110" y="32" text-anchor="middle" class="t h" font-size="19">Terraform Delivery</text>
+  <text x="110" y="54" text-anchor="middle" class="m small">Infrastructure as Code</text>
+  <circle cx="62" cy="110" r="34" fill="#151515"/><text x="62" y="117" text-anchor="middle" class="t h" font-size="16">GH</text>
+  <text x="112" y="103" class="t h" font-size="15">GitHub</text><text x="112" y="123" class="m tiny">Source repository</text>
+  <path d="M62 148V185" class="line"/>
+  <rect x="28" y="190" width="68" height="68" rx="10" fill="#2f80ed"/><text x="62" y="232" text-anchor="middle" class="t h" font-size="14">CI/CD</text>
+  <text x="112" y="213" class="t h" font-size="15">CI/CD Pipeline</text><text x="112" y="233" class="m tiny">Plan, validate, deploy</text>
+  <path d="M62 258V303" class="line"/>
+  <rect x="28" y="310" width="68" height="68" rx="10" fill="#6544c6"/><text x="62" y="351" text-anchor="middle" class="t h" font-size="15">TF</text>
+  <text x="112" y="333" class="t h" font-size="15">Terraform Modules</text><text x="112" y="353" class="m tiny">Reusable, versioned</text><text x="112" y="371" class="m tiny">infrastructure code</text>
+</g>
 
-<!-- NETWORK -->
-<g filter="url(#shadow)"><rect x="405" y="225" width="360" height="360" rx="16" fill="#edf7ff" stroke="#a8cae5"/></g>
-<text x="585" y="260" text-anchor="middle" class="panelTitle">VPC Foundation</text>
-<text x="585" y="284" text-anchor="middle" class="panelSub">MULTI-AZ NETWORK SEGMENTATION</text>
-<rect x="445" y="325" width="125" height="92" rx="14" fill="#4b9b55"/><text x="507" y="360" text-anchor="middle" class="icon">PUBLIC</text><text x="507" y="385" text-anchor="middle" class="icon">SUBNETS</text>
-<rect x="600" y="325" width="125" height="92" rx="14" fill="#1976c9"/><text x="662" y="360" text-anchor="middle" class="icon">PRIVATE</text><text x="662" y="385" text-anchor="middle" class="icon">SUBNETS</text>
-<text x="585" y="455" text-anchor="middle" class="svc">Controlled Routing</text>
-<text x="585" y="482" text-anchor="middle" class="txt">Public/private tiers across AZs</text>
-<rect x="500" y="510" width="170" height="52" rx="12" fill="#4b9b55"/><text x="585" y="542" text-anchor="middle" class="icon">S3 GATEWAY ENDPOINT</text>
+<!-- State -->
+<g transform="translate(260 185)">
+  <rect width="180" height="330" rx="18" class="panel" filter="url(#sh)"/>
+  <text x="90" y="32" text-anchor="middle" class="t h" font-size="18">Terraform State</text>
+  <text x="90" y="54" text-anchor="middle" class="m small">Remote state management</text>
+  <rect x="55" y="90" width="70" height="70" rx="10" fill="#7AA116"/>
+  <ellipse cx="90" cy="110" rx="20" ry="7" fill="none" stroke="#fff" stroke-width="3"/><path d="M70 110v32c0 9 40 9 40 0v-32" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="90" y="188" text-anchor="middle" class="t h" font-size="16">Amazon S3</text><text x="90" y="209" text-anchor="middle" class="m tiny">Remote state</text><text x="90" y="226" text-anchor="middle" class="m tiny">versioned + encrypted</text>
+  <rect x="55" y="248" width="70" height="48" rx="9" fill="#8C4FFF"/><text x="90" y="278" text-anchor="middle" class="t h" font-size="14">DDB</text>
+  <text x="90" y="318" text-anchor="middle" class="m tiny">DynamoDB locking</text>
+</g>
 
-<!-- AUDIT -->
-<g filter="url(#shadow)"><rect x="805" y="225" width="320" height="360" rx="16" fill="#fff7e8" stroke="#e4c88a"/></g>
-<text x="965" y="260" text-anchor="middle" class="panelTitle">Central Audit Logging</text>
-<text x="965" y="284" text-anchor="middle" class="panelSub">PRIVATE · VERSIONED · ENCRYPTED</text>
-<rect x="855" y="325" width="100" height="88" rx="14" fill="#cf2f7e"/><text x="905" y="362" text-anchor="middle" class="icon">CLOUD</text><text x="905" y="387" text-anchor="middle" class="icon">TRAIL</text>
-<rect x="985" y="325" width="100" height="88" rx="14" fill="#4b9b55"/><text x="1035" y="375" text-anchor="middle" class="icon">S3</text>
-<path class="arrow" d="M955 369H975"/>
-<text x="965" y="455" text-anchor="middle" class="svc">Multi-Region Audit Trail</text>
-<text x="965" y="482" text-anchor="middle" class="txt">Log-file validation enabled</text>
-<rect x="895" y="510" width="140" height="52" rx="12" fill="#d9344a"/><text x="965" y="542" text-anchor="middle" class="icon">AWS KMS</text>
+<!-- Management -->
+<g transform="translate(460 185)">
+  <rect width="170" height="330" rx="18" class="panel" filter="url(#sh)"/>
+  <text x="85" y="34" text-anchor="middle" class="t h" font-size="18">Management</text><text x="85" y="56" text-anchor="middle" class="t h" font-size="18">Account</text>
+  <rect x="50" y="95" width="70" height="70" rx="10" fill="#232F3E"/><text x="85" y="137" text-anchor="middle" class="t h" font-size="19">AWS</text><path d="M59 146c18 8 35 8 52 0" stroke="#ff9900" stroke-width="3" fill="none"/>
+  <text x="85" y="205" text-anchor="middle" class="m small">Terraform execution</text><text x="85" y="228" text-anchor="middle" class="m small">and landing zone</text><text x="85" y="251" text-anchor="middle" class="m small">configuration</text>
+</g>
 
-<!-- SECURITY -->
-<g filter="url(#shadow)"><rect x="1165" y="225" width="350" height="360" rx="16" fill="#eefaf4" stroke="#a8d9bf"/></g>
-<text x="1340" y="260" text-anchor="middle" class="panelTitle">Security Baseline</text>
-<text x="1340" y="284" text-anchor="middle" class="panelSub">DETECTION · POSTURE · ENCRYPTION</text>
-<rect x="1205" y="325" width="120" height="82" rx="14" fill="#d9344a"/><text x="1265" y="375" text-anchor="middle" class="icon">GUARDDUTY</text>
-<rect x="1355" y="325" width="120" height="82" rx="14" fill="#9c43cf"/><text x="1415" y="362" text-anchor="middle" class="icon">SECURITY</text><text x="1415" y="386" text-anchor="middle" class="icon">HUB</text>
-<text x="1340" y="455" text-anchor="middle" class="svc">Account-Level Protection</text>
-<text x="1340" y="482" text-anchor="middle" class="txt">GuardDuty + Security Hub</text>
-<rect x="1205" y="510" width="120" height="52" rx="12" fill="#3557cc"/><text x="1265" y="542" text-anchor="middle" class="icon">EBS ENC</text>
-<rect x="1355" y="510" width="120" height="52" rx="12" fill="#25374a"/><text x="1415" y="542" text-anchor="middle" class="icon">IAM POLICY</text>
+<path d="M240 348H260" class="line"/><path d="M440 348H460" class="line"/><path d="M630 348H660" class="line"/>
 
-<!-- ARROWS -->
-<path class="arrow" d="M320 285H350"/><text x="335" y="268" text-anchor="middle" class="small">Optional</text>
-<path class="dash" d="M765 405H795"/><path class="dash" d="M1125 405H1155"/>
+<!-- AWS Landing Zone -->
+<g transform="translate(650 115)">
+  <rect width="930" height="665" rx="20" class="zone"/>
+  <text x="55" y="34" class="t h" font-size="23">☁  AWS Landing Zone</text>
+  <text x="55" y="58" class="m small">Organized, secure, and scalable multi-account environment</text>
 
-<!-- AUTOMATION -->
-<g filter="url(#shadow)"><rect x="180" y="745" width="1240" height="110" rx="18" fill="#0d2c4b"/></g>
-<text x="235" y="785" class="icon">Terraform + GitHub Actions</text>
-<text x="235" y="818" font-family="Arial,sans-serif" font-size="17" fill="#dce9f5">Reusable IaC · terraform fmt · terraform init -backend=false · terraform validate · manual environment-specific apply</text>
-<rect x="1125" y="770" width="240" height="54" rx="14" fill="#3557cc"/><text x="1245" y="803" text-anchor="middle" class="icon">REVIEWABLE LANDING ZONE CODE</text>
+  <!-- governance -->
+  <rect x="20" y="78" width="890" height="185" rx="15" class="gov"/>
+  <text x="42" y="108" class="t h" font-size="19">Governance Layer</text>
+  <text x="42" y="130" class="m small">Central management, guardrails, and account provisioning</text>
 
-<rect x="180" y="865" width="1240" height="1" fill="#b8cad8" opacity="0"/>
+  <g transform="translate(45 145)"><rect width="150" height="95" rx="10" fill="#111b35" stroke="#4d5d91"/><rect x="54" y="10" width="42" height="42" rx="7" fill="#D82B78"/><text x="75" y="38" text-anchor="middle" class="t h" font-size="12">ORG</text><text x="75" y="70" text-anchor="middle" class="t h" font-size="13">AWS Organizations</text><text x="75" y="87" text-anchor="middle" class="m tiny">OUs + accounts</text></g>
+  <g transform="translate(205 145)"><rect width="150" height="95" rx="10" fill="#111b35" stroke="#4d5d91"/><rect x="54" y="10" width="42" height="42" rx="7" fill="#8C4FFF"/><text x="75" y="38" text-anchor="middle" class="t h" font-size="12">CT</text><text x="75" y="70" text-anchor="middle" class="t h" font-size="13">AWS Control Tower</text><text x="75" y="87" text-anchor="middle" class="m tiny">Orchestration</text></g>
+  <g transform="translate(365 145)"><rect width="150" height="95" rx="10" fill="#111b35" stroke="#4d5d91"/><rect x="54" y="10" width="42" height="42" rx="7" fill="#31A24C"/><text x="75" y="38" text-anchor="middle" class="t h" font-size="12">SCP</text><text x="75" y="70" text-anchor="middle" class="t h" font-size="13">Service Control Policies</text><text x="75" y="87" text-anchor="middle" class="m tiny">Guardrails</text></g>
+  <g transform="translate(525 145)"><rect width="150" height="95" rx="10" fill="#111b35" stroke="#4d5d91"/><rect x="54" y="10" width="42" height="42" rx="7" fill="#DD344C"/><text x="75" y="38" text-anchor="middle" class="t h" font-size="12">IAM</text><text x="75" y="70" text-anchor="middle" class="t h" font-size="13">IAM Identity Center</text><text x="75" y="87" text-anchor="middle" class="m tiny">Central access</text></g>
+  <g transform="translate(685 145)"><rect width="150" height="95" rx="10" fill="#111b35" stroke="#4d5d91"/><rect x="54" y="10" width="42" height="42" rx="7" fill="#2f80ed"/><text x="75" y="38" text-anchor="middle" class="t h" font-size="12">AF</text><text x="75" y="70" text-anchor="middle" class="t h" font-size="13">Account Factory</text><text x="75" y="87" text-anchor="middle" class="m tiny">Automated accounts</text></g>
+
+  <!-- lower zones -->
+  <rect x="20" y="285" width="240" height="360" rx="14" class="sec"/>
+  <text x="40" y="315" class="t h" font-size="17">Security &amp; Audit Accounts</text><text x="40" y="336" class="m tiny">Centralized security and compliance</text>
+  <g transform="translate(40 360)"><rect width="90" height="75" rx="9" fill="#121e32"/><text x="45" y="31" text-anchor="middle" class="t h" font-size="12">Log Archive</text><text x="45" y="49" text-anchor="middle" class="m tiny">Account</text></g>
+  <g transform="translate(145 360)"><rect width="90" height="75" rx="9" fill="#121e32"/><text x="45" y="31" text-anchor="middle" class="t h" font-size="12">Audit</text><text x="45" y="49" text-anchor="middle" class="m tiny">Account</text></g>
+  <g transform="translate(40 455)"><rect width="80" height="62" rx="8" fill="#ED4C3E"/><text x="40" y="28" text-anchor="middle" class="t h" font-size="11">GuardDuty</text><text x="40" y="45" text-anchor="middle" class="m tiny">Threat detect</text></g>
+  <g transform="translate(130 455)"><rect width="80" height="62" rx="8" fill="#D82B78"/><text x="40" y="28" text-anchor="middle" class="t h" font-size="11">Security Hub</text><text x="40" y="45" text-anchor="middle" class="m tiny">Findings</text></g>
+  <g transform="translate(40 530)"><rect width="80" height="62" rx="8" fill="#D82B78"/><text x="40" y="28" text-anchor="middle" class="t h" font-size="11">AWS Config</text><text x="40" y="45" text-anchor="middle" class="m tiny">Compliance</text></g>
+  <g transform="translate(130 530)"><rect width="80" height="62" rx="8" fill="#D82B78"/><text x="40" y="28" text-anchor="middle" class="t h" font-size="11">CloudTrail</text><text x="40" y="45" text-anchor="middle" class="m tiny">Audit logs</text></g>
+
+  <rect x="275" y="285" width="215" height="360" rx="14" class="net"/>
+  <text x="295" y="315" class="t h" font-size="17">Network Foundation</text><text x="295" y="336" class="m tiny">Shared networking</text>
+  <g transform="translate(295 365)"><rect width="80" height="80" rx="9" fill="#8C4FFF"/><text x="40" y="34" text-anchor="middle" class="t h" font-size="12">VPC</text><text x="40" y="54" text-anchor="middle" class="m tiny">Shared VPCs</text></g>
+  <g transform="translate(390 365)"><rect width="80" height="80" rx="9" fill="#8C4FFF"/><text x="40" y="34" text-anchor="middle" class="t h" font-size="12">TGW</text><text x="40" y="54" text-anchor="middle" class="m tiny">Transit Gateway</text></g>
+  <g transform="translate(295 470)"><rect width="80" height="80" rx="9" fill="#8C4FFF"/><text x="40" y="34" text-anchor="middle" class="t h" font-size="12">R53</text><text x="40" y="54" text-anchor="middle" class="m tiny">Central DNS</text></g>
+  <g transform="translate(390 470)"><rect width="80" height="80" rx="9" fill="#4d789c"/><text x="40" y="34" text-anchor="middle" class="t h" font-size="12">EGRESS</text><text x="40" y="54" text-anchor="middle" class="m tiny">Inspection VPC</text></g>
+
+  <rect x="505" y="285" width="210" height="360" rx="14" class="shared"/>
+  <text x="525" y="315" class="t h" font-size="17">Shared Services</text><text x="525" y="336" class="m tiny">Common tooling and services</text>
+  <g transform="translate(525 365)"><rect width="75" height="75" rx="9" fill="#D82B78"/><text x="37" y="32" text-anchor="middle" class="t h" font-size="11">SSM</text><text x="37" y="50" text-anchor="middle" class="m tiny">Automation</text></g>
+  <g transform="translate(620 365)"><rect width="75" height="75" rx="9" fill="#DD344C"/><text x="37" y="32" text-anchor="middle" class="t h" font-size="11">KMS</text><text x="37" y="50" text-anchor="middle" class="m tiny">Keys</text></g>
+  <g transform="translate(525 465)"><rect width="75" height="75" rx="9" fill="#D82B78"/><text x="37" y="32" text-anchor="middle" class="t h" font-size="11">CW</text><text x="37" y="50" text-anchor="middle" class="m tiny">CloudWatch</text></g>
+  <g transform="translate(620 465)"><rect width="75" height="75" rx="9" fill="#4d789c"/><text x="37" y="32" text-anchor="middle" class="t h" font-size="11">VPC</text><text x="37" y="50" text-anchor="middle" class="m tiny">Shared Svcs</text></g>
+
+  <rect x="730" y="285" width="180" height="360" rx="14" class="work"/>
+  <text x="750" y="315" class="t h" font-size="17">Workload Accounts</text><text x="750" y="336" class="m tiny">Application environments</text>
+  <g transform="translate(750 365)"><rect width="140" height="70" rx="10" fill="#0e2b3b" stroke="#25d47f"/><text x="20" y="27" class="t h" font-size="13">Dev Account</text><text x="20" y="49" class="m tiny">VPC • Apps • Resources</text></g>
+  <g transform="translate(750 450)"><rect width="140" height="70" rx="10" fill="#0e2b3b" stroke="#2f80ed"/><text x="20" y="27" class="t h" font-size="13">Test Account</text><text x="20" y="49" class="m tiny">VPC • Apps • Resources</text></g>
+  <g transform="translate(750 535)"><rect width="140" height="70" rx="10" fill="#0e2b3b" stroke="#ff9900"/><text x="20" y="27" class="t h" font-size="13">Prod Account</text><text x="20" y="49" class="m tiny">VPC • Apps • Resources</text></g>
+
+  <path d="M135 263V285" class="line"/><path d="M380 263V285" class="line"/><path d="M610 263V285" class="line"/><path d="M820 263V285" class="line"/>
+  <path d="M140 645V670H820V645" class="dash"/>
+  <text x="480" y="666" text-anchor="middle" class="m tiny">Centralized telemetry: logs • events • findings • metrics</text>
+</g>
+
+<rect x="20" y="800" width="1560" height="72" rx="15" fill="#09243b" stroke="#2b5c82"/>
+<text x="55" y="828" class="t h" font-size="16">Core Outcomes</text>
+<text x="55" y="849" class="m tiny">Secure foundation before workloads</text>
+<text x="290" y="840" class="t h" font-size="14">✓ standardized guardrails</text>
+<text x="565" y="840" class="t h" font-size="14">✓ least privilege</text>
+<text x="790" y="840" class="t h" font-size="14">✓ centralized logging</text>
+<text x="1050" y="840" class="t h" font-size="14">✓ repeatable deployments</text>
+<text x="1335" y="840" class="t h" font-size="14">✓ scalable account design</text>
 </svg>
