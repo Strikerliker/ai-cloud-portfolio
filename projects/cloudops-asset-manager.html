@@ -72,23 +72,13 @@ h1{font-size:clamp(38px,5vw,62px);margin:12px 0 18px}
 <p class="intro">A serverless cloud and IT asset inventory application demonstrating complete Create, Read, Update, and Delete operations through a web dashboard, REST API, Lambda business logic, and DynamoDB persistence.</p>
 <div class="stats"><div class="card"><small>APPLICATION PATTERN</small><b>Full CRUD Asset Management</b></div><div class="card"><small>PLATFORM</small><b>AWS Serverless</b></div><div class="card"><small>DATA STORE</small><b>Amazon DynamoDB</b></div></div>
 
-<section class="diagram">
-<h2>Application Flow Chart</h2>
-<p>This drawing focuses on what the user does and how each CRUD action moves through the application.</p>
-<div class="flow"><div class="node"><b>CLOUDOPS USER</b><span>Manage cloud and IT assets</span></div><div class="arrow">›</div><div class="node"><b>WEB DASHBOARD</b><span>Asset inventory interface</span></div><div class="arrow">›</div><div class="node action"><b>CRUD ACTION</b><span>Create • Read • Update • Delete</span></div><div class="arrow">›</div><div class="node"><b>API RESPONSE</b><span>Updated inventory returned to dashboard</span></div></div>
-<div class="crud"><div><b>CREATE</b>POST /assets</div><div><b>READ</b>GET /assets</div><div><b>UPDATE</b>PUT /assets/{assetId}</div><div><b>DELETE</b>DELETE /assets/{assetId}</div></div>
-</section>
+<section class="arch-visual"><div class="eyebrow" style="text-align:center">DATA FLOW DIAGRAM</div><img src="../assets/cloudops-asset-manager-data-flow.svg?v=20260920-cloudops-flow1" alt="CloudOps Asset Manager data flow showing user, web dashboard, API Gateway, Lambda, DynamoDB, response path, and CloudWatch logging" loading="eager" decoding="async"></section>
 
 
 
-<section class="arch-visual" aria-labelledby="cloudops-polished-arch">
-<div class="eyebrow" style="text-align:center">POLISHED AWS ARCHITECTURE DRAWING</div>
-<h2 id="cloudops-polished-arch">CloudOps Asset Manager – Serverless AWS CRUD Architecture</h2>
-<p>A detailed architecture view of the implemented CRUD path, its security and observability controls, AWS SAM delivery, and optional S3/CloudFront frontend hosting.</p>
-<img src="../assets/cloudops-asset-manager-aws-architecture.svg?v=20260918-cloudops4" alt="CloudOps Asset Manager AWS architecture showing users, browser dashboard, API Gateway, Lambda CRUD handlers, DynamoDB, IAM, CloudWatch, AWS SAM, and optional S3 and CloudFront frontend hosting" loading="eager" decoding="async">
-<p class="arch-note">The core implemented path is Browser → API Gateway → Lambda → DynamoDB with IAM and CloudWatch. S3/CloudFront hosting is shown as an optional production extension rather than a currently deployed requirement.</p>
-</section>
+<section class="arch-visual"><div class="eyebrow" style="text-align:center">AWS ARCHITECTURE</div><img src="../assets/cloudops-asset-manager-aws-architecture.svg?v=20260920-cloudops-aws1" alt="CloudOps Asset Manager AWS architecture showing the implemented Browser, API Gateway, Lambda, DynamoDB, IAM, CloudWatch, AWS SAM, and optional S3 and CloudFront frontend hosting" loading="eager" decoding="async"><p class="arch-note">Implemented core: Browser → API Gateway → Lambda → DynamoDB, with IAM and CloudWatch. S3/CloudFront remain optional frontend-hosting extensions.</p></section>
 
+<section class="arch-visual"><div class="eyebrow" style="text-align:center">AZURE REFERENCE ARCHITECTURE</div><img src="../assets/cloudops-asset-manager-azure-architecture.svg?v=20260920-cloudops-azure1" alt="CloudOps Asset Manager conceptual Azure reference architecture using Azure Front Door, Static Web Apps, API Management, Azure Functions, Cosmos DB, Blob Storage, Azure Monitor, Entra ID, GitHub Actions, and Terraform or Bicep" loading="eager" decoding="async"><p class="arch-note">Azure reference equivalent only. The implemented CloudOps Asset Manager project remains AWS-based.</p></section>
 <section class="card"><h2>Technology Stack</h2><div class="stack"><span class="chip">API Gateway</span><span class="chip">AWS Lambda</span><span class="chip">DynamoDB</span><span class="chip">IAM</span><span class="chip">CloudWatch</span><span class="chip">AWS SAM</span><span class="chip">Python</span><span class="chip">HTML/CSS/JavaScript</span></div></section>
 <div class="actions"><a class="btn primary" href="https://github.com/Strikerliker/cloudops-asset-manager" target="_blank" rel="noopener noreferrer">View GitHub Repository</a><a class="btn" href="../index.html#projects">Back to Portfolio</a></div>
 </div></main>
