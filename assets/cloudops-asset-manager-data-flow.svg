@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="850" viewBox="0 0 1500 850" role="img" aria-labelledby="title desc">
+<title id="title">CloudOps Asset Manager – Data Flow Diagram</title>
+<desc id="desc">Data flow for the implemented CloudOps Asset Manager CRUD application showing the browser dashboard, API Gateway, Lambda, DynamoDB, CloudWatch, and the request and response path.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061522"/><stop offset="1" stop-color="#02101b"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b243a"/><stop offset="1" stop-color="#071a2b"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000" flood-opacity=".28"/></filter>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#67baff"/></marker>
+  <marker id="return" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#53d6a5"/></marker>
+  <style>
+    .t{font-family:Arial,Helvetica,sans-serif;fill:#f5fbff}.m{font-family:Arial,Helvetica,sans-serif;fill:#a7c4dc}.h{font-weight:700}
+    .panel{fill:url(#panel);stroke:#2d6d98;stroke-width:1.6}.line{stroke:#67baff;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    .ret{stroke:#53d6a5;stroke-width:3;fill:none;marker-end:url(#return)}.dash{stroke:#9d70ff;stroke-width:2.3;fill:none;stroke-dasharray:8 6;marker-end:url(#arrow)}
+    .small{font-size:13px}.tiny{font-size:11px}.cap{font-size:13px;letter-spacing:2px;fill:#67baff}
+  </style>
+</defs>
+<rect width="1500" height="850" rx="22" fill="url(#bg)"/>
+<text x="750" y="50" text-anchor="middle" class="t h" font-size="40">CloudOps Asset Manager – Data Flow Diagram</text>
+<text x="750" y="82" text-anchor="middle" class="m" font-size="18">How asset CRUD requests move through the implemented serverless application</text>
+
+<!-- CRUD legend -->
+<rect x="520" y="110" width="460" height="55" rx="12" fill="#0a2032" stroke="#2d6d98"/>
+<text x="555" y="144" class="t h" font-size="15">CRUD:</text>
+<rect x="630" y="121" width="75" height="30" rx="8" fill="#0f4f3a"/><text x="668" y="142" text-anchor="middle" class="t h" font-size="13">Create</text>
+<rect x="720" y="121" width="70" height="30" rx="8" fill="#153f70"/><text x="755" y="142" text-anchor="middle" class="t h" font-size="13">Read</text>
+<rect x="805" y="121" width="80" height="30" rx="8" fill="#6a4514"/><text x="845" y="142" text-anchor="middle" class="t h" font-size="13">Update</text>
+<rect x="900" y="121" width="65" height="30" rx="8" fill="#6b2430"/><text x="932" y="142" text-anchor="middle" class="t h" font-size="13">Delete</text>
+
+<!-- nodes -->
+<g transform="translate(45 235)">
+  <rect width="205" height="300" rx="16" class="panel" filter="url(#shadow)"/>
+  <circle cx="102" cy="77" r="42" fill="#123a69"/>
+  <circle cx="89" cy="66" r="13" fill="#d9edff"/><circle cx="118" cy="68" r="10" fill="#d9edff"/><path d="M67 105c2-20 15-30 32-30 19 0 31 11 34 30" fill="none" stroke="#d9edff" stroke-width="6"/>
+  <rect x="60" y="135" width="85" height="58" rx="7" fill="none" stroke="#9ed5ff" stroke-width="3"/><path d="M55 198h95" stroke="#9ed5ff" stroke-width="3"/>
+  <text x="102" y="232" text-anchor="middle" class="t h" font-size="18">User / Admin</text>
+  <text x="102" y="257" text-anchor="middle" class="m small">Web browser</text>
+  <text x="102" y="279" text-anchor="middle" class="m small">Manage asset inventory</text>
+</g>
+
+<g transform="translate(310 235)">
+  <rect width="205" height="300" rx="16" class="panel" filter="url(#shadow)" style="stroke:#53d6a5"/>
+  <rect x="52" y="50" width="102" height="75" rx="10" fill="#153f70"/>
+  <circle cx="67" cy="65" r="4" fill="#fff"/><circle cx="80" cy="65" r="4" fill="#fff"/><circle cx="93" cy="65" r="4" fill="#fff"/>
+  <rect x="65" y="78" width="76" height="12" rx="4" fill="#a6d3ff"/><rect x="65" y="97" width="51" height="8" rx="4" fill="#a6d3ff"/>
+  <text x="102" y="168" text-anchor="middle" class="t h" font-size="18">Web Dashboard</text>
+  <text x="102" y="193" text-anchor="middle" class="m small">Create • Read • Update • Delete</text>
+  <text x="102" y="215" text-anchor="middle" class="m small">HTML / CSS / JavaScript</text>
+</g>
+
+<g transform="translate(575 235)">
+  <rect width="205" height="300" rx="16" class="panel" filter="url(#shadow)" style="stroke:#a168ff"/>
+  <rect x="58" y="48" width="89" height="89" rx="12" fill="#8C4FFF"/>
+  <path d="M76 70h53v45H76zM89 81l-8 11 8 11M116 81l8 11-8 11M102 78v28" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="102" y="169" text-anchor="middle" class="t h" font-size="18">Amazon API Gateway</text>
+  <text x="102" y="194" text-anchor="middle" class="m small">HTTPS CRUD endpoints</text>
+  <text x="102" y="216" text-anchor="middle" class="m small">POST • GET • PUT • DELETE</text>
+</g>
+
+<g transform="translate(840 235)">
+  <rect width="205" height="300" rx="16" class="panel" filter="url(#shadow)" style="stroke:#ff9900"/>
+  <rect x="58" y="48" width="89" height="89" rx="12" fill="#FF9900"/>
+  <path d="M78 66h18l15 51H96l-8-25-9 25H64l17-39z" fill="none" stroke="#fff" stroke-width="4"/>
+  <text x="102" y="169" text-anchor="middle" class="t h" font-size="18">AWS Lambda</text>
+  <text x="102" y="194" text-anchor="middle" class="m small">Validation + CRUD logic</text>
+  <text x="102" y="216" text-anchor="middle" class="m small">Python handler</text>
+</g>
+
+<g transform="translate(1105 235)">
+  <rect width="205" height="300" rx="16" class="panel" filter="url(#shadow)" style="stroke:#3f84ff"/>
+  <rect x="58" y="48" width="89" height="89" rx="12" fill="#2F6BD8"/>
+  <ellipse cx="102" cy="72" rx="24" ry="8" fill="none" stroke="#fff" stroke-width="3"/><path d="M78 72v38c0 12 48 12 48 0V72" fill="none" stroke="#fff" stroke-width="3"/><path d="M78 88c0 12 48 12 48 0M78 103c0 12 48 12 48 0" fill="none" stroke="#fff" stroke-width="2"/>
+  <text x="102" y="169" text-anchor="middle" class="t h" font-size="18">Amazon DynamoDB</text>
+  <text x="102" y="194" text-anchor="middle" class="m small">Asset inventory records</text>
+  <text x="102" y="216" text-anchor="middle" class="m small">Persistent CRUD data</text>
+</g>
+
+<g transform="translate(555 620)">
+  <rect width="390" height="150" rx="16" class="panel" style="stroke:#d82b78"/>
+  <rect x="32" y="40" width="70" height="70" rx="10" fill="#D82B78"/>
+  <path d="M45 82c0-12 15-18 23-9 6-13 24-7 25 6 9 2 9 18-2 18H52c-9 0-12-11-7-15z" fill="none" stroke="#fff" stroke-width="2.3"/><circle cx="84" cy="89" r="8" fill="none" stroke="#fff" stroke-width="2"/><path d="M90 95l7 7" stroke="#fff" stroke-width="2"/>
+  <text x="125" y="70" class="t h" font-size="18">Amazon CloudWatch</text>
+  <text x="125" y="94" class="m small">API and Lambda logs</text>
+  <text x="125" y="115" class="m small">Metrics and operational visibility</text>
+</g>
+
+<!-- request arrows -->
+<path d="M250 385H310" class="line"/><text x="280" y="366" text-anchor="middle" class="m tiny">1. manage assets</text>
+<path d="M515 385H575" class="line"/><text x="545" y="356" text-anchor="middle" class="m tiny">2. HTTPS CRUD request</text>
+<path d="M780 385H840" class="line"/><text x="810" y="356" text-anchor="middle" class="m tiny">3. invoke handler</text>
+<path d="M1045 385H1105" class="line"/><text x="1075" y="356" text-anchor="middle" class="m tiny">4. read / write</text>
+
+<!-- response path -->
+<path d="M1207 535V575H412V535" class="ret"/>
+<text x="810" y="602" text-anchor="middle" class="t h" font-size="14">5. JSON response returns through Lambda and API Gateway to refresh the dashboard</text>
+
+<!-- monitoring -->
+<path d="M677 535V620" class="dash"/>
+<path d="M942 535V620" class="dash"/>
+<text x="535" y="590" class="m tiny">logs + metrics</text>
+<text x="965" y="590" class="m tiny">logs + metrics</text>
+</svg>
