@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+<title id="title">CloudOps Asset Manager – Azure Reference Architecture</title>
+<desc id="desc">Conceptual Azure equivalent of the CloudOps Asset Manager project, mapping the same CRUD application pattern to Azure services. This is a reference architecture, not the implemented project stack.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061a30"/><stop offset="1" stop-color="#082a50"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#edf7ff"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000" flood-opacity=".2"/></filter>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#184b88"/></marker>
+  <style>
+    .t{font-family:Arial,Helvetica,sans-serif;fill:#0c2b55}.w{font-family:Arial,Helvetica,sans-serif;fill:#fff}.m{font-family:Arial,Helvetica,sans-serif;fill:#466a8f}.h{font-weight:700}
+    .panel{fill:url(#panel);stroke:#b9d9f5;stroke-width:1.5}.line{stroke:#184b88;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    .small{font-size:13px}.tiny{font-size:11px}.cap{font-size:13px;letter-spacing:2px;fill:#72c9ff}
+  </style>
+</defs>
+<rect width="1500" height="900" rx="22" fill="url(#bg)"/>
+<text x="750" y="50" text-anchor="middle" class="w h" font-size="40">CloudOps Asset Manager – Azure Reference Architecture</text>
+<text x="750" y="82" text-anchor="middle" class="w" font-size="18">Conceptual Azure equivalent of the CRUD asset-management pattern — not the implemented project stack</text>
+
+<rect x="30" y="125" width="1440" height="650" rx="20" fill="#f8fbff" stroke="#5ab7ff" stroke-width="2"/>
+
+<!-- clients -->
+<g transform="translate(55 170)">
+  <rect width="190" height="470" rx="15" class="panel" filter="url(#shadow)"/>
+  <text x="95" y="35" text-anchor="middle" class="t h" font-size="19">Clients</text>
+  <circle cx="95" cy="110" r="40" fill="#dcefff"/><circle cx="82" cy="100" r="12" fill="#1677c8"/><circle cx="108" cy="102" r="10" fill="#1677c8"/><path d="M62 133c2-18 16-28 31-28 18 0 29 10 32 28" fill="none" stroke="#1677c8" stroke-width="6"/>
+  <text x="95" y="170" text-anchor="middle" class="t h" font-size="16">User / Admin</text>
+  <rect x="48" y="220" width="94" height="60" rx="8" fill="none" stroke="#1677c8" stroke-width="3"/><path d="M42 286h106" stroke="#1677c8" stroke-width="3"/>
+  <text x="95" y="320" text-anchor="middle" class="t h" font-size="16">Web Browser</text>
+  <text x="95" y="343" text-anchor="middle" class="m small">Manage asset inventory</text>
+</g>
+
+<!-- frontend -->
+<g transform="translate(300 170)">
+  <rect width="240" height="470" rx="15" class="panel" filter="url(#shadow)"/>
+  <text x="120" y="35" text-anchor="middle" class="t h" font-size="19">Frontend</text>
+  <rect x="70" y="65" width="100" height="90" rx="14" fill="#0078D4"/>
+  <path d="M95 115c-14-24 3-48 24-48 18 0 31 13 31 29 17 2 21 25 5 33H96c-15-2-18-12-1-14z" fill="#56c3ff"/><rect x="116" y="82" width="10" height="50" fill="#fff"/>
+  <text x="120" y="186" text-anchor="middle" class="t h" font-size="16">Azure Front Door</text>
+  <text x="120" y="208" text-anchor="middle" class="m small">Global delivery / protection</text>
+  <rect x="70" y="260" width="100" height="90" rx="14" fill="#1683e6"/>
+  <rect x="89" y="278" width="62" height="48" rx="5" fill="none" stroke="#fff" stroke-width="3"/><path d="M100 303l-8 8 8 8M140 303l8 8-8 8" stroke="#fff" stroke-width="3" fill="none"/>
+  <text x="120" y="382" text-anchor="middle" class="t h" font-size="16">Azure Static Web Apps</text>
+  <text x="120" y="404" text-anchor="middle" class="m small">Static web UI</text>
+</g>
+
+<!-- api compute -->
+<g transform="translate(595 170)">
+  <rect width="260" height="470" rx="15" class="panel" filter="url(#shadow)"/>
+  <text x="130" y="35" text-anchor="middle" class="t h" font-size="19">API &amp; Compute</text>
+  <rect x="80" y="65" width="100" height="90" rx="14" fill="#0078D4"/>
+  <path d="M105 110h50M110 92h40v36h-40zM120 100l-6 10 6 10M140 100l6 10-6 10" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="130" y="186" text-anchor="middle" class="t h" font-size="16">Azure API Management</text>
+  <text x="130" y="208" text-anchor="middle" class="m small">Managed API gateway</text>
+  <rect x="80" y="260" width="100" height="90" rx="14" fill="#0078D4"/>
+  <path d="M128 272l-24 42h18l-8 28 42-48h-20l10-22z" fill="#ffd23f"/>
+  <text x="130" y="382" text-anchor="middle" class="t h" font-size="16">Azure Functions</text>
+  <text x="130" y="404" text-anchor="middle" class="m small">Serverless CRUD handlers</text>
+</g>
+
+<!-- data -->
+<g transform="translate(910 170)">
+  <rect width="260" height="470" rx="15" class="panel" filter="url(#shadow)"/>
+  <text x="130" y="35" text-anchor="middle" class="t h" font-size="19">Data Layer</text>
+  <rect x="80" y="65" width="100" height="90" rx="14" fill="#0078D4"/>
+  <ellipse cx="130" cy="100" rx="32" ry="11" fill="none" stroke="#fff" stroke-width="3"/><path d="M98 100v36c0 14 64 14 64 0v-36" fill="none" stroke="#fff" stroke-width="3"/><path d="M98 118c0 14 64 14 64 0" fill="none" stroke="#fff" stroke-width="2"/>
+  <text x="130" y="186" text-anchor="middle" class="t h" font-size="16">Azure Cosmos DB</text>
+  <text x="130" y="208" text-anchor="middle" class="m small">Asset inventory</text>
+  <rect x="80" y="260" width="100" height="90" rx="14" fill="#0078D4"/>
+  <path d="M105 294h50v37h-50zM113 284h34l8 10h-50z" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="130" y="382" text-anchor="middle" class="t h" font-size="16">Azure Blob Storage</text>
+  <text x="130" y="404" text-anchor="middle" class="m small">Optional attachments</text>
+</g>
+
+<!-- operations -->
+<g transform="translate(1225 170)">
+  <rect width="220" height="470" rx="15" class="panel" filter="url(#shadow)"/>
+  <text x="110" y="35" text-anchor="middle" class="t h" font-size="18">Operations &amp; Security</text>
+  <circle cx="110" cy="110" r="48" fill="#2d8fe8"/><path d="M83 124h12v-24H83zm20 0h12V86h-12zm20 0h12V72h-12z" fill="#fff"/>
+  <text x="110" y="184" text-anchor="middle" class="t h" font-size="15">Azure Monitor</text>
+  <text x="110" y="205" text-anchor="middle" class="m small">Application Insights</text>
+  <path d="M65 245h90" stroke="#b9d9f5"/>
+  <path d="M110 285l42 42-42 42-42-42z" fill="#0078D4"/><path d="M110 285v84l21-21-21-21 21-21z" fill="#44b8ff"/>
+  <text x="110" y="405" text-anchor="middle" class="t h" font-size="15">Microsoft Entra ID</text>
+  <text x="110" y="426" text-anchor="middle" class="m small">Identity and access</text>
+  <text x="110" y="447" text-anchor="middle" class="m small">or Managed Identity</text>
+</g>
+
+<!-- arrows -->
+<path d="M245 405H300" class="line"/><text x="272" y="388" text-anchor="middle" class="t tiny">HTTPS</text>
+<path d="M540 405H595" class="line"/><text x="567" y="388" text-anchor="middle" class="t tiny">HTTPS</text>
+<path d="M855 405H910" class="line"/><text x="882" y="388" text-anchor="middle" class="t tiny">CRUD JSON</text>
+<path d="M855 455H910" class="line"/><text x="882" y="478" text-anchor="middle" class="t tiny">optional files</text>
+
+<!-- delivery -->
+<rect x="55" y="690" width="1390" height="150" rx="15" class="panel"/>
+<text x="85" y="725" class="t h" font-size="18">Delivery / Infrastructure as Code</text>
+<circle cx="450" cy="765" r="28" fill="#151515"/><path d="M438 771c-4-12 3-21 12-21 10 0 17 9 14 21-3 8-8 12-14 12-6 0-10-4-12-12z" fill="#fff"/><text x="490" y="760" class="t h" font-size="14">GitHub</text><text x="490" y="780" class="m small">Source code</text>
+<path d="M595 765H650" class="line"/>
+<rect x="650" y="735" width="68" height="60" rx="9" fill="#0c4a87"/><circle cx="672" cy="755" r="7" fill="none" stroke="#fff" stroke-width="2"/><circle cx="697" cy="774" r="7" fill="none" stroke="#fff" stroke-width="2"/><path d="M678 759l13 10" stroke="#fff" stroke-width="2"/><text x="735" y="760" class="t h" font-size="14">GitHub Actions</text><text x="735" y="780" class="m small">CI/CD pipeline</text>
+<path d="M900 765H955" class="line"/>
+<rect x="955" y="735" width="68" height="60" rx="9" fill="#6544C6"/><path d="M971 748l16 7v16l-16-7zm18 8l16 7v16l-16-7zm0-16l16 7v15l-16-7z" fill="none" stroke="#fff" stroke-width="2.2"/><text x="1040" y="760" class="t h" font-size="14">Terraform / Bicep</text><text x="1040" y="780" class="m small">Infrastructure as code</text>
+<path d="M1240 765H1295" class="line"/><text x="1310" y="760" class="t h" font-size="14">Deploy to Azure</text>
+</svg>
