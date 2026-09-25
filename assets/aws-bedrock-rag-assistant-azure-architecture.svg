@@ -1,1 +1,101 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#edf7ff"/></linearGradient><style>.h{font:700 19px Arial;fill:#0d2d56}.svc{font:700 12px Arial;fill:#0d2d56}.icon{font:700 13px Arial;fill:#fff}.m{font:15px Arial;fill:#4b6f93}</style></defs><rect width="1600" height="900" fill="url(#bg)"/><path d="M45 65L68 20l23 45H78L68 46 57 65z" fill="#0078D4"/><text x="108" y="56" font-family="Arial" font-size="24" font-weight="700" fill="#0d2d56">Microsoft Azure</text><text x="800" y="58" text-anchor="middle" font-family="Arial" font-size="38" font-weight="700" fill="#0d2d56">RAG Assistant – Azure Architecture</text><text x="800" y="88" text-anchor="middle" class="m">Microsoft Azure reference architecture • domain-based system view</text><rect x="220" y="125" width="1340" height="700" rx="22" fill="#fafdff" stroke="#179ee7" stroke-width="2"/><text x="250" y="162" font-family="Arial" font-size="22" font-weight="700" fill="#0078D4">Azure Subscription</text><rect x="245" y="180" width="1290" height="615" rx="18" fill="none" stroke="#32a7e8" stroke-width="1.6" stroke-dasharray="8 6"/><text x="270" y="212" font-family="Arial" font-size="17" font-weight="700" fill="#0d2d56">Resource Group</text><g><rect x="255" y="230" width="390" height="220" rx="16" fill="#0078D4" fill-opacity=".08" stroke="#0078D4"/><text x="275" y="264" class="h">Application &amp; API</text><g transform="translate(275 295)"><rect width="160" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="53" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="80" y="49" text-anchor="middle" class="icon">STA</text><text x="80" y="90" text-anchor="middle" class="svc">Static Web Apps</text></g><g transform="translate(453 295)"><rect width="160" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="53" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="80" y="49" text-anchor="middle" class="icon">AZ</text><text x="80" y="90" text-anchor="middle" class="svc">API Management</text></g></g><g><rect x="675" y="230" width="390" height="220" rx="16" fill="#7B61FF" fill-opacity=".08" stroke="#7B61FF"/><text x="695" y="264" class="h">RAG &amp; AI</text><g transform="translate(695 295)"><rect width="160" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="53" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="80" y="49" text-anchor="middle" class="icon">AZU</text><text x="80" y="90" text-anchor="middle" class="svc">Azure AI Search</text></g><g transform="translate(873 295)"><rect width="160" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="53" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="80" y="49" text-anchor="middle" class="icon">AZ</text><text x="80" y="90" text-anchor="middle" class="svc">Azure OpenAI</text></g></g><g><rect x="1095" y="230" width="390" height="220" rx="16" fill="#00A86B" fill-opacity=".08" stroke="#00A86B"/><text x="1115" y="264" class="h">Knowledge Layer</text><g transform="translate(1115 295)"><rect width="160" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="53" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="80" y="49" text-anchor="middle" class="icon">AZ</text><text x="80" y="90" text-anchor="middle" class="svc">Blob Storage</text></g><g transform="translate(1293 295)"><rect width="160" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="53" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="80" y="49" text-anchor="middle" class="icon">AZ</text><text x="80" y="90" text-anchor="middle" class="svc">Cosmos DB</text></g></g><g><rect x="255" y="500" width="390" height="220" rx="16" fill="#D79B00" fill-opacity=".08" stroke="#D79B00"/><text x="275" y="534" class="h">Identity &amp; Security</text><g transform="translate(275 565)"><rect width="105" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="25.5" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="52.5" y="49" text-anchor="middle" class="icon">AZ</text><text x="52.5" y="90" text-anchor="middle" class="svc">Entra ID</text></g><g transform="translate(392 565)"><rect width="105" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="25.5" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="52.5" y="49" text-anchor="middle" class="icon">MAN</text><text x="52.5" y="90" text-anchor="middle" class="svc">Managed Identity</text></g><g transform="translate(509 565)"><rect width="105" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="25.5" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="52.5" y="49" text-anchor="middle" class="icon">AZ</text><text x="52.5" y="90" text-anchor="middle" class="svc">Key Vault</text></g></g><g><rect x="675" y="500" width="390" height="220" rx="16" fill="#0F75BC" fill-opacity=".08" stroke="#0F75BC"/><text x="695" y="534" class="h">Observability</text><g transform="translate(695 565)"><rect width="160" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="53" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="80" y="49" text-anchor="middle" class="icon">AZ</text><text x="80" y="90" text-anchor="middle" class="svc">Azure Monitor</text></g><g transform="translate(873 565)"><rect width="160" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="53" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="80" y="49" text-anchor="middle" class="icon">APP</text><text x="80" y="90" text-anchor="middle" class="svc">Application Insights</text></g></g><g><rect x="1095" y="500" width="390" height="220" rx="16" fill="#6F42C1" fill-opacity=".08" stroke="#6F42C1"/><text x="1115" y="534" class="h">Delivery / IaC</text><g transform="translate(1115 565)"><rect width="160" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="53" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="80" y="49" text-anchor="middle" class="icon">AZ</text><text x="80" y="90" text-anchor="middle" class="svc">GitHub Actions</text></g><g transform="translate(1293 565)"><rect width="160" height="120" rx="12" fill="#fff" stroke="#b8d8ef"/><rect x="53" y="15" width="54" height="54" rx="10" fill="#0078D4"/><text x="80" y="49" text-anchor="middle" class="icon">TER</text><text x="80" y="90" text-anchor="middle" class="svc">Terraform / Bicep</text></g></g><g><rect x="35" y="305" width="150" height="220" rx="16" fill="#fff" stroke="#179ee7"/><text x="110" y="340" text-anchor="middle" class="h">Users / Clients</text><rect x="72" y="375" width="76" height="48" rx="6" fill="none" stroke="#2672a9" stroke-width="3"/><path d="M65 429h90" stroke="#2672a9" stroke-width="3"/><text x="110" y="475" text-anchor="middle" class="m">Web / devices</text></g><path d="M185 415H255" stroke="#6d8ba8" stroke-width="2.5"/><path d="M645 340H675M1065 340H1095M450 450V500M870 450V500M1290 450V500" stroke="#91a8bd" stroke-width="2"/><text x="800" y="862" text-anchor="middle" font-family="Arial" font-size="13" fill="#537391">MICROSOFT AZURE REFERENCE ARCHITECTURE • NOT A PROCESS FLOW</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+<title id="title">Microsoft Azure Architecture Diagram</title>
+<desc id="desc">Azure reference equivalent for the AWS Bedrock RAG Assistant.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#eef7ff"/></linearGradient>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#173b64"/></marker>
+  <marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#16864b"/></marker>
+  <marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1976d2"/></marker>
+  <marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ef8a00"/></marker>
+  <marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7b42d8"/></marker>
+  <style>
+    text{font-family:Arial,sans-serif}.title{font-size:38px;font-weight:700;fill:#10396d}.sub{font-size:20px;fill:#526e8d}.h{font-size:20px;font-weight:700;fill:#173b64}.svc{font-size:15px;font-weight:700;fill:#173b64}.sm{font-size:12px;fill:#536f8f}.step{font-size:12px;font-weight:700;fill:#173b64}.line{stroke:#173b64;stroke-width:3;fill:none;marker-end:url(#arrow)}.rag{stroke:#16864b;stroke-width:3;fill:none;stroke-dasharray:9 7;marker-end:url(#green)}.auth{stroke:#1976d2;stroke-width:2.4;fill:none;stroke-dasharray:8 6;marker-end:url(#blue)}.sec{stroke:#ef8a00;stroke-width:2.4;fill:none;stroke-dasharray:8 6;marker-end:url(#orange)}.obs{stroke:#7b42d8;stroke-width:2.4;fill:none;stroke-dasharray:8 6;marker-end:url(#purple)}.deploy{stroke:#16864b;stroke-width:2.4;fill:none;stroke-dasharray:8 6;marker-end:url(#green)}
+  </style>
+</defs>
+<rect width="1600" height="1000" fill="url(#bg)"/>
+<text x="800" y="52" text-anchor="middle" class="title">MICROSOFT AZURE ARCHITECTURE DIAGRAM</text>
+<text x="800" y="84" text-anchor="middle" class="sub">Azure reference equivalent for the AWS Bedrock RAG Assistant</text>
+<rect x="30" y="112" width="1540" height="820" rx="18" fill="#fff" stroke="#1598e0" stroke-width="2"/>
+<path d="M62 156L84 116l22 40H94L84 139l-10 17z" fill="#0078D4"/>
+<text x="120" y="148" font-size="23" font-weight="700" fill="#0078D4">Azure Subscription</text>
+<rect x="105" y="170" width="1425" height="720" rx="16" fill="none" stroke="#48ade4" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="135" y="202" font-size="18" font-weight="700" fill="#0078D4">Resource Group</text>
+
+<!-- User -->
+<g transform="translate(45 335)">
+  <circle cx="28" cy="20" r="18" fill="#1598e0"/><path d="M2 74c2-26 12-38 26-38s24 12 26 38z" fill="#1598e0"/>
+  <text x="28" y="99" text-anchor="middle" class="svc">User</text>
+</g>
+
+<!-- Main domains -->
+<rect x="180" y="230" width="300" height="300" rx="14" fill="#eaf5fd" stroke="#8cc9ef"/>
+<text x="200" y="262" class="h">Edge &amp; App</text>
+<text x="200" y="284" class="sm">Presentation Layer</text>
+
+<rect x="500" y="230" width="300" height="300" rx="14" fill="#f0ebff" stroke="#bca9ee"/>
+<text x="520" y="262" class="h">API &amp; Orchestration</text>
+
+<rect x="820" y="230" width="380" height="300" rx="14" fill="#ecf9f1" stroke="#9ed8b3"/>
+<text x="840" y="262" class="h">AI &amp; Retrieval</text>
+
+<rect x="1220" y="230" width="280" height="300" rx="14" fill="#fff8e6" stroke="#e8cc7a"/>
+<text x="1240" y="262" class="h">Data</text>
+
+<!-- Service cards -->
+<g transform="translate(205 315)"><rect width="115" height="120" rx="10" fill="#fff" stroke="#b8d8ef"/><circle cx="57" cy="42" r="28" fill="#1598e0"/><text x="57" y="47" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">FD</text><text x="57" y="91" text-anchor="middle" class="svc">Azure</text><text x="57" y="109" text-anchor="middle" class="svc">Front Door</text></g>
+<g transform="translate(340 315)"><rect width="115" height="120" rx="10" fill="#fff" stroke="#b8d8ef"/><circle cx="57" cy="42" r="28" fill="#0078D4"/><text x="57" y="47" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">APP</text><text x="57" y="91" text-anchor="middle" class="svc">App Service</text><text x="57" y="109" text-anchor="middle" class="sm">/ Static Web Apps</text></g>
+
+<g transform="translate(525 315)"><rect width="115" height="120" rx="10" fill="#fff" stroke="#c8bcef"/><circle cx="57" cy="42" r="28" fill="#5b56d6"/><text x="57" y="47" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">API</text><text x="57" y="91" text-anchor="middle" class="svc">API</text><text x="57" y="109" text-anchor="middle" class="svc">Management</text></g>
+<g transform="translate(660 315)"><rect width="115" height="120" rx="10" fill="#fff" stroke="#c8bcef"/><circle cx="57" cy="42" r="28" fill="#f8b400"/><text x="57" y="47" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">FX</text><text x="57" y="91" text-anchor="middle" class="svc">Azure</text><text x="57" y="109" text-anchor="middle" class="svc">Functions</text></g>
+
+<g transform="translate(850 315)"><rect width="145" height="120" rx="10" fill="#fff" stroke="#aadcbc"/><circle cx="72" cy="42" r="28" fill="#0078D4"/><text x="72" y="47" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">SEARCH</text><text x="72" y="91" text-anchor="middle" class="svc">Azure AI Search</text><text x="72" y="109" text-anchor="middle" class="sm">Retrieval Layer</text></g>
+<g transform="translate(1025 315)"><rect width="145" height="120" rx="10" fill="#fff" stroke="#aadcbc"/><circle cx="72" cy="42" r="28" fill="#0b87d1"/><text x="72" y="47" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">OPENAI</text><text x="72" y="91" text-anchor="middle" class="svc">Azure OpenAI</text><text x="72" y="109" text-anchor="middle" class="sm">Grounded Generation</text></g>
+
+<g transform="translate(1245 315)"><rect width="105" height="120" rx="10" fill="#fff" stroke="#e4cc8c"/><circle cx="52" cy="42" r="28" fill="#1598e0"/><text x="52" y="47" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">BLOB</text><text x="52" y="91" text-anchor="middle" class="svc">Blob Storage</text><text x="52" y="109" text-anchor="middle" class="sm">Approved Docs</text></g>
+<g transform="translate(1370 315)"><rect width="105" height="120" rx="10" fill="#fff" stroke="#e4cc8c"/><circle cx="52" cy="42" r="28" fill="#1598e0"/><text x="52" y="47" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">DB</text><text x="52" y="91" text-anchor="middle" class="svc">Cosmos DB</text><text x="52" y="109" text-anchor="middle" class="sm">Session Metadata</text></g>
+
+<!-- Flow -->
+<path d="M98 385H205" class="line"/><text x="118" y="372" class="step">1. Ask question</text>
+<path d="M320 375H340" class="line"/>
+<path d="M455 375H525" class="line"/>
+<path d="M640 375H660" class="line"/>
+<path d="M775 375H850" class="line"/><text x="790" y="362" class="step">2. Retrieve</text>
+<path d="M995 375H1025" class="line"/><text x="985" y="350" class="step">3. Context</text>
+<path d="M1350 375H1370" class="line"/>
+<path d="M1297 435V480H925V435" class="rag"/>
+<text x="1055" y="474" class="step">Document indexing &amp; retrieval</text>
+<path d="M1098 315V292H718V315" class="line"/>
+<text x="847" y="286" class="step">4. Generate response with retrieved context</text>
+<path d="M1025 430H970V505H126V430" class="line"/>
+<text x="420" y="497" class="step">5. Grounded answer + source references</text>
+
+<!-- Bottom panels -->
+<rect x="180" y="570" width="400" height="255" rx="14" fill="#fff0f0" stroke="#efb0b0"/>
+<text x="200" y="602" class="h">Security (Identity &amp; Secrets)</text>
+<g transform="translate(220 645)"><rect width="135" height="115" rx="10" fill="#fff" stroke="#efc2c2"/><circle cx="67" cy="38" r="26" fill="#0078D4"/><text x="67" y="43" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">ENTRA</text><text x="67" y="86" text-anchor="middle" class="svc">Microsoft Entra ID</text><text x="67" y="104" text-anchor="middle" class="sm">Authentication</text></g>
+<g transform="translate(390 645)"><rect width="135" height="115" rx="10" fill="#fff" stroke="#efc2c2"/><circle cx="67" cy="38" r="26" fill="#efb300"/><text x="67" y="43" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">KEY</text><text x="67" y="86" text-anchor="middle" class="svc">Key Vault</text><text x="67" y="104" text-anchor="middle" class="sm">Secrets / Keys</text></g>
+
+<rect x="600" y="570" width="400" height="255" rx="14" fill="#f4f0ff" stroke="#c7b9ee"/>
+<text x="620" y="602" class="h">Observability (Monitoring &amp; Logging)</text>
+<g transform="translate(640 645)"><rect width="135" height="115" rx="10" fill="#fff" stroke="#d2c7ef"/><circle cx="67" cy="38" r="26" fill="#1598e0"/><text x="67" y="43" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">MON</text><text x="67" y="86" text-anchor="middle" class="svc">Azure Monitor</text><text x="67" y="104" text-anchor="middle" class="sm">Platform Metrics</text></g>
+<g transform="translate(810 645)"><rect width="145" height="115" rx="10" fill="#fff" stroke="#d2c7ef"/><circle cx="72" cy="38" r="26" fill="#7b42d8"/><text x="72" y="43" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">APP</text><text x="72" y="86" text-anchor="middle" class="svc">Application Insights</text><text x="72" y="104" text-anchor="middle" class="sm">Telemetry</text></g>
+
+<rect x="1020" y="570" width="480" height="255" rx="14" fill="#effaf2" stroke="#add9b8"/>
+<text x="1040" y="602" class="h">CI/CD (Infrastructure &amp; Deployment)</text>
+<g transform="translate(1060 645)"><rect width="135" height="115" rx="10" fill="#fff" stroke="#c4dfca"/><circle cx="67" cy="38" r="26" fill="#111"/><text x="67" y="43" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">GH</text><text x="67" y="86" text-anchor="middle" class="svc">GitHub Actions</text><text x="67" y="104" text-anchor="middle" class="sm">CI/CD</text></g>
+<g transform="translate(1240 645)"><rect width="210" height="115" rx="10" fill="#fff" stroke="#c4dfca"/><circle cx="105" cy="38" r="26" fill="#6f42c1"/><text x="105" y="43" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">IaC</text><text x="105" y="86" text-anchor="middle" class="svc">Terraform / Bicep</text><text x="105" y="104" text-anchor="middle" class="sm">Deploy to Resource Group</text></g>
+
+<!-- Supporting connections -->
+<path d="M287 645V540H395V435" class="auth"/><text x="210" y="548" class="sm">Authentication / access control</text>
+<path d="M457 645V550H718V435" class="sec"/><text x="492" y="565" class="sm">Secrets / keys</text>
+<path d="M707 645V545H1098V435" class="obs"/><text x="720" y="560" class="sm">Logs, metrics &amp; traces</text>
+<path d="M1195 703H1240" class="deploy"/>
+
+<!-- Legend/footer -->
+<rect x="180" y="850" width="820" height="55" rx="10" fill="#f8fbfe" stroke="#cad9e6"/>
+<line x1="205" y1="875" x2="255" y2="875" class="line"/><text x="270" y="880" class="sm">Main request / response flow</text>
+<line x1="480" y1="875" x2="530" y2="875" class="rag"/><text x="545" y="880" class="sm">RAG document / retrieval flow</text>
+<line x1="750" y1="875" x2="800" y2="875" class="auth"/><text x="815" y="880" class="sm">Security / operations controls</text>
+<text x="1500" y="870" text-anchor="end" class="sm">Implemented project remains the AWS Bedrock RAG Assistant;</text>
+<text x="1500" y="890" text-anchor="end" class="sm">this is an Azure comparison architecture.</text>
+</svg>
