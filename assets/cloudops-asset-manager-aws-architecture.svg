@@ -1,142 +1,103 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="920" viewBox="0 0 1500 920" role="img" aria-labelledby="title desc">
-<title id="title">CloudOps Asset Manager – Serverless AWS CRUD Architecture</title>
-<desc id="desc">AWS serverless asset-management architecture showing users, optional CloudFront and S3 frontend hosting, API Gateway, Lambda CRUD handlers, DynamoDB, IAM, CloudWatch, AWS SAM and GitHub Actions.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+<title id="title">CloudOps Asset Manager – AWS Architecture</title>
+<desc id="desc">Serverless AWS CRUD architecture using official AWS architecture service icons for CloudFront, S3, API Gateway, Lambda, DynamoDB, IAM, and CloudWatch.</desc>
 <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061522"/><stop offset="1" stop-color="#02101b"/></linearGradient>
-  <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b243a"/><stop offset="1" stop-color="#071a2b"/></linearGradient>
-  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000" flood-opacity=".28"/></filter>
-  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#67baff"/></marker>
-  <style>
-    .t{font-family:Arial,Helvetica,sans-serif;fill:#f5fbff}.m{font-family:Arial,Helvetica,sans-serif;fill:#a7c4dc}.h{font-weight:700}
-    .panel{fill:url(#panel);stroke:#244f70;stroke-width:1.6}.soft{fill:#0a2032;stroke:#315e80;stroke-width:1.4}
-    .line{stroke:#67baff;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#6c96b9;stroke-width:2.2;fill:none;stroke-dasharray:7 6;marker-end:url(#arrow)}
-    .small{font-size:14px}.tiny{font-size:12px}.cap{font-size:13px;letter-spacing:2px;fill:#72bfff}.svcname{font-size:17px;font-weight:700}
-  </style>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061522"/><stop offset="1" stop-color="#02101b"/></linearGradient>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#000" flood-opacity=".28"/></filter>
+<marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#67baff"/></marker>
+<style>.t{font-family:Arial,Helvetica,sans-serif;fill:#f6fbff}.m{font-family:Arial,Helvetica,sans-serif;fill:#a9c5db}.h{font-weight:700}.p{fill:#0b2032;stroke:#2a5878;stroke-width:1.7}.core{fill:#091c2c;stroke:#3a78a1;stroke-width:2}.line{stroke:#67baff;stroke-width:3;fill:none;marker-end:url(#arr)}.dash{stroke:#7e9db8;stroke-width:2.2;fill:none;stroke-dasharray:8 7;marker-end:url(#arr)}.cap{font-size:13px;letter-spacing:2px;fill:#72bfff}.small{font-size:14px}.tiny{font-size:12px}</style>
 </defs>
+<rect width="1500" height="900" rx="22" fill="url(#bg)"/>
+<rect x="22" y="22" width="1456" height="856" rx="22" fill="none" stroke="#173d58" stroke-width="2"/>
+<text x="750" y="64" text-anchor="middle" class="t h" font-size="40">CloudOps Asset Manager – AWS Architecture</text>
+<text x="750" y="94" text-anchor="middle" class="m" font-size="17">Implemented serverless CRUD path with optional production frontend hosting</text>
 
-<rect width="1500" height="920" rx="22" fill="url(#bg)"/>
-<rect x="22" y="22" width="1456" height="876" rx="22" fill="none" stroke="#173d58" stroke-width="2"/>
+<text x="80" y="145" class="cap">OPTIONAL FRONTEND HOSTING</text>
+<g transform="translate(85 170)"><rect width="270" height="205" rx="16" class="p" filter="url(#sh)"/><svg x="38" y="36" width="76" height="76" viewBox="0 0 80 80">
+    <g id="Icon-Architecture/64/Arch_Amazon-CloudFront_64" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon-Architecture-BG/64/Networking-Content-Delivery" fill="#8C4FFF">
+            <rect id="Rectangle" x="0" y="0" width="80" height="80"></rect>
+        </g>
+        <path d="M55.122,52.123 C55.122,50.469 53.776,49.123 52.122,49.123 C50.468,49.123 49.122,50.469 49.122,52.123 C49.122,53.777 50.468,55.123 52.122,55.123 C53.776,55.123 55.122,53.777 55.122,52.123 L55.122,52.123 Z M57.122,52.123 C57.122,54.88 54.879,57.123 52.122,57.123 C49.365,57.123 47.122,54.88 47.122,52.123 C47.122,49.366 49.365,47.123 52.122,47.123 C54.879,47.123 57.122,49.366 57.122,52.123 L57.122,52.123 Z M30.392,37.692 C30.392,36.038 29.046,34.692 27.392,34.692 C25.737,34.692 24.392,36.038 24.392,37.692 C24.392,39.346 25.737,40.692 27.392,40.692 C29.046,40.692 30.392,39.346 30.392,37.692 L30.392,37.692 Z M32.392,37.692 C32.392,40.449 30.148,42.692 27.392,42.692 C24.635,42.692 22.392,40.449 22.392,37.692 C22.392,34.935 24.635,32.692 27.392,32.692 C30.148,32.692 32.392,34.935 32.392,37.692 L32.392,37.692 Z M39.73,22.007 C39.73,23.661 41.076,25.007 42.73,25.007 C44.385,25.007 45.73,23.661 45.73,22.007 C45.73,20.352 44.385,19.007 42.73,19.007 C41.076,19.007 39.73,20.352 39.73,22.007 L39.73,22.007 Z M37.73,22.007 C37.73,19.25 39.974,17.007 42.73,17.007 C45.487,17.007 47.73,19.25 47.73,22.007 C47.73,24.764 45.487,27.007 42.73,27.007 C39.974,27.007 37.73,24.764 37.73,22.007 L37.73,22.007 Z M66,40 C66,30.727 61.028,22.148 53.012,17.509 C51.575,17.799 50.185,18.196 48.451,18.823 L47.771,16.942 C48.676,16.616 49.486,16.352 50.266,16.126 C47.046,14.737 43.548,14 40,14 C38.311,14 36.649,14.175 35.025,14.492 C36.201,15.18 37.244,15.866 38.257,16.634 L37.048,18.227 C35.62,17.145 34.14,16.228 32.197,15.21 C22.378,18.298 15.306,26.958 14.183,37.128 C16.242,36.711 18.219,36.484 20.414,36.43 L20.463,38.429 C18.163,38.486 16.187,38.73 14.027,39.205 C14.018,39.47 14,39.738 14,40 C14,48.658 18.283,56.636 25.327,61.447 C24.074,57.716 23.45,54.19 23.45,50.746 C23.45,48.782 23.788,47.169 24.145,45.462 C24.228,45.067 24.312,44.665 24.394,44.248 L26.357,44.635 C26.273,45.059 26.187,45.47 26.103,45.873 C25.753,47.545 25.45,48.989 25.45,50.746 C25.45,54.654 26.308,58.695 28.054,63.083 C31.773,65.014 35.789,66 40,66 C42.756,66 45.446,65.56 48.012,64.714 C49.019,62.727 49.766,60.852 50.39,58.699 L52.311,59.256 C51.855,60.826 51.332,62.253 50.709,63.677 C52.323,62.951 53.85,62.053 55.283,61.005 C54.938,60.159 54.568,59.318 54.159,58.499 L55.948,57.604 C56.296,58.3 56.615,59.012 56.92,59.728 C62.705,54.775 66,47.66 66,40 L66,40 Z M68,40 C68,48.727 64.034,56.799 57.121,62.149 C55.409,63.479 53.552,64.583 51.589,65.472 C50.756,65.85 49.908,66.2 49.036,66.494 C46.156,67.493 43.113,68 40,68 C35.4,68 30.832,66.854 26.788,64.686 C17.667,59.806 12,50.347 12,40 C12,39.314 12.018,38.792 12.059,38.309 C12.74,26.625 20.756,16.512 32.001,13.166 C34.562,12.393 37.255,12 40,12 C44.808,12 49.539,13.238 53.684,15.579 C62.513,20.525 68,29.884 68,40 L68,40 Z M37.314,25.463 L36,23.956 C33.758,25.912 32.014,27.989 29.977,31.126 L31.655,32.215 C33.583,29.244 35.223,27.288 37.314,25.463 L37.314,25.463 Z M34.275,38.427 L33.625,40.318 C38.218,41.895 42.225,44.411 46.234,48.236 L47.615,46.789 C43.389,42.758 39.15,40.101 34.275,38.427 L34.275,38.427 Z M47.646,26.668 C51.398,32.39 53.511,38.671 53.925,45.338 L51.929,45.462 C51.536,39.146 49.533,33.192 45.975,27.765 L47.646,26.668 Z" id="Amazon-CloudFront_Icon_64_Squid" fill="#FFFFFF"></path>
+    </g>
+</svg>
+<text x="132" y="72" class="t h" font-size="17">Amazon CloudFront</text><text x="132" y="96" class="m tiny">Optional CDN / edge delivery</text>
+<svg x="38" y="112" width="76" height="76" viewBox="0 0 80 80">
+    <g id="Icon-Architecture/64/Arch_Amazon-Simple-Storage-Service_64" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon-Architecture-BG/64/Storage" fill="#7AA116">
+            <rect id="Rectangle" x="0" y="0" width="80" height="80"></rect>
+        </g>
+        <g id="Icon-Service/64/Amazon-Simple-Storage-Service_64" transform="translate(12.999900, 11.999600)" fill="#FFFFFF">
+            <path d="M47.836,30.893 L48.22,28.189 C51.761,30.31 51.807,31.186 51.8060132,31.21 C51.8,31.215 51.196,31.719 47.836,30.893 L47.836,30.893 Z M45.893,30.353 C39.773,28.501 31.25,24.591 27.801,22.961 C27.801,22.947 27.805,22.934 27.805,22.92 C27.805,21.595 26.727,20.517 25.401,20.517 C24.077,20.517 22.999,21.595 22.999,22.92 C22.999,24.245 24.077,25.323 25.401,25.323 C25.983,25.323 26.511,25.106 26.928,24.761 C30.986,26.682 39.443,30.535 45.608,32.355 L43.17,49.561 C43.163,49.608 43.16,49.655 43.16,49.702 C43.16,51.217 36.453,54 25.494,54 C14.419,54 7.641,51.217 7.641,49.702 C7.641,49.656 7.638,49.611 7.632,49.566 L2.538,12.359 C6.947,15.394 16.43,17 25.5,17 C34.556,17 44.023,15.4 48.441,12.374 L45.893,30.353 Z M2,8.478 C2.072,7.162 9.634,2 25.5,2 C41.364,2 48.927,7.161 49,8.478 L49,8.927 C48.13,11.878 38.33,15 25.5,15 C12.648,15 2.843,11.868 2,8.913 L2,8.478 Z M51,8.5 C51,5.035 41.066,0 25.5,0 C9.934,0 0,5.035 0,8.5 L0.094,9.254 L5.642,49.778 C5.775,54.31 17.861,56 25.494,56 C34.966,56 45.029,53.822 45.159,49.781 L47.555,32.884 C48.888,33.203 49.985,33.366 50.866,33.366 C52.049,33.366 52.849,33.077 53.334,32.499 C53.732,32.025 53.884,31.451 53.77,30.84 C53.511,29.456 51.868,27.964 48.522,26.055 L50.898,9.293 L51,8.5 Z" id="Amazon-Simple-Storage-Service-Icon_64_Squid"></path>
+        </g>
+    </g>
+</svg><text x="132" y="148" class="t h" font-size="17">Amazon S3</text><text x="132" y="172" class="m tiny">Optional static web UI</text></g>
 
-<text x="750" y="68" text-anchor="middle" class="t h" font-size="40">Serverless CRUD Workflow</text>
-<text x="750" y="108" text-anchor="middle" class="cap">CREATE • READ • UPDATE • DELETE</text>
+<text x="440" y="145" class="cap">IMPLEMENTED CORE APPLICATION</text>
+<g transform="translate(430 170)"><rect width="865" height="360" rx="18" class="core" filter="url(#sh)"/>
+<g transform="translate(35 58)"><rect width="230" height="230" rx="15" class="p"/><svg x="77" y="28" width="76" height="76" viewBox="0 0 80 80">
+<g id="Icon-Architecture/64/Arch_Amazon-API-Gateway_64">
+<g id="Icon-Architecture-BG/64/Networking-Content-Delivery">
+<rect id="Rectangle" width="80" height="80" fill="#8C4FFF"/>
+</g>
+<g id="Icon-Service/64/Amazon-API-Gateway_64">
+<path id="Amazon-API-Gateway_Icon_64_Squid" fill-rule="evenodd" clip-rule="evenodd" d="M34.065 55.6324H37V53.6153H34.065V55.6324ZM39 55.6324H42V53.6153H39V55.6324ZM27 14.6295L14 21.0821V61.1934L27 65.5896V14.6295ZM29 27.3934V53.6153H32V55.6324H29V66.9915C29 67.3162 28.845 67.6208 28.584 67.8104C28.412 67.9355 28.207 68 28 68C27.894 68 27.786 67.9829 27.682 67.9476L12.682 62.8756C12.274 62.7375 12 62.3522 12 61.9196V20.4537C12 20.0705 12.217 19.7185 12.559 19.5491L27.559 12.1041C27.868 11.9498 28.235 11.9679 28.528 12.1525C28.821 12.3361 29 12.6598 29 13.0087V25.3764H32V27.3934H29ZM44 55.6324H47V53.6153H44V55.6324ZM44.065 27.3934H47V25.3764H44.065V27.3934ZM39.065 27.3934H42V25.3764H39.065V27.3934ZM34.065 27.3934H37V25.3764H34.065V27.3934ZM66 21.0821L53 14.6295V65.5896L66 61.1934V21.0821ZM68 61.9196C68 62.3522 67.726 62.7375 67.318 62.8756L52.318 67.9476C52.214 67.9829 52.106 68 52 68C51.793 68 51.588 67.9355 51.416 67.8104C51.155 67.6208 51 67.3162 51 66.9915V55.6324H49.065V53.6153H51V27.3934H49.065V25.3764H51V13.0087C51 12.6598 51.179 12.3361 51.472 12.1525C51.765 11.9679 52.131 11.9498 52.441 12.1041L67.441 19.5491C67.783 19.7185 68 20.0705 68 20.4537V61.9196ZM42.934 33.8067L41.066 33.0826L36.066 46.1935L37.934 46.9176L42.934 33.8067ZM49.707 40.2089C50.098 39.8145 50.098 39.1761 49.707 38.7828L45.707 34.7487L44.293 36.1747L47.586 39.4958L44.293 42.8169L45.707 44.243L49.707 40.2089ZM34.293 44.243L30.293 40.2089C29.902 39.8145 29.902 39.1761 30.293 38.7828L34.293 34.7487L35.707 36.1747L32.414 39.4958L35.707 42.8169L34.293 44.243Z" fill="white"/>
+</g>
+</g>
+</svg>
 
-<!-- Users -->
-<g transform="translate(50 175)">
-  <rect width="200" height="310" rx="16" class="panel" filter="url(#shadow)"/>
-  <text x="100" y="34" text-anchor="middle" class="t h" font-size="19">Users</text>
-  <circle cx="74" cy="105" r="23" fill="#2f6cab"/><circle cx="126" cy="105" r="23" fill="#2f6cab"/><circle cx="100" cy="82" r="25" fill="#386fa9"/>
-  <text x="100" y="153" text-anchor="middle" class="t h" font-size="16">Users / Admins</text>
-  <text x="100" y="177" text-anchor="middle" class="m small">Access the app</text>
-  <rect x="52" y="208" width="96" height="62" rx="6" fill="none" stroke="#6fbaff" stroke-width="4"/>
-  <path d="M42 281h116M66 270l-8 11m76-11 8 11" stroke="#6fbaff" stroke-width="4"/>
-  <text x="100" y="302" text-anchor="middle" class="t h" font-size="15">Web Browser</text>
+<text x="115" y="136" text-anchor="middle" class="t h" font-size="18">Amazon API Gateway</text><text x="115" y="162" text-anchor="middle" class="m tiny">REST API / HTTPS</text><text x="115" y="187" text-anchor="middle" class="m tiny">POST · GET · PUT · DELETE</text></g>
+<g transform="translate(318 58)"><rect width="230" height="230" rx="15" class="p"/><svg x="77" y="28" width="76" height="76" viewBox="0 0 80 80">
+    <g id="Icon-Architecture/64/Arch_AWS-Lambda_64" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon-Architecture-BG/64/Compute" fill="#ED7100">
+            <rect id="Rectangle" x="0" y="0" width="80" height="80"></rect>
+        </g>
+        <path d="M28.0075352,66 L15.5907274,66 L29.3235885,37.296 L35.5460249,50.106 L28.0075352,66 Z M30.2196674,34.553 C30.0512768,34.208 29.7004629,33.989 29.3175745,33.989 L29.3145676,33.989 C28.9286723,33.99 28.5778583,34.211 28.4124746,34.558 L13.097944,66.569 C12.9495999,66.879 12.9706487,67.243 13.1550766,67.534 C13.3374998,67.824 13.6582439,68 14.0020416,68 L28.6420072,68 C29.0299071,68 29.3817234,67.777 29.5481094,67.428 L37.563706,50.528 C37.693006,50.254 37.6920037,49.937 37.5586944,49.665 L30.2196674,34.553 Z M64.9953491,66 L52.6587274,66 L32.866809,24.57 C32.7014253,24.222 32.3486067,24 31.9617091,24 L23.8899822,24 L23.8990031,14 L39.7197081,14 L59.4204149,55.429 C59.5857986,55.777 59.9386172,56 60.3255148,56 L64.9953491,56 L64.9953491,66 Z M65.9976745,54 L60.9599868,54 L41.25928,12.571 C41.0938963,12.223 40.7410777,12 40.3531778,12 L22.89768,12 C22.3453987,12 21.8963569,12.447 21.8953545,12.999 L21.884329,24.999 C21.884329,25.265 21.9885708,25.519 22.1780103,25.707 C22.3654452,25.895 22.6200358,26 22.8866544,26 L31.3292417,26 L51.1221625,67.43 C51.2885485,67.778 51.6393624,68 52.02626,68 L65.9976745,68 C66.5519605,68 67,67.552 67,67 L67,55 C67,54.448 66.5519605,54 65.9976745,54 L65.9976745,54 Z" id="AWS-Lambda_Icon_64_Squid" fill="#FFFFFF"></path>
+    </g>
+</svg>
+<text x="115" y="136" text-anchor="middle" class="t h" font-size="18">AWS Lambda</text><text x="115" y="162" text-anchor="middle" class="m tiny">Python CRUD handler</text><text x="115" y="187" text-anchor="middle" class="m tiny">Validation + business logic</text></g>
+<g transform="translate(601 58)"><rect width="230" height="230" rx="15" class="p"/><svg x="77" y="28" width="76" height="76" viewBox="0 0 80 80">
+    <g id="Icon-Architecture/64/Arch_Amazon-DynamoDB_64" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon-Architecture-BG/64/Database" fill="#C925D1">
+            <rect id="Rectangle" x="0" y="0" width="80" height="80"></rect>
+        </g>
+        <path d="M52.0859525,54.8502506 C48.7479569,57.5490338 41.7449661,58.9752927 35.0439749,58.9752927 C28.3419838,58.9752927 21.336993,57.548042 17.9999974,54.8492588 L17.9999974,60.284515 L18.0009974,60.284515 C18.0009974,62.9952002 24.9999974,66.0163299 35.0439749,66.0163299 C45.0799617,66.0163299 52.0749525,62.9991676 52.0859525,60.290466 L52.0859525,54.8502506 Z M52.0869525,44.522272 L54.0869499,44.5113618 L54.0869499,44.522272 C54.0869499,45.7303271 53.4819507,46.8580436 52.3039522,47.8905439 C53.7319503,49.147199 54.0869499,50.3800499 54.0869499,51.257824 C54.0869499,51.263775 54.0859499,51.2687342 54.0859499,51.2746852 L54.0859499,60.284515 L54.0869499,60.284515 C54.0869499,65.2952658 44.2749628,68 35.0439749,68 C25.8349871,68 16.0499999,65.3071678 16.003,60.3192292 C16.003,60.31427 16,60.3093109 16,60.3043517 L16,51.2548485 C16,51.2528648 16.002,51.2498893 16.002,51.2469138 C16.005,50.3691398 16.3609995,49.1412479 17.7869976,47.8875684 C16.3699995,46.6358725 16.01,45.4149236 16.001,44.5440924 L16.002,44.5440924 C16.002,44.540125 16,44.5371495 16,44.5331822 L16,35.483679 C16,35.4807035 16.002,35.477728 16.002,35.4747525 C16.005,34.5969784 16.3619995,33.3690866 17.7879976,32.1173908 C16.3699995,30.8647031 16.01,29.6427623 16.001,28.7729229 L16.002,28.7729229 C16.002,28.7689556 16,28.7649882 16,28.7610209 L16,19.7125095 C16,19.709534 16.002,19.7065585 16.002,19.703583 C16.019,14.6997751 25.8199871,12 35.0439749,12 C40.2549681,12 45.2609615,12.8281823 48.7779569,14.2722941 L48.0129579,16.1052054 C44.7299622,14.7573015 40.0029684,13.9836701 35.0439749,13.9836701 C24.9999882,13.9836701 18.0009974,17.0047998 18.0009974,19.7174687 C18.0009974,22.4291458 24.9999882,25.4502754 35.0439749,25.4502754 C35.3149746,25.4532509 35.5799742,25.4502754 35.8479739,25.4403571 L35.9319738,27.4220435 C35.6359742,27.4339456 35.3399745,27.4339456 35.0439749,27.4339456 C28.3419838,27.4339456 21.336993,26.0066949 18,23.3079117 L18,28.7401923 L18.0009974,28.7401923 L18.0009974,28.7630046 C18.0109974,29.8034395 19.0779959,30.7119605 19.9719948,31.2892085 C22.6619912,33.0040913 27.4819849,34.1754485 32.8569778,34.4184481 L32.7659779,36.4001346 C27.3209851,36.1531677 22.5529914,35.0234675 19.4839954,33.2917235 C18.7279964,33.8570695 18.0009974,34.6217743 18.0009974,35.4886382 C18.0009974,38.2003153 24.9999882,41.2214449 35.0439749,41.2214449 C36.0289736,41.2214449 37.0069723,41.1887143 37.9519711,41.1232532 L38.0909709,43.1019642 C37.1009722,43.1704008 36.0749736,43.205115 35.0439749,43.205115 C28.3419838,43.205115 21.336993,41.7778644 18,39.0790811 L18,44.5113618 L18.0009974,44.5113618 C18.0109974,45.574609 19.0779959,46.4821381 19.9719948,47.060378 C23.0479907,49.0232196 28.8239831,50.2451604 35.0439749,50.2451604 L35.4839744,50.2451604 L35.4839744,52.2288305 L35.0439749,52.2288305 C28.7249832,52.2288305 22.9819908,51.0554896 19.4699954,49.0728113 C18.7179964,49.6371655 18.0009974,50.397903 18.0009974,51.257824 C18.0009974,53.9695011 24.9999882,56.9916225 35.0439749,56.9916225 C45.0799617,56.9916225 52.0749525,53.9744602 52.0859525,51.2647668 L52.0859525,51.2548485 L52.0859525,51.2538566 C52.0839525,50.391952 51.3639534,49.6312145 50.6099544,49.0668603 C50.1219551,49.3435823 49.5989558,49.6103859 49.0039566,49.8553692 L48.2379576,48.022458 C48.9639566,47.7239156 49.5939558,47.4015692 50.1109551,47.0623616 C51.0129539,46.4742034 52.0869525,45.5547723 52.0869525,44.522272 L52.0869525,44.522272 Z M60.6529412,30.0166841 L55.0489486,30.0166841 C54.717949,30.0166841 54.4069494,29.8540231 54.2219497,29.5822603 C54.0349499,29.3104975 53.99695,28.9643471 54.1189498,28.6598537 L57.5279453,20.1380068 L44.6189702,20.1380068 L38.6189702,32.0400276 L45.0009618,32.0400276 C45.3199614,32.0400276 45.619961,32.1917784 45.8089608,32.44668 C45.9959605,32.7025735 46.0509604,33.0308709 45.9539606,33.3333806 L40.2579681,51.089212 L60.6529412,30.0166841 Z M63.7219372,29.7121907 L38.7229701,55.539576 C38.5279703,55.7399267 38.2659707,55.8440694 38.000971,55.8440694 C37.8249713,55.8440694 37.6479715,55.7994368 37.4899717,55.7052124 C37.0899722,55.4691557 36.9069725,54.992083 37.0479723,54.5517083 L43.6339636,34.0236978 L37.0009724,34.0236978 C36.6539728,34.0236978 36.3329732,33.8461593 36.1499735,33.5535679 C35.9679737,33.2609766 35.9509737,32.8959813 36.1069735,32.5885124 L43.1069643,18.7028214 C43.2759641,18.3665893 43.6219636,18.1543366 44.0009631,18.1543366 L59.0009434,18.1543366 C59.331943,18.1543366 59.6429425,18.3179894 59.8279423,18.5887604 C60.0149421,18.861515 60.052942,19.2066736 59.9309422,19.5121588 L56.5219467,28.0330139 L62.9999381,28.0330139 C63.3999376,28.0330139 63.7629371,28.2710544 63.9199369,28.6360497 C64.0769367,29.0020368 63.9989368,29.4255504 63.7219372,29.7121907 L63.7219372,29.7121907 Z M19.4549955,60.6743062 C20.8719936,61.4727334 22.6559912,62.1442057 24.7569885,62.6678947 L25.2449878,60.7437346 C23.3459903,60.2706293 21.6859925,59.6497405 20.4429942,58.949505 L19.4549955,60.6743062 Z M24.7569885,46.7985335 L25.2449878,44.8753653 C23.3459903,44.4012681 21.6859925,43.7803794 20.4429942,43.0801438 L19.4549955,44.804945 C20.8719936,45.6033722 22.6549912,46.2748446 24.7569885,46.7985335 L24.7569885,46.7985335 Z M19.4549955,28.9355839 L20.4429942,27.2107827 C21.6839925,27.9110182 23.3449903,28.5309151 25.2449878,29.0060041 L24.7569885,30.9291723 C22.6529912,30.4044916 20.8699936,29.7330193 19.4549955,28.9355839 L19.4549955,28.9355839 Z" id="Amazon-DynamoDB_Icon_64_Squid" fill="#FFFFFF"></path>
+    </g>
+</svg>
+<text x="115" y="136" text-anchor="middle" class="t h" font-size="18">Amazon DynamoDB</text><text x="115" y="162" text-anchor="middle" class="m tiny">Asset inventory records</text><text x="115" y="187" text-anchor="middle" class="m tiny">Persistent CRUD data</text></g>
+<path d="M265 173H318" class="line"/><path d="M548 173H601" class="line"/>
+<text x="292" y="155" text-anchor="middle" class="m tiny">invoke</text><text x="574" y="155" text-anchor="middle" class="m tiny">read / write</text>
 </g>
 
-<!-- Frontend -->
-<g transform="translate(300 175)">
-  <rect width="235" height="310" rx="16" class="panel" filter="url(#shadow)"/>
-  <text x="118" y="34" text-anchor="middle" class="t h" font-size="19">Frontend</text>
-  <rect x="38" y="68" width="74" height="74" rx="10" fill="#8C4FFF"/>
-  <path d="M57 111c0-20 31-20 31 0M49 105c0-13 19-18 27-9 7-17 34-8 34 10 11 2 13 20 0 23H58c-13-1-14-21-1-24z" fill="none" stroke="#fff" stroke-width="3"/>
-  <text x="126" y="91" class="t h" font-size="15">Amazon CloudFront</text><text x="126" y="112" class="m tiny">Optional CDN</text>
-  <rect x="38" y="184" width="74" height="74" rx="10" fill="#7AA116"/>
-  <ellipse cx="75" cy="204" rx="21" ry="8" fill="none" stroke="#fff" stroke-width="3"/><path d="M54 204v34c0 10 42 10 42 0v-34" fill="none" stroke="#fff" stroke-width="3"/>
-  <text x="126" y="207" class="t h" font-size="15">Amazon S3</text><text x="126" y="228" class="m tiny">Static web UI</text>
-  <path d="M75 142v42" class="line"/>
-</g>
+<path d="M355 272H430" class="dash"/>
+<text x="392" y="254" text-anchor="middle" class="m tiny">optional UI delivery</text>
 
-<!-- API and compute -->
-<g transform="translate(590 175)">
-  <rect width="330" height="310" rx="16" class="panel" filter="url(#shadow)"/>
-  <text x="165" y="34" text-anchor="middle" class="t h" font-size="19">API &amp; Compute</text>
-  <rect x="32" y="68" width="78" height="78" rx="11" fill="#8C4FFF"/>
-  <path d="M53 90h36v34H53zM45 101h8m36 0h8m-44 23h36" stroke="#fff" stroke-width="3.6" fill="none"/>
-  <text x="126" y="91" class="t h" font-size="15">Amazon API Gateway</text><text x="126" y="112" class="m tiny">REST API / HTTPS</text>
+<text x="80" y="610" class="cap">SECURITY &amp; OPERATIONS</text>
+<g transform="translate(90 635)"><rect width="380" height="165" rx="15" class="p"/><svg x="28" y="42" width="76" height="76" viewBox="0 0 80 80">
+    <g id="Icon-Architecture/64/Arch_AWS-Identity-and-Access-Management_64" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon-Architecture-BG/64/Security-Identity-Compliance" fill="#DD344C">
+            <rect id="Rectangle" x="0" y="0" width="80" height="80"></rect>
+        </g>
+        <path d="M14,59 L66,59 L66,21 L14,21 L14,59 Z M68,20 L68,60 C68,60.552 67.553,61 67,61 L13,61 C12.447,61 12,60.552 12,60 L12,20 C12,19.448 12.447,19 13,19 L67,19 C67.553,19 68,19.448 68,20 L68,20 Z M44,48 L59,48 L59,46 L44,46 L44,48 Z M57,42 L62,42 L62,40 L57,40 L57,42 Z M44,42 L52,42 L52,40 L44,40 L44,42 Z M29,46 C29,45.449 28.552,45 28,45 C27.448,45 27,45.449 27,46 C27,46.551 27.448,47 28,47 C28.552,47 29,46.551 29,46 L29,46 Z M31,46 C31,47.302 30.161,48.401 29,48.816 L29,51 L27,51 L27,48.815 C25.839,48.401 25,47.302 25,46 C25,44.346 26.346,43 28,43 C29.654,43 31,44.346 31,46 L31,46 Z M19,53.993 L36.994,54 L36.996,50 L33,50 L33,48 L36.996,48 L36.998,45 L33,45 L33,43 L36.999,43 L37,40.007 L19.006,40 L19,53.993 Z M22,38.001 L34,38.006 L34,31 C34.001,28.697 31.197,26.677 28,26.675 L27.996,26.675 C24.804,26.675 22.004,28.696 22.002,31 L22,38.001 Z M17,54.992 L17.006,39 C17.006,38.734 17.111,38.48 17.299,38.292 C17.486,38.105 17.741,38 18.006,38 L20,38.001 L20.002,31 C20.004,27.512 23.59,24.675 27.996,24.675 L28,24.675 C32.412,24.677 36.001,27.515 36,31 L36,38.007 L38,38.008 C38.553,38.008 39,38.456 39,39.008 L38.994,55 C38.994,55.266 38.889,55.52 38.701,55.708 C38.514,55.895 38.259,56 37.994,56 L18,55.992 C17.447,55.992 17,55.544 17,54.992 L17,54.992 Z M60,36 L62,36 L62,34 L60,34 L60,36 Z M44,36 L55,36 L55,34 L44,34 L44,36 Z" id="AWS-Identity-and-Access-Management_Icon_64_Squid" fill="#FFFFFF"></path>
+    </g>
+</svg>
+<text x="130" y="66" class="t h" font-size="18">AWS IAM</text><text x="130" y="91" class="m tiny">Least-privilege execution role</text><text x="130" y="114" class="m tiny">API/Lambda/DynamoDB permissions</text></g>
+<g transform="translate(510 635)"><rect width="380" height="165" rx="15" class="p"/><svg x="28" y="42" width="76" height="76" viewBox="0 0 80 80">
+    <g id="Icon-Architecture/64/Arch_Amazon-CloudWatch_64" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon-Architecture-BG/64/Management-Governance" fill="#E7157B">
+            <rect id="Rectangle" x="0" y="0" width="80" height="80"></rect>
+        </g>
+        <path d="M55.0592315,46.7773707 C55.0592315,42.8680281 51.8575588,39.6876305 47.9220646,39.6876305 C43.9865705,39.6876305 40.785903,42.8680281 40.785903,46.7773707 C40.785903,50.6867133 43.9865705,53.8671108 47.9220646,53.8671108 C51.8575588,53.8671108 55.0592315,50.6867133 55.0592315,46.7773707 M57.0697011,46.7773707 C57.0697011,51.7881194 52.9663327,55.8642207 47.9220646,55.8642207 C42.8788018,55.8642207 38.7754334,51.7881194 38.7754334,46.7773707 C38.7754334,41.7666219 42.8788018,37.6905206 47.9220646,37.6905206 C52.9663327,37.6905206 57.0697011,41.7666219 57.0697011,46.7773707 M65.5096522,60.4735504 L58.5011554,54.2026253 C57.9352082,54.9944794 57.2808004,55.7174332 56.5540156,56.3634982 L63.5524601,62.6334248 C64.1495696,63.1686502 65.0784065,63.1187225 65.6182176,62.5255808 C66.155013,61.9324392 66.1067617,61.010773 65.5096522,60.4735504 M47.9220646,57.6616197 C53.9645309,57.6616197 58.8801289,52.7786859 58.8801289,46.7773707 C58.8801289,40.7750569 53.9645309,35.8931217 47.9220646,35.8931217 C41.8806036,35.8931217 36.9650056,40.7750569 36.9650056,46.7773707 C36.9650056,52.7786859 41.8806036,57.6616197 47.9220646,57.6616197 M67.1119965,63.8626459 C66.4264264,64.6165549 65.47849,65 64.5285431,65 C63.7002296,65 62.8699057,64.708422 62.207456,64.1172774 L54.9305615,57.5987107 C52.9070239,58.8968321 50.505518,59.6587296 47.9220646,59.6587296 C40.7718297,59.6587296 34.9545361,53.8800921 34.9545361,46.7773707 C34.9545361,39.6746493 40.7718297,33.8960118 47.9220646,33.8960118 C55.0733048,33.8960118 60.8905985,39.6746493 60.8905985,46.7773707 C60.8905985,48.8154213 60.3990387,50.7366411 59.5465996,52.4511599 L66.8556616,58.9906963 C68.2750531,60.265851 68.3896499,62.4496907 67.1119965,63.8626459 M21.2803274,29.392529 C21.2803274,29.9117776 21.3124949,30.429029 21.3738143,30.9293051 C21.4089975,31.2138932 21.3205368,31.4984814 21.1295422,31.7131707 C20.9777518,31.8839236 20.7736891,31.9967603 20.550527,32.0347054 C18.0786547,32.6687878 14.0104695,34.5880104 14.0104695,40.3456782 C14.0104695,44.6933865 16.4240382,47.0929141 18.4495863,48.3411077 C19.1411878,48.7744806 19.9594489,49.0051468 20.8229456,49.0141338 L32.9450717,49.0251179 L32.9430613,51.0222278 L20.811888,51.0112437 C19.5664021,50.9982625 18.384246,50.6607509 17.3840374,50.0346569 C15.3765836,48.7974474 12,45.8896553 12,40.3456782 C12,33.66235 16.5999543,31.191925 19.3000149,30.319188 C19.2799102,30.0116331 19.2698579,29.702081 19.2698579,29.392529 C19.2698579,23.9324305 22.9982737,18.2696254 27.9420183,16.2215892 C33.7241287,13.8150717 39.8500294,15.0083449 44.3263399,19.4109737 C45.7135638,20.7749998 46.8545053,22.4316024 47.7300648,24.3478294 C48.9061895,23.3802296 50.355738,22.8460027 51.8836949,22.8460027 C54.8863312,22.8460027 58.2659305,25.1097268 58.8680661,30.0605622 C61.6797078,30.7046302 67.6206453,32.9553731 67.6206453,40.422567 C67.6206453,43.4042521 66.6797455,45.8666886 64.8230769,47.7419748 L63.3896121,46.3410022 C64.8632863,44.8531553 65.6101757,42.8620367 65.6101757,40.422567 C65.6101757,33.891019 60.1055101,32.2663701 57.737177,31.8719409 C57.4677741,31.827006 57.2295334,31.6752256 57.0757325,31.4515493 C56.9259525,31.2358614 56.8686541,30.9712444 56.9138897,30.7146157 C56.5851779,26.6604826 54.1605516,24.8431126 51.8836949,24.8431126 C50.4472144,24.8431126 49.1001998,25.5381069 48.1874466,26.7503526 C47.9652897,27.0439277 47.6044105,27.193711 47.2344841,27.139789 C46.8695838,27.085867 46.5629872,26.8362283 46.4373329,26.4917268 C45.6140456,24.2260057 44.4278686,22.3207628 42.9119745,20.8309188 C39.0327735,17.0154404 33.7281496,15.9809374 28.7170543,18.0649216 C24.5463352,19.7924217 21.2803274,24.7672224 21.2803274,29.392529" id="Amazon-CloudWatch_Icon_64_Squid" fill="#FFFFFF"></path>
+    </g>
+</svg>
+<text x="130" y="66" class="t h" font-size="18">Amazon CloudWatch</text><text x="130" y="91" class="m tiny">Logs, metrics, troubleshooting</text><text x="130" y="114" class="m tiny">Operational visibility</text></g>
+<g transform="translate(930 635)"><rect width="480" height="165" rx="15" class="p"/>
+<rect x="28" y="42" width="76" height="76" rx="10" fill="#232F3E"/><text x="66" y="88" text-anchor="middle" class="t h" font-size="20">SAM</text>
+<text x="130" y="66" class="t h" font-size="18">AWS SAM / IaC</text><text x="130" y="91" class="m tiny">Defines API Gateway, Lambda and DynamoDB</text><text x="130" y="114" class="m tiny">Repeatable serverless deployment</text></g>
 
-  <rect x="222" y="68" width="78" height="78" rx="11" fill="#ED7100"/>
-  <path d="M240 131l17-39 14 29h14l-22 13-9-14-7 14z" fill="none" stroke="#fff" stroke-width="4"/>
-  <text x="261" y="167" text-anchor="middle" class="t h" font-size="15">AWS Lambda</text>
-  <text x="261" y="188" text-anchor="middle" class="m tiny">CRUD handlers</text>
-  <path d="M110 107h112" class="line"/>
+<path d="M665 530V635" class="dash"/><path d="M815 530V635" class="dash"/>
+<text x="750" y="565" text-anchor="middle" class="m tiny">permissions, logs and metrics</text>
 
-  <rect x="35" y="218" width="260" height="70" rx="10" class="soft"/>
-  <text x="54" y="243" class="t h small">CREATE</text><text x="115" y="243" class="m tiny">POST /assets</text>
-  <text x="54" y="264" class="t h small">READ</text><text x="115" y="264" class="m tiny">GET /assets</text>
-  <text x="178" y="243" class="t h small">UPDATE</text><text x="243" y="243" class="m tiny">PUT /assets/{id}</text>
-  <text x="178" y="264" class="t h small">DELETE</text><text x="243" y="264" class="m tiny">DELETE /assets/{id}</text>
-</g>
-
-<!-- Data -->
-<g transform="translate(975 175)">
-  <rect width="220" height="310" rx="16" class="panel" filter="url(#shadow)"/>
-  <text x="110" y="34" text-anchor="middle" class="t h" font-size="19">Data &amp; Storage</text>
-  <rect x="72" y="68" width="76" height="76" rx="11" fill="#3868E8"/>
-  <ellipse cx="110" cy="88" rx="21" ry="8" fill="none" stroke="#fff" stroke-width="3"/><path d="M89 88v36c0 10 42 10 42 0V88M89 103c0 10 42 10 42 0M89 117c0 10 42 10 42 0" fill="none" stroke="#fff" stroke-width="3"/>
-  <text x="110" y="168" text-anchor="middle" class="t h" font-size="16">Amazon DynamoDB</text><text x="110" y="190" text-anchor="middle" class="m tiny">Asset inventory</text>
-  <rect x="72" y="216" width="76" height="76" rx="11" fill="#7AA116"/>
-  <ellipse cx="110" cy="236" rx="21" ry="8" fill="none" stroke="#fff" stroke-width="3"/><path d="M89 236v35c0 10 42 10 42 0v-35" fill="none" stroke="#fff" stroke-width="3"/>
-  <text x="160" y="243" class="m tiny">Optional</text><text x="160" y="261" class="m tiny">attachments</text>
-</g>
-
-<!-- Security/observability -->
-<g transform="translate(1245 175)">
-  <rect width="205" height="310" rx="16" class="panel" filter="url(#shadow)"/>
-  <text x="103" y="34" text-anchor="middle" class="t h" font-size="18">Security / Ops</text>
-  <rect x="64" y="68" width="76" height="76" rx="11" fill="#D82B78"/>
-  <path d="M80 125l13-15 12 7 20-29M79 132h47" stroke="#fff" stroke-width="3.5" fill="none"/>
-  <text x="103" y="169" text-anchor="middle" class="t h" font-size="15">CloudWatch</text><text x="103" y="190" text-anchor="middle" class="m tiny">Logs &amp; metrics</text>
-  <rect x="64" y="216" width="76" height="76" rx="11" fill="#DD344C"/>
-  <path d="M83 248h38v30H83zM90 248v-11c0-17 24-17 24 0v11" fill="none" stroke="#fff" stroke-width="3"/>
-  <text x="103" y="306" text-anchor="middle" class="t h" font-size="15">AWS IAM</text>
-</g>
-
-<!-- main connections -->
-<path d="M250 330H300" class="line"/>
-<path d="M535 330H590" class="line"/>
-<path d="M920 330H975" class="line"/>
-<path d="M1195 330H1245" class="line"/>
-
-<!-- deployment lane -->
-<rect x="105" y="555" width="1290" height="210" rx="18" class="panel"/>
-<text x="750" y="590" text-anchor="middle" class="cap">DEVELOPMENT &amp; DEPLOYMENT</text>
-
-<g transform="translate(170 620)">
-  <circle cx="42" cy="42" r="39" fill="#151515"/><text x="42" y="49" text-anchor="middle" class="t h" font-size="18">GH</text>
-  <text x="94" y="36" class="t h" font-size="16">GitHub</text><text x="94" y="57" class="m tiny">Source &amp; pull requests</text>
-</g>
-
-<path d="M365 662H455" class="line"/>
-
-<g transform="translate(470 620)">
-  <circle cx="42" cy="42" r="39" fill="#2F80ED"/><text x="42" y="48" text-anchor="middle" class="t h" font-size="14">CI/CD</text>
-  <text x="94" y="36" class="t h" font-size="16">GitHub Actions</text><text x="94" y="57" class="m tiny">Validate &amp; deploy</text>
-</g>
-
-<path d="M675 662H765" class="line"/>
-
-<g transform="translate(785 620)">
-  <rect x="0" y="0" width="82" height="82" rx="12" fill="#ED7100"/>
-  <path d="M17 60h48V25H17zM25 20h32M25 68h32" stroke="#fff" stroke-width="3" fill="none"/>
-  <text x="98" y="35" class="t h" font-size="16">AWS SAM</text><text x="98" y="56" class="m tiny">Infrastructure as code</text>
-</g>
-
-<path d="M1062 662H1152" class="line"/>
-
-<g transform="translate(1168 620)">
-  <rect x="0" y="0" width="82" height="82" rx="12" fill="#232F3E"/>
-  <text x="41" y="49" text-anchor="middle" class="t h" font-size="23">AWS</text>
-  <path d="M18 59c17 8 33 7 49 0" stroke="#FF9900" stroke-width="3" fill="none"/>
-  <text x="98" y="35" class="t h" font-size="16">AWS Cloud</text><text x="98" y="56" class="m tiny">Serverless deployment</text>
-</g>
-
-<!-- deployment arrows to app -->
-<path d="M870 620V520H755V485" class="dash"/>
-<text x="880" y="535" class="m tiny">Deploy API + Lambda</text>
-<path d="M1220 620V520H418V485" class="dash"/>
-<text x="1050" y="535" class="m tiny">Optional frontend deployment</text>
-
-<!-- footer -->
-<rect x="105" y="805" width="1290" height="58" rx="13" fill="#08263e" stroke="#2f6e9c"/>
-<text x="132" y="841" class="t h" font-size="16">Core implemented path:</text>
-<text x="315" y="841" class="m small">Browser → API Gateway → Lambda → DynamoDB, with IAM and CloudWatch. S3/CloudFront are optional production frontend hosting.</text>
+<rect x="85" y="835" width="1325" height="38" rx="10" fill="#08263e" stroke="#2f6e9c"/>
+<text x="750" y="860" text-anchor="middle" class="t h" font-size="14">Implemented core: Browser → API Gateway → Lambda → DynamoDB, with IAM and CloudWatch. CloudFront/S3 are optional frontend hosting.</text>
 </svg>
